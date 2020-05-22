@@ -69,7 +69,7 @@ def solServicio():
     datosContrato[dato] = nuevoDato
 
   # Comprueba que el vehiculo este en la base de datos. Si no, solicita que se agregue informacion
-  if leerBase("bServicios.txt",'1',datosContrato["Codigo del servicio"])=="No info": 
+  if leerBase("bServicios.txt",'1',datosContrato["Codigo del servicio"], FALSE)=="No info": 
     print("Servicio no existe, verifique base de datos.")
     return False
   else:

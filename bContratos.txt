@@ -1,4 +1,0 @@
-{"ID-Cliente": "1032499653  ", "Placa": "12345 ", "Codigo del servicio": "1234", "Unidades contratadas": "2  ", "Status": "2         "}
-{"ID-Cliente": "1032499653  ", "Placa": "12345 ", "Codigo del servicio": "1234", "Unidades contratadas": "2  ", "Status": "2         "}
-{"ID-Cliente": "1032499653  ", "Placa": "12345 ", "Codigo del servicio": "1234", "Unidades contratadas": "2  ", "Status": "2         "}
-{"ID-Cliente": "1032499653  ", "Placa": "12345 ", "Codigo del servicio": "1234", "Unidades contratadas": "2  ", "Status": "2         "}

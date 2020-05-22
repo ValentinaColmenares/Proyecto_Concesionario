@@ -1,0 +1,1 @@
+{"ID-Cliente": "1032499653  ", "Nombre": "daniela   ", "Apellido": "carvajal  ", "Direcci\u00f3n": "cra55               ", "Telefono": "32167778  ", "Ciudad": "sanjose        "}

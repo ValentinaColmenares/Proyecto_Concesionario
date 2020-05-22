@@ -1,0 +1,25 @@
+FACTURA NUMERO 0
+Informacion del usuarion.
+ID-Cliente:1032499653/ Nombre:daniela/ Apellido:carvajal/ Direcci�n:cra55/ Telefono:32167778/ Ciudad:sanjose/ 
+Informacion del vehiculo.
+Numero de placa:12345/ ID-Cliente:1032499653/ Marca:benz/ Numero de modelo:13314/ Cilindraje:31442/ Color:negro/ Tipo de servicio:particular/ Tipo de combustible:gasolina/ Capacidad de pasajeros:10/ Capacidad de carga:12333/ Numero de chasis:1213314/ Numero de Motor:312313/ 
+Informacion del servicio:
+Codigo del servicio:1234/ Nombre del servicio:lavado/ Precio/hora:3000/ Horas del servicio:3/ 
+TOTAL A PAGAR:9000
+
+
+
+FACTURA NUMERO 1
+
+INFORMACI�N DE USUARIO.
+ID-Cliente:1032499653/ Nombre:daniela/ Apellido:carvajal/ Direcci�n:cra55/ Telefono:32167778/ Ciudad:sanjose/ 
+
+INFORMACI�N DE VEHICULO.
+Numero de placa:12345/ ID-Cliente:1032499653/ Marca:benz/ Numero de modelo:13314/ Cilindraje:31442/ Color:negro/ Tipo de servicio:particular/ Tipo de combustible:gasolina/ Capacidad de pasajeros:10/ Capacidad de carga:12333/ Numero de chasis:1213314/ Numero de Motor:312313/ 
+
+INFORMACI�N DE SERVICIO:
+Codigo del servicio:1234/ Nombre del servicio:lavado/ Precio/hora:3000/ Horas del servicio:3/ 
+
+TOTAL A PAGAR:9000
+
+

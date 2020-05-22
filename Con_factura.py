@@ -3,6 +3,8 @@ PENDIENTE
 -Facturas
 -Ver informacion de contratos
 -Actualizar status de contratos (pendiente/en proceso/terminado)
+-usar librerías gráficas
+-arreglar segunda herramienta de busqueda (no se pueden intercambiar las columnas)
 """
 
 import os

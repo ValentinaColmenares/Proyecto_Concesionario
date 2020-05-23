@@ -33,7 +33,7 @@ def infoCliente():
 
     for dato in datosClientes:
         print(dato)
-        nuevoDato = input()
+        nuevoDato = input().title()
         nuevoDato = nuevoDato.replace(" ", "-")
         nuevoDato = nuevoDato.ljust(datosClientes[dato])
         # esto va a restringir la entrada del usuario, la idea es cortar la entrada cuando el valor es mayor que el ljust definido. esto es para evitar que las tablas queden desalineadas
@@ -52,7 +52,7 @@ def infoVehiculo():
 
     for dato in datosVehiculos:
         print(dato)
-        nuevoDato = input()
+        nuevoDato = input().title()
         nuevoDato = nuevoDato.replace(" ", "-")
         nuevoDato = nuevoDato.ljust(datosVehiculos[dato])
         nuevoDato = nuevoDato[0:(datosVehiculos[dato])]
@@ -78,7 +78,7 @@ def infoServicio():
 
     for dato in datosServicios:
         print(dato)
-        nuevoDato = input()
+        nuevoDato = input().title()
         nuevoDato = nuevoDato.replace(" ", "-")
         nuevoDato = nuevoDato.ljust(datosServicios[dato])
         nuevoDato = nuevoDato[0:(datosServicios[dato])]
@@ -96,7 +96,7 @@ def solServicio():
 
     for dato in datosContrato:
         print(dato)
-        nuevoDato = input()
+        nuevoDato = input().title()
         nuevoDato = nuevoDato.replace(" ", "-")
         nuevoDato = nuevoDato.ljust(datosContrato[dato])
         datosContrato[dato] = nuevoDato

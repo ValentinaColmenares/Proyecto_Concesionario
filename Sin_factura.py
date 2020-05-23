@@ -34,7 +34,7 @@ def infoCliente():
     for dato in datosClientes:
         print(dato)
         nuevoDato = input()
-        nuevoDato = nuevoDato.replace(" ", "")
+        nuevoDato = nuevoDato.replace(" ", "-")
         nuevoDato = nuevoDato.ljust(datosClientes[dato])
         # esto va a restringir la entrada del usuario, la idea es cortar la entrada cuando el valor es mayor que el ljust definido. esto es para evitar que las tablas queden desalineadas
         nuevoDato = nuevoDato[0:(datosClientes[dato])]
@@ -48,7 +48,7 @@ def infoCliente():
 
 def infoVehiculo():
     datosVehiculos = {"Numero de placa": 10, "ID-Cliente": 12, "Marca": 15, "Numero de modelo": 10, "Cilindraje": 10, "Color": 10, "Tipo de servicio": 10,
-                      "Tipo de combustible": 10, "Capacidad de pasajeros": 10, "Capacidad de carga": 10, "Numero de chasis": 10, "Numero de Motor": 10}
+                      "Tipo de combustible": 20, "Capacidad de pasajeros": 10, "Capacidad de carga": 10, "Numero de chasis": 10, "Numero de Motor": 10}
 
     for dato in datosVehiculos:
         print(dato)
@@ -74,12 +74,12 @@ def infoVehiculo():
 
 def infoServicio():
     datosServicios = {"Codigo del servicio": 4, "Nombre del servicio": 15,
-                      "Precio/hora": 10, "Horas del servicio": 4}
+                      "Precio/hora": 15, "Horas del servicio": 5}
 
     for dato in datosServicios:
         print(dato)
         nuevoDato = input()
-        nuevoDato = nuevoDato.replace(" ", "")
+        nuevoDato = nuevoDato.replace(" ", "-")
         nuevoDato = nuevoDato.ljust(datosServicios[dato])
         nuevoDato = nuevoDato[0:(datosServicios[dato])]
         datosServicios[dato] = nuevoDato
@@ -97,7 +97,7 @@ def solServicio():
     for dato in datosContrato:
         print(dato)
         nuevoDato = input()
-        nuevoDato = nuevoDato.replace(" ", "")
+        nuevoDato = nuevoDato.replace(" ", "-")
         nuevoDato = nuevoDato.ljust(datosContrato[dato])
         datosContrato[dato] = nuevoDato
 
@@ -153,6 +153,7 @@ def organizar(base, item):
     item -= 1
     lista2 = []
     cadena = ""
+    cabecera= "|"
 
     for linea in base:
         diccionario = json.loads(linea)
@@ -160,15 +161,47 @@ def organizar(base, item):
         lista2.append(lista)
     lista2.sort(key=lambda list: list[item])
 
+    for i in diccionario:
+
+        caracteres=len(diccionario[i])
+
+        if i=="Numero de placa":
+            i="#placa"
+        elif i=="Numero de modelo":
+            i="#modelo"
+        elif i=="Tipo de servicio":
+            i="servicio"
+        elif i=="Tipo de combustible":
+            i="Combus..."
+        elif i=="Capacidad de pasajeros":
+            i="pasajeros"
+        elif i=="Capacidad de carga":
+            i="carga"
+        elif i=="Numero de chasis":
+            i="#chasis"
+        elif i=="Numero de Motor":
+            i="#motor"
+        elif i=="Codigo del servicio":
+            i="cod"
+        elif i=="Nombre del servicio":
+            i="servicio"
+        elif i=="Horas del servicio":
+            i="Horas"
+        else:
+            i=i
+        palabra=i.ljust(caracteres)
+        cabecera+=palabra+"|"
+
     for i in lista2:
-        i = " ".join(i)
-        cadena += i+"\n"
+        i = "|".join(i)
+        formato="-"*(len(i)+2)+"\n"
+        cadena +=formato+ "|"+i+"|"+"\n"
 
     if cadena == "":
         return "Base de datos vacía"
 
     else:
-        return cadena
+        return formato+cabecera+"\n"+cadena+formato
 
 # Leer base
 

@@ -1,3 +1,4 @@
 {"ID-Cliente": "1032499653  ", "Nombre": "juan      ", "Apellido": "carvajal  ", "Direcci\u00f3n": "carrera4            ", "Telefono": "123452    ", "Ciudad": "carmen         "}
 {"ID-Cliente": "13452       ", "Nombre": "karen     ", "Apellido": "carvajal  ", "Direcci\u00f3n": "cra44               ", "Telefono": "1342561   ", "Ciudad": "carlos         "}
 {"ID-Cliente": "142552      ", "Nombre": "carmen    ", "Apellido": "monsanto  ", "Direcci\u00f3n": "cra4                ", "Telefono": "132134    ", "Ciudad": "santamarta     "}
+{"ID-Cliente": "43252       ", "Nombre": "jarol     ", "Apellido": "garcia    ", "Direcci\u00f3n": "cra44               ", "Telefono": "52152     ", "Ciudad": "bogota         "}

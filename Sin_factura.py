@@ -274,7 +274,7 @@ def eliminarElemento(base, noid, ident):
         for elemento in elementos:
             if noid != elemento[ident]:
                 datoGuardar = json.dumps(elemento)
-                baseDatos.write(datoGuardar)
+                baseDatos.write(datoGuardar+"\n")
 
 # imprimir facturas
 

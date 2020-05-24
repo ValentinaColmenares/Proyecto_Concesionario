@@ -11,7 +11,7 @@ PENDIENTE
 
 notas para entender mejor la parte de facturas:
 -la variable verif que metí es para retornar el diccionario del json, y no la cadena que usualmente retornamos.
--la variable global es la que permite manteneter el conteo entre las funciones.
+-la variable global es la que permite mantener el conteo entre las funciones.
 -hasta donde hice las pruebas el código funciona bien, aún así toca buscar más errores.
 -haré las facturas un poco más presentables en antes del domingo 
 

@@ -8,7 +8,7 @@ PENDIENTE
 -limpiar pantalla cada vez que se imprima algo
 notas para entender mejor la parte de facturas:
 -la variable verif que metí es para retornar el diccionario del json, y no la cadena que usualmente retornamos.
--la variable global es la que permite mantener el conteo entre las funciones.
+-la variable global es la que permite manteneter el conteo entre las funciones.
 -hasta donde hice las pruebas el código funciona bien, aún así toca buscar más errores.
 -haré las facturas un poco más presentables en antes del domingo
 """
@@ -28,7 +28,7 @@ def infoCliente():
 
     for dato in datosClientes:
         print(dato)
-        nuevoDato = input().title()
+        nuevoDato = input()
         nuevoDato = nuevoDato.replace(" ", "-")
         nuevoDato = nuevoDato.ljust(datosClientes[dato])
         # esto va a restringir la entrada del usuario, la idea es cortar la entrada cuando el valor es mayor que el ljust definido. esto es para evitar que las tablas queden desalineadas
@@ -47,7 +47,7 @@ def infoVehiculo():
 
     for dato in datosVehiculos:
         print(dato)
-        nuevoDato = input().title()
+        nuevoDato = input()
         nuevoDato = nuevoDato.replace(" ", "-")
         nuevoDato = nuevoDato.ljust(datosVehiculos[dato])
         nuevoDato = nuevoDato[0:(datosVehiculos[dato])]
@@ -73,7 +73,7 @@ def infoServicio():
 
     for dato in datosServicios:
         print(dato)
-        nuevoDato = input().title()
+        nuevoDato = input()
         nuevoDato = nuevoDato.replace(" ", "-")
         nuevoDato = nuevoDato.ljust(datosServicios[dato])
         nuevoDato = nuevoDato[0:(datosServicios[dato])]
@@ -86,15 +86,18 @@ def infoServicio():
 
 
 def solServicio():
+    global contador
     datosContrato = {"ID-Cliente": 12, "Placa": 6,
-                     "Codigo del servicio": 4, "Unidades contratadas": 3, "Status": 10}
+                     "Codigo del servicio": 4, "Unidades contratadas": 3}
 
     for dato in datosContrato:
         print(dato)
-        nuevoDato = input().title()
+        nuevoDato = input()
         nuevoDato = nuevoDato.replace(" ", "-")
         nuevoDato = nuevoDato.ljust(datosContrato[dato])
         datosContrato[dato] = nuevoDato
+    leerBase("bFacturas.txt", "1", "0000", False)
+    datosContrato["No. factura"]= str(contador)
 
     # Comprueba que servicio solicitado existe
     if leerBase("bServicios.txt", '1', datosContrato["Codigo del servicio"], False) == "No info":
@@ -109,6 +112,7 @@ def solServicio():
         diccionariojason = json.dumps(datosContrato)
         guardarInfo((imprimirfac(datosContrato)), "bFacturas.txt")
         return diccionariojason
+    datosContrato["No. factura"]= str(contador)
 
 # Guarda informacion en base de datos
 
@@ -245,7 +249,7 @@ def leerBase(base, op, noid, verif):
             item = comprobar(1, 5)
 
         elif base == "bContratos.txt":
-            print("Organizar informacion de contratos por:\n(1) Identificacion del cliente\n(2) Placa del vehiculo\n(3) Codigo del servicio\n(4) Unidades contratadas\n(5) Estatus del contrato")
+            print("Organizar informacion de contratos por:\n(1) Identificacion del cliente\n(2) Placa del vehiculo\n(3) Codigo del servicio\n(4) Unidades contratadas\n(5) Numero de factura")
             item = comprobar(1, 5)
 
         with open(base, "r") as baseDatos:
@@ -253,40 +257,7 @@ def leerBase(base, op, noid, verif):
 
     else:
         return "Opcion ingresada no es valida."
-
-# Cambiar status de una base de datos
-
-
-def cambioStatus(noid):
-    contratos = []
-    op = ''
-    with open("bContratos.txt", "r") as baseContratos:
-        for linea in baseContratos:
-            datos = json.loads(linea)
-            contratos.append(datos)
-
-    with open("bContratos.txt", "w") as baseContratos:
-        for contrato in contratos:
-            if noid == contrato["ID-Cliente"]:
-                while not op in ['1', '2', '3', '4']:
-                    print(
-                        "¿Que estatus desea establecer?\n(1) Pendiente\n(2) En taller\n(3) Finalizado\n(4) Entregado")
-                    op = input()
-                    if op == '1':
-                        contrato["Status"] = "Pendiente"
-                    elif op == '2':
-                        contrato["Status"] = "Entaller"
-                    elif op == '3':
-                        contrato["Status"] = "Finalizado"
-                    elif op == '4':
-                        contrato["Status"] = "Entregado"
-                    else:
-                        print("Opcion no valida.")
-
-            datoGuardar = json.dumps(contrato)
-            guardarInfo(datoGuardar, "bContratos.txt")
-
-    print("Cambio de estatus exitoso.")
+        
 
 # Eliminar elemento en la base de datos
 
@@ -318,25 +289,26 @@ def imprimirfac(contrato):
     infoVehiculo = leerBase("bVehiculos.txt", "1", placa, True)
     infoServicio = leerBase("bServicios.txt", "1", codigo_servicio, True)
     leerBase("bFacturas.txt", "1", "0000", False)
-    cadena_cliente, cadena_vehiculo, cadena_servicio = "INFORMACIÓN DE USUARIO.\n", "INFORMACIÓN DE VEHICULO.\n", "INFORMACIÓN DE SERVICIO:\n"
+    cadena_cliente, cadena_vehiculo, cadena_servicio = "INFORMACIÓN DE USUARIO\n", "INFORMACIÓN DE VEHICULO\n", "INFORMACIÓN DE SERVICIO\n"
 
     for i in infoCliente:
         cadena = infoCliente[i].rstrip()
-        cadena_cliente += i+":"+cadena+"/ "
+        cadena_cliente += i+": "+cadena+"\t\t"
 
-    for i in infoVehiculo:
-        cadena = infoVehiculo[i].rstrip()
-        cadena_vehiculo += i+":"+cadena+"/ "
+    cadena_vehiculo += "Numero de placa: " + infoVehiculo["Numero de placa"].rstrip() + "\t\t" + \
+        "Marca: " + infoVehiculo["Marca"].rstrip() + "\t\t" + \
+        "Numero de Modelo: " + infoVehiculo["Numero de modelo"].rstrip() + "\t\t" + \
+        "Color: " + infoVehiculo["Color"].rstrip()
 
     for i in infoServicio:
         cadena = infoServicio[i].rstrip()
-        cadena_servicio += i+":"+cadena+"/ "
+        cadena_servicio += i+": "+cadena+"\t\t"
 
     Total = int(infoServicio["Precio/hora"]) * \
         int(infoServicio["Horas del servicio"])
     factura = "FACTURA NUMERO "+str(contador)+"\n"*2+cadena_cliente+"\n"*2 + \
         cadena_vehiculo+"\n"*2+cadena_servicio + \
-        "\n"*2+"TOTAL A PAGAR:"+str(Total)+"\n"*3
+        "\n"*2+"TOTAL A PAGAR: $"+str(Total)+"\n"*3
 
     print(factura)
     nuevaFactura = {"consec": contador, "infoFac": factura}
@@ -500,7 +472,7 @@ def contratos():
     op = ''
 
     while op != '0':  # Pendiente generar facturas#######
-        print("(1) Ver contratos existentes\n(2) Nuevo contrato\n(3) Cambiar estatus de un contrato\n(4) Eliminar un contrato\n(5) Generar factura\n(6) Limpiar base de datos\n(0) Volver al menu principal")
+        print("(1) Ver contratos existentes\n(2) Nuevo contrato\n(3) Eliminar un contrato\n(4) Generar factura\n(5) Limpiar base de datos\n(0) Volver al menu principal")
         op = input("Seleccione una opcion:\n")
 
         if op == '1':  # Lista contratos
@@ -521,17 +493,13 @@ def contratos():
             if contrato != False:
                 guardarInfo(contrato, "bContratos.txt")
 
-        elif op == '3':  # Cambiar status de un contrato
-            noid = input("Ingrese ID-Cliente\n").ljust(12)
-            cambioStatus(noid)
-
-        elif op == '4':
+        elif op == '3':
             noid = input("Ingrese ID-Cliente: \n").ljust(12)
             eliminarElemento("bContratos.txt", noid, "ID-Cliente")
             print("Contrato eliminado con exito!")
 
-        elif op == '5':
-            noFactura = int(input("Ingrese numero de factura:"))
+        elif op == '4':
+            noFactura = int(input("Ingrese numero de factura:\n"))
             ex=False
             with open("bFacturas.txt","r") as baseFacturas:
                 for linea in baseFacturas:
@@ -541,9 +509,8 @@ def contratos():
                         ex=True
                     if not ex:
                         print("Factura no encontrada.")
-            #print(leerBase("bFacturas.txt", "1", "000", False))
 
-        elif op == '6':
+        elif op == '5':
             result = limpiarBase("bContratos.txt")
             if result == 's':
                 break

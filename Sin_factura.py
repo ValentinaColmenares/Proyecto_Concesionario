@@ -150,47 +150,42 @@ def comprobar(a, b):
 
 
 def organizar(base, item):
+    contador=0
     item -= 1
     lista2 = []
     cadena = ""
     cabecera= "|"
-
+    diccionario_vehiculo={"#placa":"","id-cliente":"","marca":"","#modelo":"","cilindraje":"","color":"","servicio":"","Combus...":"","pasajeros": "","carga":"","#chasis":"","#motor":""}
+    diccionario_servicio={"cod":"","servicio":"","Precio/hora":"","horas":""}
+    
     for linea in base:
         diccionario = json.loads(linea)
         lista = [i for i in diccionario.values()]
         lista2.append(lista)
     lista2.sort(key=lambda list: list[item])
+    
+    
+    if len(diccionario)==12:
+        for i in diccionario_vehiculo:
+            diccionario_vehiculo[i]=lista[contador]
+            caracteres=len(diccionario_vehiculo[i])
+            palabra=i.ljust(caracteres)
+            cabecera+=palabra+"|"
+            contador+=1
 
-    for i in diccionario:
 
-        caracteres=len(diccionario[i])
-
-        if i=="Numero de placa":
-            i="#placa"
-        elif i=="Numero de modelo":
-            i="#modelo"
-        elif i=="Tipo de servicio":
-            i="servicio"
-        elif i=="Tipo de combustible":
-            i="Combus..."
-        elif i=="Capacidad de pasajeros":
-            i="pasajeros"
-        elif i=="Capacidad de carga":
-            i="carga"
-        elif i=="Numero de chasis":
-            i="#chasis"
-        elif i=="Numero de Motor":
-            i="#motor"
-        elif i=="Codigo del servicio":
-            i="cod"
-        elif i=="Nombre del servicio":
-            i="servicio"
-        elif i=="Horas del servicio":
-            i="Horas"
-        else:
-            i=i
-        palabra=i.ljust(caracteres)
-        cabecera+=palabra+"|"
+    elif len(diccionario)==4:
+         for i in diccionario_servicio:
+            diccionario_servicio[i]=lista[contador]
+            caracteres=len(diccionario_servicio[i])
+            palabra=i.ljust(caracteres)
+            cabecera+=palabra+"|"
+            contador+=1
+    else:
+        for i in diccionario:
+            caracteres=len(diccionario[i])
+            palabra=i.ljust(caracteres)
+            cabecera+=palabra+"|"
 
     for i in lista2:
         i = "|".join(i)

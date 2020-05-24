@@ -8,7 +8,7 @@ PENDIENTE
 -limpiar pantalla cada vez que se imprima algo
 notas para entender mejor la parte de facturas:
 -la variable verif que metí es para retornar el diccionario del json, y no la cadena que usualmente retornamos.
--la variable global es la que permite manteneter el conteo entre las funciones.
+-la variable global es la que permite mantener el conteo entre las funciones.
 -hasta donde hice las pruebas el código funciona bien, aún así toca buscar más errores.
 -haré las facturas un poco más presentables en antes del domingo
 """
@@ -28,7 +28,7 @@ def infoCliente():
 
     for dato in datosClientes:
         print(dato)
-        nuevoDato = input()
+        nuevoDato = input().title()
         nuevoDato = nuevoDato.replace(" ", "-")
         nuevoDato = nuevoDato.ljust(datosClientes[dato])
         # esto va a restringir la entrada del usuario, la idea es cortar la entrada cuando el valor es mayor que el ljust definido. esto es para evitar que las tablas queden desalineadas
@@ -47,7 +47,7 @@ def infoVehiculo():
 
     for dato in datosVehiculos:
         print(dato)
-        nuevoDato = input()
+        nuevoDato = input().title()
         nuevoDato = nuevoDato.replace(" ", "-")
         nuevoDato = nuevoDato.ljust(datosVehiculos[dato])
         nuevoDato = nuevoDato[0:(datosVehiculos[dato])]
@@ -73,7 +73,7 @@ def infoServicio():
 
     for dato in datosServicios:
         print(dato)
-        nuevoDato = input()
+        nuevoDato = input().title()
         nuevoDato = nuevoDato.replace(" ", "-")
         nuevoDato = nuevoDato.ljust(datosServicios[dato])
         nuevoDato = nuevoDato[0:(datosServicios[dato])]
@@ -91,7 +91,7 @@ def solServicio():
 
     for dato in datosContrato:
         print(dato)
-        nuevoDato = input()
+        nuevoDato = input().title()
         nuevoDato = nuevoDato.replace(" ", "-")
         nuevoDato = nuevoDato.ljust(datosContrato[dato])
         datosContrato[dato] = nuevoDato

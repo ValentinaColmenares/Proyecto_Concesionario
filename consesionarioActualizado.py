@@ -28,7 +28,7 @@ def infoCliente():
 
     for dato in datosClientes:
         print(dato)
-        nuevoDato = input().title().title()
+        nuevoDato = input().title()
         nuevoDato = nuevoDato.replace(" ", "-")
         nuevoDato = nuevoDato.ljust(datosClientes[dato])
         # esto va a restringir la entrada del usuario, la idea es cortar la entrada cuando el valor es mayor que el ljust definido. esto es para evitar que las tablas queden desalineadas

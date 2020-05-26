@@ -113,12 +113,6 @@ def solServicio():
         return diccionariojason
     datosContrato["No. factura"]= str(contador)
 
-#Borrar la pantalla
-def borrarPantalla(): 
-  if os.name == "posix":
-    os.system ("clear")
-  elif os.name == "ce" or os.name == "nt" or os.name == "dos":
-    os.system ("cls")
 
 # Guarda informacion en base de datos
 
@@ -531,7 +525,6 @@ def menu():
     print("¡Bienvenido.\nIniciando sistema...")
 
     while op != '0':
-        borrarPantalla()
         if not os.path.exists("bClientes.txt"):
             baseClientes = open("bClientes.txt", "x")
             baseClientes.close()

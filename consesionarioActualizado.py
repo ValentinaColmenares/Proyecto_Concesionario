@@ -87,7 +87,7 @@ def infoServicio():
 
 def solServicio():
     global contador
-    datosContrato = {"ID-Cliente": 12, "Placa": 6,
+    datosContrato = {"ID-Cliente": 12, "Placa": 10,
                      "Codigo del servicio": 4, "Unidades contratadas": 3}
 
     for dato in datosContrato:
@@ -157,43 +157,39 @@ def organizar(base, item):
     diccionario={}
     cadena = ""
     cabecera= "|"
-    diccionario_vehiculo={"#placa":"","id-cliente":"","marca":"","#modelo":"","cilindraje":"","color":"","servicio":"","Combus...":"","pasajeros": "","carga":"","#chasis":"","#motor":""}
-    diccionario_servicio={"cod":"","servicio":"","Precio/hora":"","horas":""}
+    diccionario_vehiculo={"#placa":"","id-cliente":"","marca":"","#modelo":"","cilindraje":"","color":"","servicio":"","combustible":"","pasajeros": "","carga":"","#chasis":"","#motor":""}
+    diccionario_servicio={"cod":"","servicio":"","precio/hora":"","horas":""}
     
-    if base != "":
-        for linea in base:
-            diccionario = json.loads(linea)
-            lista = [i for i in diccionario.values()]
-            lista2.append(lista)
-            lista2.sort(key=lambda list: list[item])
-    
-    
-        if len(diccionario)==12:
-            for i in diccionario_vehiculo:
-                diccionario_vehiculo[i]=lista[contador]
-                caracteres=len(diccionario_vehiculo[i])
-                palabra=i.ljust(caracteres)
-                cabecera+=palabra+"|"
-                contador+=1
+    for linea in base:
+        diccionario = json.loads(linea)
+        lista = [i for i in diccionario.values()]
+        lista2.append(lista)
+        lista2.sort(key=lambda list: list[item])
 
 
-        elif len(diccionario)==4:
-            for i in diccionario_servicio:
-                diccionario_servicio[i]=lista[contador]
-                caracteres=len(diccionario_servicio[i])
-                palabra=i.ljust(caracteres)
-                cabecera+=palabra+"|"
-                contador+=1
-        else:
-            for i in diccionario:
-                caracteres=len(diccionario[i])
-                palabra=i.ljust(caracteres)
-                cabecera+=palabra+"|"
+    if len(diccionario)==12:
+        for i in diccionario_vehiculo:
+            diccionario_vehiculo[i]=lista[contador]
+            palabra=i.ljust(len(diccionario_vehiculo[i]))
+            cabecera+=palabra+"|"
+            contador+=1
 
-        for i in lista2:
-            i = "|".join(i)
-            formato="-"*(len(i)+2)+"\n"
-            cadena +=formato+ "|"+i+"|"+"\n"
+
+    elif len(diccionario)==4:
+        for i in diccionario_servicio:
+            diccionario_servicio[i]=lista[contador]
+            palabra=i.ljust(len(diccionario_servicio[i]))
+            cabecera+=palabra+"|"
+            contador+=1
+    else:
+        for i in diccionario:
+            palabra=i.ljust(len(diccionario[i]))
+            cabecera+=palabra+"|"
+
+    for i in lista2:
+        i = "|".join(i)
+        formato="-"*(len(i)+2)+"\n"
+        cadena +=formato+ "|"+i+"|"+"\n"
         
 
     if cadena == "":
@@ -407,7 +403,7 @@ def vehiculos():
 
         elif op == '3':  # Elimina un vehiculo
             placa = input(
-                "Ingrese placa del vehiculo que desea eliminar: \n").ljust(6)
+                "Ingrese placa del vehiculo que desea eliminar: \n").ljust(10)
             eliminarElemento("bVehiculos.txt", placa, "Numero de placa")
             print("Vehiculo eliminado con exito!")
 

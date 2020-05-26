@@ -43,7 +43,7 @@ def infoCliente():
 
 def infoVehiculo():
     datosVehiculos = {"Numero de placa": 10, "ID-Cliente": 12, "Marca": 15, "Numero de modelo": 10, "Cilindraje": 10, "Color": 10, "Tipo de servicio": 10,
-                      "Tipo de combustible": 20, "Capacidad de pasajeros": 10, "Capacidad de carga": 10, "Numero de chasis": 10, "Numero de Motor": 10}
+                      "Tipo de combustible": 15, "Capacidad de pasajeros": 10, "Capacidad de carga": 10, "Numero de chasis": 10, "Numero de Motor": 10}
 
     for dato in datosVehiculos:
         print(dato)
@@ -204,7 +204,7 @@ def organizar(base, item):
                 cabecera+=palabra+"|"
                 
 
-  
+    
     for i in lista2:
         contador=0
         for x in i:

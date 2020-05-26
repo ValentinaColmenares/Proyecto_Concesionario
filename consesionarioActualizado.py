@@ -3,7 +3,6 @@ PENDIENTE
 -Facturas
 -Ver informacion de contratos
 -Actualizar status de contratos (pendiente/en proceso/terminado)
--arreglar segunda herramienta de busqueda (no se pueden intercambiar las columnas)
 -usar librerías gráficas (Esto es para la entrega final, cuando cambiemos todo a clases)
 -limpiar pantalla cada vez que se imprima algo
 notas para entender mejor la parte de facturas:
@@ -87,7 +86,7 @@ def infoServicio():
 
 def solServicio():
     global contador
-    datosContrato = {"ID-Cliente": 12, "Placa": 6,
+    datosContrato = {"ID-Cliente": 12, "Placa": 10,
                      "Codigo del servicio": 4, "Unidades contratadas": 3}
 
     for dato in datosContrato:
@@ -113,6 +112,7 @@ def solServicio():
         guardarInfo((imprimirfac(datosContrato)), "bFacturas.txt")
         return diccionariojason
     datosContrato["No. factura"]= str(contador)
+
 
 # Guarda informacion en base de datos
 
@@ -262,8 +262,8 @@ def leerBase(base, op, noid, verif):
             item = comprobar(1, 6)
 
         elif base == "bVehiculos.txt":
-            print("Organizar información de vehiculos por:\n(1) Número de placa\n(2) Número de identificación del cliente\n(3) Marca\n(4) Número de modelo\n(5) Cilindraje\n(6) Color\n(7) Tipo de servicio\n(8) Tipo de combustible\n(9) Capacidad de pasajeros\n(10) Numero de chasis\n(11) Número de motor")
-            item = comprobar(1, 11)
+            print("Organizar información de vehiculos por:\n(1) Número de placa\n(2) Número de identificación del cliente\n(3) Marca\n(4) Número de modelo\n(5) Cilindraje\n(6) Color\n(7) Tipo de servicio\n(8) Tipo de combustible\n(9) Capacidad de pasajeros\n(10)carga\n(11) Numero de chasis\n(12) Número de motor")
+            item = comprobar(1, 12)
 
         elif base == "bServicios.txt":
             print("Organizar información de servicios por:\n(1) Código del servicio\n(2) Nombre del servicio\n(3) Precios/hora\n(4) Horas de servicio")
@@ -428,7 +428,7 @@ def vehiculos():
 
         elif op == '3':  # Elimina un vehiculo
             placa = input(
-                "Ingrese placa del vehiculo que desea eliminar: \n").ljust(6)
+                "Ingrese placa del vehiculo que desea eliminar: \n").ljust(10)
             eliminarElemento("bVehiculos.txt", placa, "Numero de placa")
             print("Vehiculo eliminado con exito!")
 

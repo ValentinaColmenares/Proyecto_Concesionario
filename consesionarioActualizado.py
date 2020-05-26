@@ -3,7 +3,6 @@ PENDIENTE
 -Facturas
 -Ver informacion de contratos
 -Actualizar status de contratos (pendiente/en proceso/terminado)
--arreglar segunda herramienta de busqueda (no se pueden intercambiar las columnas)
 -usar librerías gráficas (Esto es para la entrega final, cuando cambiemos todo a clases)
 -limpiar pantalla cada vez que se imprima algo
 notas para entender mejor la parte de facturas:
@@ -113,6 +112,13 @@ def solServicio():
         guardarInfo((imprimirfac(datosContrato)), "bFacturas.txt")
         return diccionariojason
     datosContrato["No. factura"]= str(contador)
+
+#Borrar la pantalla
+def borrarPantalla(): 
+  if os.name == "posix":
+    os.system ("clear")
+  elif os.name == "ce" or os.name == "nt" or os.name == "dos":
+    os.system ("cls")
 
 # Guarda informacion en base de datos
 
@@ -525,6 +531,7 @@ def menu():
     print("¡Bienvenido.\nIniciando sistema...")
 
     while op != '0':
+        borrarPantalla()
         if not os.path.exists("bClientes.txt"):
             baseClientes = open("bClientes.txt", "x")
             baseClientes.close()

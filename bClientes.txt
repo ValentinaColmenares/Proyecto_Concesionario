@@ -1,2 +1,0 @@
-{"ID-Cliente": "121332425   ", "Nombre": "Juan      ", "Apellido": "Valderrama", "Direcci\u00f3n": "Calle-33            ", "Telefono": "2131414   ", "Ciudad": "Bogota         "}
-{"ID-Cliente": "123213213132", "Nombre": "Juane     ", "Apellido": "Carm      ", "Direcci\u00f3n": "Calle2              ", "Telefono": "2144214521", "Ciudad": "San-Andres     "}

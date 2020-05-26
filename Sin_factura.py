@@ -11,7 +11,7 @@ PENDIENTE
 
 notas para entender mejor la parte de facturas:
 -la variable verif que metí es para retornar el diccionario del json, y no la cadena que usualmente retornamos.
--la variable global es la que permite mantener el conteo entre las funciones.
+-la variable global es la que permite manteneter el conteo entre las funciones.
 -hasta donde hice las pruebas el código funciona bien, aún así toca buscar más errores.
 -haré las facturas un poco más presentables en antes del domingo 
 
@@ -33,7 +33,7 @@ def infoCliente():
 
     for dato in datosClientes:
         print(dato)
-        nuevoDato = input().title()
+        nuevoDato = input()
         nuevoDato = nuevoDato.replace(" ", "-")
         nuevoDato = nuevoDato.ljust(datosClientes[dato])
         # esto va a restringir la entrada del usuario, la idea es cortar la entrada cuando el valor es mayor que el ljust definido. esto es para evitar que las tablas queden desalineadas
@@ -52,7 +52,7 @@ def infoVehiculo():
 
     for dato in datosVehiculos:
         print(dato)
-        nuevoDato = input().title()
+        nuevoDato = input()
         nuevoDato = nuevoDato.replace(" ", "-")
         nuevoDato = nuevoDato.ljust(datosVehiculos[dato])
         nuevoDato = nuevoDato[0:(datosVehiculos[dato])]
@@ -78,7 +78,7 @@ def infoServicio():
 
     for dato in datosServicios:
         print(dato)
-        nuevoDato = input().title()
+        nuevoDato = input()
         nuevoDato = nuevoDato.replace(" ", "-")
         nuevoDato = nuevoDato.ljust(datosServicios[dato])
         nuevoDato = nuevoDato[0:(datosServicios[dato])]
@@ -96,7 +96,7 @@ def solServicio():
 
     for dato in datosContrato:
         print(dato)
-        nuevoDato = input().title()
+        nuevoDato = input()
         nuevoDato = nuevoDato.replace(" ", "-")
         nuevoDato = nuevoDato.ljust(datosContrato[dato])
         datosContrato[dato] = nuevoDato
@@ -157,6 +157,7 @@ def organizar(base, item):
     cabecera= "|"
     diccionario_vehiculo={"#placa":"","id-cliente":"","marca":"","#modelo":"","cilindraje":"","color":"","servicio":"","Combus...":"","pasajeros": "","carga":"","#chasis":"","#motor":""}
     diccionario_servicio={"cod":"","servicio":"","Precio/hora":"","horas":""}
+    diccionario2={}
     
     for linea in base:
         diccionario = json.loads(linea)
@@ -164,29 +165,24 @@ def organizar(base, item):
         lista2.append(lista)
     lista2.sort(key=lambda list: list[item])
     
-    
-    if len(diccionario)==12:
-        for i in diccionario_vehiculo:
-            diccionario_vehiculo[i]=lista[contador]
-            caracteres=len(diccionario_vehiculo[i])
-            palabra=i.ljust(caracteres)
-            cabecera+=palabra+"|"
-            contador+=1
-
-
-    elif len(diccionario)==4:
-         for i in diccionario_servicio:
-            diccionario_servicio[i]=lista[contador]
-            caracteres=len(diccionario_servicio[i])
-            palabra=i.ljust(caracteres)
-            cabecera+=palabra+"|"
-            contador+=1
-    else:
+    if len (diccionario)==6:
         for i in diccionario:
             caracteres=len(diccionario[i])
             palabra=i.ljust(caracteres)
             cabecera+=palabra+"|"
+    else:
+        if len(diccionario)==12:
+            diccionario2=diccionario_vehiculo
+        else:
+            diccionario2=servicios
 
+        for i in diccionario_vehiculo:
+            diccionario2[i]=lista[contador]
+            caracteres=len(diccionario2[i])
+            palabra=i.ljust(caracteres)
+            cabecera+=palabra+"|"
+            contador+=1
+   
     for i in lista2:
         i = "|".join(i)
         formato="-"*(len(i)+2)+"\n"

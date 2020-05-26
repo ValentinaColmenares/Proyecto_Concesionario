@@ -204,9 +204,8 @@ def organizar(base, item):
                 cabecera+=palabra+"|"
                 
 
-  
+    contador=0
     for i in lista2:
-        contador=0
         for x in i:
             indice=i.index(x)
             x=str(x).ljust(lista3[contador])

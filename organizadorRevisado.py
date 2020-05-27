@@ -158,6 +158,7 @@ def organizar(base, item):
     cabecera= "|"
     diccionario_vehiculo={"#placa":"","id-cliente":"","marca":"","#modelo":"","cilindraje":"","color":"","servicio":"","combustible":"","pasajeros": "","carga":"","#chasis":"","#motor":""}
     diccionario_servicio={"cod":"","servicio":"","precio/hora":"","horas":""}
+    diccionario_contrato={"id-cliente":"","#placa":"","cod":"","uds":"","#":""}
 
     for linea in base:
         diccionario = json.loads(linea)
@@ -188,6 +189,13 @@ def organizar(base, item):
         for i in diccionario_servicio:
             diccionario_servicio[i]=lista[contador]
             palabra=i.ljust(len(diccionario_servicio[i]))
+            cabecera+=palabra+"|"
+            contador+=1
+
+    elif len(diccionario)==5:
+        for i in diccionario_contrato:
+            diccionario_contrato[i]=lista[contador]
+            palabra=i.ljust(len(diccionario_contrato[i]))
             cabecera+=palabra+"|"
             contador+=1
     else:

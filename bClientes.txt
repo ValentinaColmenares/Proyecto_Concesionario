@@ -1,0 +1,1 @@
+{"ID-Cliente": "1032499653  ", "Nombre": "Aldo      ", "Apellido": "Bornacelly", "Direcci\u00f3n": "Calle-44-55         ", "Telefono": "3218990731", "Ciudad": "Bogota         "}

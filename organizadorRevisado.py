@@ -244,18 +244,22 @@ def leerBase(base, op, noid, verif):
 
     elif op == '2':
         if base == "bClientes.txt":
+            borrarPantalla()
             print("Ordenar información de clientes por:\n(1) Número de identificación\n(2) Nombre\n(3) Apellido\n(4) Dirección\n(5) Teléfono\n(6) Ciudad")
             item = comprobar(1, 6)
 
         elif base == "bVehiculos.txt":
+            borrarPantalla()
             print("Organizar información de vehiculos por:\n(1) Número de placa\n(2) Número de identificación del cliente\n(3) Marca\n(4) Número de modelo\n(5) Cilindraje\n(6) Color\n(7) Tipo de servicio\n(8) Tipo de combustible\n(9) Capacidad de pasajeros\n(10) Capacidad de carga\n(11) Numero de chasis\n(12) Número de motor")
             item = comprobar(1, 12)
 
         elif base == "bServicios.txt":
+            borrarPantalla()
             print("Organizar información de servicios por:\n(1) Código del servicio\n(2) Nombre del servicio\n(3) Precios/hora\n(4) Horas de servicio")
             item = comprobar(1, 5)
 
         elif base == "bContratos.txt":
+            borrarPantalla()
             print("Organizar informacion de contratos por:\n(1) Identificacion del cliente\n(2) Placa del vehiculo\n(3) Codigo del servicio\n(4) Unidades contratadas\n(5) Numero de factura")
             item = comprobar(1, 5)
 
@@ -355,6 +359,7 @@ def clientes():
         op = input("Seleccione una opcion: \n")
 
         if op == '1':  # Lista de clientes
+            borrarPantalla()
             sop = input(
                 "(1) Buscar un cliente.\n(2) Mostrar todos los clientes.\n")
             if sop == '1':
@@ -405,6 +410,7 @@ def vehiculos():
         op = input("Seleccione una opcion: \n")
 
         if op == '1':  # Lista de vehiculos
+            borrarPantalla()
             sop = input(
                 "(1) Buscar un vehiculo.\n(2) Mostrar todos los vehiculos.\n")
             if sop == '1':
@@ -454,6 +460,7 @@ def servicios():
         op = input("Seleccione una opcion: \n")
 
         if op == '1':  # Lista de servicios
+            borrarPantalla()
             sop = input(
                 "(1) Buscar un servicio.\n(2) Mostrar todos los servicios.\n")
             if sop == '1':
@@ -502,6 +509,7 @@ def contratos():
         op = input("Seleccione una opcion:\n")
 
         if op == '1':  # Lista contratos
+            borrarPantalla()
             sop = input(
                 "(1) Buscar un contrato\n(2) Mostrar todos los contratos en sistema\n")
             if sop == '1':

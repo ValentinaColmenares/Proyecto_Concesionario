@@ -387,7 +387,7 @@ def clientes():
                 continue
 
         elif op == '0':  # Volver a menu principal
-            print("Volviendo al menu principal.")
+            break
 
         else:
             print("Opcion no valida. Intente nuevamente!")
@@ -436,7 +436,7 @@ def vehiculos():
                 continue
 
         elif op == '0':  # Volver a menu principal
-            print("Volviendo al menu principal.")
+            break
 
         else:
             print("Opcion no valida. Intente nuevamente!")
@@ -484,7 +484,7 @@ def servicios():
                 continue
 
         elif op == '0':  # Volver a menu principal
-            print("Volviendo al menu principal.")
+            break
 
         else:
             print("Opcion no valida. Intente nuevamente!")
@@ -545,7 +545,7 @@ def contratos():
                 continue
 
         elif op == '0':
-            print("Volviendo al menu principal.")
+            break
 
         else:
             print("Opcion no valida. Intente nuevamente!")

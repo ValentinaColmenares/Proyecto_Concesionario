@@ -1,1 +1,2 @@
-{"ID-Cliente": "1032499653  ", "Nombre": "Aldo      ", "Apellido": "Bornacelly", "Direcci\u00f3n": "Calle-44-55         ", "Telefono": "3218990731", "Ciudad": "Bogota         "}
+{"ID-Cliente": "1           ", "Nombre": "1         ", "Apellido": "1         ", "Direcci\u00f3n": "1                   ", "Telefono": "1         ", "Ciudad": "1              "}
+{"ID-Cliente": "2           ", "Nombre": "2         ", "Apellido": "2         ", "Direcci\u00f3n": "2                   ", "Telefono": "2         ", "Ciudad": "2              "}

@@ -111,7 +111,6 @@ def solServicio():
         diccionariojason = json.dumps(datosContrato)
         guardarInfo((imprimirfac(datosContrato)), "bFacturas.txt")
         return diccionariojason
-    datosContrato["No. factura"]= str(contador)
 
 
 # Guarda informacion en base de datos
@@ -159,6 +158,7 @@ def organizar(base, item):
     cabecera= "|"
     diccionario_vehiculo={"#placa":"","id-cliente":"","marca":"","#modelo":"","cilindraje":"","color":"","servicio":"","combustible":"","pasajeros": "","carga":"","#chasis":"","#motor":""}
     diccionario_servicio={"cod":"","servicio":"","precio/hora":"","horas":""}
+    diccionario_contrato={"id-cliente":"","#placa":"","cod":"","uds":"","#":""}
     lista3=[]
     
     for linea in base:
@@ -189,6 +189,13 @@ def organizar(base, item):
     elif len(diccionario)==4:
         for i in diccionario_servicio:
             
+            lista3.append(len(lista4[contador]))
+            palabra=i.ljust(len(lista4[contador]))
+            cabecera+=palabra+"|"
+            contador+=1
+
+    elif len(diccionario)==5:
+        for i in diccionario_contrato:
             lista3.append(len(lista4[contador]))
             palabra=i.ljust(len(lista4[contador]))
             cabecera+=palabra+"|"
@@ -524,8 +531,8 @@ def contratos():
                     if factura["consec"]==noFactura:
                         print(factura["infoFac"])
                         ex=True
-                    if not ex:
-                        print("Factura no encontrada.")
+                if ex==False:
+                    print("Factura no encontrada.")
 
         elif op == '5':
             result = limpiarBase("bContratos.txt")

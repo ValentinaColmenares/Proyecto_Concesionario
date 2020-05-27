@@ -1,17 +1,3 @@
-"""
-PENDIENTE
--Facturas
--Ver informacion de contratos
--Actualizar status de contratos (pendiente/en proceso/terminado)
--usar librerías gráficas (Esto es para la entrega final, cuando cambiemos todo a clases)
--limpiar pantalla cada vez que se imprima algo
-notas para entender mejor la parte de facturas:
--la variable verif que metí es para retornar el diccionario del json, y no la cadena que usualmente retornamos.
--la variable global es la que permite manteneter el conteo entre las funciones.
--hasta donde hice las pruebas el código funciona bien, aún así toca buscar más errores.
--haré las facturas un poco más presentables en antes del domingo
-"""
-
 import os
 import json
 

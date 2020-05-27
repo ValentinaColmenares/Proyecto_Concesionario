@@ -108,11 +108,9 @@ def solServicio():
             print("Vehiculo con placa #",
                   datosContrato["Placa"], "no esta en base de datos. Se debe ingresar informacion del vehiculo.")
             guardarInfo(infoVehiculo(), "bVehiculos.txt")
-        else:
-            diccionariojason = json.dumps(solServicio())
-            guardarInfo((imprimirfac(datosContrato)), "bFacturas.txt")
+        diccionariojason = json.dumps(datosContrato)
+        guardarInfo((imprimirfac(datosContrato)), "bFacturas.txt")
         return diccionariojason
-    datosContrato["No. factura"]= str(contador)
 
 
 # Guarda informacion en base de datos
@@ -158,52 +156,56 @@ def organizar(base, item):
     diccionario={}
     cadena = ""
     cabecera= "|"
-    diccionario_vehiculo={"#placa":"","id-cliente":"","marca":"","#modelo":"","cilindraje":"","color":"","servicio":"","Combus...":"","pasajeros": "","carga":"","#chasis":"","#motor":""}
-    diccionario_servicio={"cod":"","servicio":"","Precio/hora":"","horas":""}
+    diccionario_vehiculo={"#placa":"","id-cliente":"","marca":"","#modelo":"","cilindraje":"","color":"","servicio":"","combustible":"","pasajeros": "","carga":"","#chasis":"","#motor":""}
+    diccionario_servicio={"cod":"","servicio":"","precio/hora":"","horas":""}
+    diccionario_contrato={"id-cliente":"","#placa":"","cod":"","uds":"","#":""}
     lista3=[]
     
-    if base != "":
-        for linea in base:
-            diccionario = json.loads(linea)
-            lista4=[i for i in diccionario.values()]
-            lista = [i for i in diccionario.values()]
-            for i in lista:
-                indice=lista.index(i)
-                i=i.rstrip( )
-                try:
-                    lista[indice]=int(i)
-                except:
-                    continue
+    for linea in base:
+        diccionario = json.loads(linea)
+        lista4=[i for i in diccionario.values()]
+        lista = [i for i in diccionario.values()]
+        for i in lista:
+            indice=lista.index(i)
+            i=i.rstrip( )
+            try:
+                lista[indice]=int(i)
+            except:
+                continue
 
-            lista2.append(lista)
-            lista2.sort(key=lambda list: list[item])
-    
-    
-        if len(diccionario)==12:
-            for i in diccionario_vehiculo:
-                
-                caracteres=len((lista4[contador]))
-                lista3.append(caracteres)
-                palabra=i.ljust(caracteres)
-                cabecera+=palabra+"|"
-                contador+=1
+        lista2.append(lista)
+        lista2.sort(key=lambda list: list[item])
 
 
-        elif len(diccionario)==4:
-            for i in diccionario_servicio:
-                
-                caracteres=len(lista4[contador])
-                lista3.append(caracteres)
-                palabra=i.ljust(caracteres)
-                cabecera+=palabra+"|"
-                contador+=1
-        else:
-            for i in diccionario:
-                caracteres=len(diccionario[i])
-                lista3.append(caracteres)
-                palabra=i.ljust(caracteres)
-                cabecera+=palabra+"|"
-                
+    if len(diccionario)==12:
+        for i in diccionario_vehiculo:
+            
+            lista3.append(len(lista4[contador]))
+            palabra=i.ljust(len(lista4[contador]))
+            cabecera+=palabra+"|"
+            contador+=1
+
+
+    elif len(diccionario)==4:
+        for i in diccionario_servicio:
+            
+            lista3.append(len(lista4[contador]))
+            palabra=i.ljust(len(lista4[contador]))
+            cabecera+=palabra+"|"
+            contador+=1
+
+    elif len(diccionario)==5:
+        for i in diccionario_contrato:
+            lista3.append(len(lista4[contador]))
+            palabra=i.ljust(len(lista4[contador]))
+            cabecera+=palabra+"|"
+            contador+=1
+    else:
+        for i in diccionario:
+            lista3.append(len(diccionario[i]))
+            palabra=i.ljust(len(diccionario[i]))
+            cabecera+=palabra+"|"
+            
 
     
     for i in lista2:
@@ -263,7 +265,7 @@ def leerBase(base, op, noid, verif):
             item = comprobar(1, 6)
 
         elif base == "bVehiculos.txt":
-            print("Organizar información de vehiculos por:\n(1) Número de placa\n(2) Número de identificación del cliente\n(3) Marca\n(4) Número de modelo\n(5) Cilindraje\n(6) Color\n(7) Tipo de servicio\n(8) Tipo de combustible\n(9) Capacidad de pasajeros\n(10)carga\n(11) Numero de chasis\n(12) Número de motor")
+            print("Organizar información de vehiculos por:\n(1) Número de placa\n(2) Número de identificación del cliente\n(3) Marca\n(4) Número de modelo\n(5) Cilindraje\n(6) Color\n(7) Tipo de servicio\n(8) Tipo de combustible\n(9) Capacidad de pasajeros\n(10) Capacidad de carga\n(11) Numero de chasis\n(12) Número de motor")
             item = comprobar(1, 12)
 
         elif base == "bServicios.txt":

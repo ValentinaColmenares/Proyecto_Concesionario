@@ -111,7 +111,6 @@ def solServicio():
         diccionariojason = json.dumps(datosContrato)
         guardarInfo((imprimirfac(datosContrato)), "bFacturas.txt")
         return diccionariojason
-    datosContrato["No. factura"]= str(contador)
 
 
 # Guarda informacion en base de datos
@@ -159,6 +158,7 @@ def organizar(base, item):
     cabecera= "|"
     diccionario_vehiculo={"#placa":"","id-cliente":"","marca":"","#modelo":"","cilindraje":"","color":"","servicio":"","combustible":"","pasajeros": "","carga":"","#chasis":"","#motor":""}
     diccionario_servicio={"cod":"","servicio":"","precio/hora":"","horas":""}
+    diccionario_contrato={"id-cliente":"","#placa":"","cod":"","uds":"","#":""}
 
     for linea in base:
         diccionario = json.loads(linea)
@@ -180,8 +180,7 @@ def organizar(base, item):
     if len(diccionario)==12:
         for i in diccionario_vehiculo:
             diccionario_vehiculo[i]=lista[contador]
-            caracteres=len(diccionario_vehiculo[i])
-            palabra=i.ljust(caracteres)
+            palabra=i.ljust(len(diccionario_vehiculo[i]))
             cabecera+=palabra+"|"
             contador+=1
 
@@ -189,14 +188,19 @@ def organizar(base, item):
     elif len(diccionario)==4:
         for i in diccionario_servicio:
             diccionario_servicio[i]=lista[contador]
-            caracteres=len(diccionario_servicio[i])
-            palabra=i.ljust(caracteres)
+            palabra=i.ljust(len(diccionario_servicio[i]))
+            cabecera+=palabra+"|"
+            contador+=1
+
+    elif len(diccionario)==5:
+        for i in diccionario_contrato:
+            diccionario_contrato[i]=lista[contador]
+            palabra=i.ljust(len(diccionario_contrato[i]))
             cabecera+=palabra+"|"
             contador+=1
     else:
         for i in diccionario:
-            caracteres=len(diccionario[i])
-            palabra=i.ljust(caracteres)
+            palabra=i.ljust(len(diccionario[i]))
             cabecera+=palabra+"|"
 
             
@@ -294,7 +298,6 @@ def imprimirfac(contrato):
     id_cliente = contrato["ID-Cliente"]
     placa = contrato["Placa"]
     codigo_servicio = contrato["Codigo del servicio"]
-    unidades = contrato["Unidades contratadas"]
 
     infoCliente = leerBase("bClientes.txt", "1", id_cliente, True)
     infoVehiculo = leerBase("bVehiculos.txt", "1", placa, True)
@@ -314,11 +317,9 @@ def imprimirfac(contrato):
     for i in infoServicio:
         cadena = infoServicio[i].rstrip()
         cadena_servicio += i+": "+cadena+"\t\t"
-    cadena_servicio+="\n"+"Unidades contratadas:"+unidades
-    
 
     Total = int(infoServicio["Precio/hora"]) * \
-        int(infoServicio["Horas del servicio"])*unidades
+        int(infoServicio["Horas del servicio"])
     factura = "FACTURA NUMERO "+str(contador)+"\n"*2+cadena_cliente+"\n"*2 + \
         cadena_vehiculo+"\n"*2+cadena_servicio + \
         "\n"*2+"TOTAL A PAGAR: $"+str(Total)+"\n"*3
@@ -520,7 +521,7 @@ def contratos():
                     if factura["consec"]==noFactura:
                         print(factura["infoFac"])
                         ex=True
-                if not ex:
+                if ex==False:
                     print("Factura no encontrada.")
 
         elif op == '5':

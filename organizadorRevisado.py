@@ -112,6 +112,13 @@ def solServicio():
         guardarInfo((imprimirfac(datosContrato)), "bFacturas.txt")
         return diccionariojason
 
+#Limpia la consola
+
+def borrarPantalla():
+    if os.name == "posix":
+        os.system ("clear")
+    elif os.name == "ce" or os.name == "nt" or os.name == "dos":
+        os.system ("cls")
 
 # Guarda informacion en base de datos
 
@@ -357,6 +364,7 @@ def clientes():
     op = ''
 
     while op != '0':
+        borrarPantalla()
         print("(1) Ver clientes.\n(2) Agregar un cliente nuevo.\n(3) Eliminar un cliente.\n(4) Limpiar la base de datos.\n(0) Volver al menu principal.")
         op = input("Seleccione una opcion: \n")
 
@@ -388,12 +396,16 @@ def clientes():
             result = limpiarBase("bClientes.txt")
             if result == 's':
                 break
+            else:
+                input("Presione ENTER para continuar...")
+                continue
 
         elif op == '0':  # Volver a menu principal
             print("Volviendo al menu principal.")
 
         else:
             print("Opcion no valida. Intente nuevamente!")
+        input("Presione ENTER para continuar...")
 
 # Base de Datos de Vehiculos
 
@@ -402,6 +414,7 @@ def vehiculos():
     op = ''
 
     while op != '0':
+        borrarPantalla()
         print("(1) Ver vehiculos en sistema.\n(2) Agregar un vehiculo nuevo.\n(3) Eliminar un vehiculo.\n(4) Limpiar la base de datos.\n(0) Volver al menu principal.")
         op = input("Seleccione una opcion: \n")
 
@@ -432,12 +445,16 @@ def vehiculos():
             result = limpiarBase("bVehiculos.txt")
             if result == 's':
                 break
+            else:
+                input("Presione ENTER para continuar...")
+                continue
 
         elif op == '0':  # Volver a menu principal
             print("Volviendo al menu principal.")
 
         else:
             print("Opcion no valida. Intente nuevamente!")
+        input("Presione ENTER para continuar...")
 
 # Base de Datos de Servicios
 
@@ -446,6 +463,7 @@ def servicios():
     op = ''
 
     while op != '0':
+        borrarPantalla()
         print("(1) Lista de servicios.\n(2) Crear un servicio nuevo.\n(3) Eliminar un servicio existente.\n(4) Limpiar base de datos.\n(0) Volver al menu principal.")
         op = input("Seleccione una opcion: \n")
 
@@ -475,12 +493,16 @@ def servicios():
             result = limpiarBase("bServicios.txt")
             if result == 's':
                 break
+            else:
+                input("Presione ENTER para continuar...")
+                continue
 
         elif op == '0':  # Volver a menu principal
             print("Volviendo al menu principal.")
 
         else:
             print("Opcion no valida. Intente nuevamente!")
+        input("Presione ENTER para continuar...")
 
 # Base de Datos de Contratos
 
@@ -489,6 +511,7 @@ def contratos():
     op = ''
 
     while op != '0':  # Pendiente generar facturas#######
+        borrarPantalla()
         print("(1) Ver contratos existentes\n(2) Nuevo contrato\n(3) Eliminar un contrato\n(4) Generar factura\n(5) Limpiar base de datos\n(0) Volver al menu principal")
         op = input("Seleccione una opcion:\n")
 
@@ -531,12 +554,16 @@ def contratos():
             result = limpiarBase("bContratos.txt")
             if result == 's':
                 break
+            else:
+                input("Presione ENTER para continuar...")
+                continue
 
         elif op == '0':
             print("Volviendo al menu principal.")
 
         else:
             print("Opcion no valida. Intente nuevamente!")
+        input("Presione ENTER para continuar...")
 
 # Menu Principal
 
@@ -546,6 +573,7 @@ def menu():
     print("¡Bienvenido.\nIniciando sistema...")
 
     while op != '0':
+        borrarPantalla()
         if not os.path.exists("bClientes.txt"):
             baseClientes = open("bClientes.txt", "x")
             baseClientes.close()

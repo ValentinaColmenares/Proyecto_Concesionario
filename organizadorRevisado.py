@@ -3,7 +3,6 @@ PENDIENTE
 -Facturas
 -Ver informacion de contratos
 -Actualizar status de contratos (pendiente/en proceso/terminado)
--arreglar segunda herramienta de busqueda (no se pueden intercambiar las columnas)
 -usar librerías gráficas (Esto es para la entrega final, cuando cambiemos todo a clases)
 -limpiar pantalla cada vez que se imprima algo
 notas para entender mejor la parte de facturas:
@@ -28,7 +27,7 @@ def infoCliente():
 
     for dato in datosClientes:
         print(dato)
-        nuevoDato = input().title().title()
+        nuevoDato = input().title()
         nuevoDato = nuevoDato.replace(" ", "-")
         nuevoDato = nuevoDato.ljust(datosClientes[dato])
         # esto va a restringir la entrada del usuario, la idea es cortar la entrada cuando el valor es mayor que el ljust definido. esto es para evitar que las tablas queden desalineadas
@@ -43,7 +42,7 @@ def infoCliente():
 
 def infoVehiculo():
     datosVehiculos = {"Numero de placa": 10, "ID-Cliente": 12, "Marca": 15, "Numero de modelo": 10, "Cilindraje": 10, "Color": 10, "Tipo de servicio": 10,
-                      "Tipo de combustible": 20, "Capacidad de pasajeros": 10, "Capacidad de carga": 10, "Numero de chasis": 10, "Numero de Motor": 10}
+                      "Tipo de combustible": 15, "Capacidad de pasajeros": 10, "Capacidad de carga": 10, "Numero de chasis": 10, "Numero de Motor": 10}
 
     for dato in datosVehiculos:
         print(dato)
@@ -87,7 +86,7 @@ def infoServicio():
 
 def solServicio():
     global contador
-    datosContrato = {"ID-Cliente": 12, "Placa": 6,
+    datosContrato = {"ID-Cliente": 12, "Placa": 10,
                      "Codigo del servicio": 4, "Unidades contratadas": 3}
 
     for dato in datosContrato:
@@ -113,6 +112,7 @@ def solServicio():
         guardarInfo((imprimirfac(datosContrato)), "bFacturas.txt")
         return diccionariojason
     datosContrato["No. factura"]= str(contador)
+
 
 # Guarda informacion en base de datos
 
@@ -157,54 +157,53 @@ def organizar(base, item):
     diccionario={}
     cadena = ""
     cabecera= "|"
-    diccionario_vehiculo={"#placa":"","id-cliente":"","marca":"","#modelo":"","cilindraje":"","color":"","servicio":"","Combus...":"","pasajeros": "","carga":"","#chasis":"","#motor":""}
-    diccionario_servicio={"cod":"","servicio":"","Precio/hora":"","horas":""}
+    diccionario_vehiculo={"#placa":"","id-cliente":"","marca":"","#modelo":"","cilindraje":"","color":"","servicio":"","combustible":"","pasajeros": "","carga":"","#chasis":"","#motor":""}
+    diccionario_servicio={"cod":"","servicio":"","precio/hora":"","horas":""}
 
-    if base != "":
-        for linea in base:
-            diccionario = json.loads(linea)
-            lista = [i for i in diccionario.values()]
-            val=len(lista[item])
+    for linea in base:
+        diccionario = json.loads(linea)
+        lista = [i for i in diccionario.values()]
+        val=len(lista[item])
+        
+        try:
+            lista[item]=int(lista[item])
+            lista2.append(lista)
+            lista2.sort(key=lambda list: list[item])
+        except:
+            lista2.append(lista)
+            lista2.sort(key=lambda list: list[item])
             
-            try:
-                lista[item]=int(lista[item])
-                lista2.append(lista)
-                lista2.sort(key=lambda list: list[item])
-            except:
-                lista2.append(lista)
-                lista2.sort(key=lambda list: list[item])
-                
-        for i in range(len(lista2)):
-            lista2[i][item]=str(lista2[i][item]).ljust(val)
+    for i in range(len(lista2)):
+        lista2[i][item]=str(lista2[i][item]).ljust(val)
 
 
-        if len(diccionario)==12:
-            for i in diccionario_vehiculo:
-                diccionario_vehiculo[i]=lista[contador]
-                caracteres=len(diccionario_vehiculo[i])
-                palabra=i.ljust(caracteres)
-                cabecera+=palabra+"|"
-                contador+=1
+    if len(diccionario)==12:
+        for i in diccionario_vehiculo:
+            diccionario_vehiculo[i]=lista[contador]
+            caracteres=len(diccionario_vehiculo[i])
+            palabra=i.ljust(caracteres)
+            cabecera+=palabra+"|"
+            contador+=1
 
 
-        elif len(diccionario)==4:
-            for i in diccionario_servicio:
-                diccionario_servicio[i]=lista[contador]
-                caracteres=len(diccionario_servicio[i])
-                palabra=i.ljust(caracteres)
-                cabecera+=palabra+"|"
-                contador+=1
-        else:
-            for i in diccionario:
-                caracteres=len(diccionario[i])
-                palabra=i.ljust(caracteres)
-                cabecera+=palabra+"|"
+    elif len(diccionario)==4:
+        for i in diccionario_servicio:
+            diccionario_servicio[i]=lista[contador]
+            caracteres=len(diccionario_servicio[i])
+            palabra=i.ljust(caracteres)
+            cabecera+=palabra+"|"
+            contador+=1
+    else:
+        for i in diccionario:
+            caracteres=len(diccionario[i])
+            palabra=i.ljust(caracteres)
+            cabecera+=palabra+"|"
 
-                
-        for i in lista2:
-            i = "|".join(i)
-            formato="-"*(len(i)+2)+"\n"
-            cadena +=formato+ "|"+i+"|"+"\n"
+            
+    for i in lista2:
+        i = "|".join(i)
+        formato="-"*(len(i)+2)+"\n"
+        cadena +=formato+ "|"+i+"|"+"\n"
 
 
     if cadena == "":
@@ -252,8 +251,8 @@ def leerBase(base, op, noid, verif):
             item = comprobar(1, 6)
 
         elif base == "bVehiculos.txt":
-            print("Organizar información de vehiculos por:\n(1) Número de placa\n(2) Número de identificación del cliente\n(3) Marca\n(4) Número de modelo\n(5) Cilindraje\n(6) Color\n(7) Tipo de servicio\n(8) Tipo de combustible\n(9) Capacidad de pasajeros\n(10) Numero de chasis\n(11) Número de motor")
-            item = comprobar(1, 11)
+            print("Organizar información de vehiculos por:\n(1) Número de placa\n(2) Número de identificación del cliente\n(3) Marca\n(4) Número de modelo\n(5) Cilindraje\n(6) Color\n(7) Tipo de servicio\n(8) Tipo de combustible\n(9) Capacidad de pasajeros\n(10) Capacidad de carga\n(11) Numero de chasis\n(12) Número de motor")
+            item = comprobar(1, 12)
 
         elif base == "bServicios.txt":
             print("Organizar información de servicios por:\n(1) Código del servicio\n(2) Nombre del servicio\n(3) Precios/hora\n(4) Horas de servicio")
@@ -418,7 +417,7 @@ def vehiculos():
 
         elif op == '3':  # Elimina un vehiculo
             placa = input(
-                "Ingrese placa del vehiculo que desea eliminar: \n").ljust(6)
+                "Ingrese placa del vehiculo que desea eliminar: \n").ljust(10)
             eliminarElemento("bVehiculos.txt", placa, "Numero de placa")
             print("Vehiculo eliminado con exito!")
 

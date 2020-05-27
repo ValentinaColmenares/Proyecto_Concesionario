@@ -294,7 +294,8 @@ def imprimirfac(contrato):
     id_cliente = contrato["ID-Cliente"]
     placa = contrato["Placa"]
     codigo_servicio = contrato["Codigo del servicio"]
-    unidades = contrato["Unidades contratadas"]
+    unidades = int((contrato["Unidades contratadas"]).rstrip())
+
 
     infoCliente = leerBase("bClientes.txt", "1", id_cliente, True)
     infoVehiculo = leerBase("bVehiculos.txt", "1", placa, True)
@@ -314,11 +315,10 @@ def imprimirfac(contrato):
     for i in infoServicio:
         cadena = infoServicio[i].rstrip()
         cadena_servicio += i+": "+cadena+"\t\t"
-    cadena_servicio+="\n"+"Unidades contratadas:"+unidades
+    cadena_servicio+="\n"+"Unidades contratadas:"+str(unidades)
     
 
-    Total = int(infoServicio["Precio/hora"]) * \
-        int(infoServicio["Horas del servicio"])*unidades
+    Total = int(infoServicio["Precio/hora"]) *int(infoServicio["Horas del servicio"])*unidades
     factura = "FACTURA NUMERO "+str(contador)+"\n"*2+cadena_cliente+"\n"*2 + \
         cadena_vehiculo+"\n"*2+cadena_servicio + \
         "\n"*2+"TOTAL A PAGAR: $"+str(Total)+"\n"*3

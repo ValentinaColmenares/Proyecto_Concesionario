@@ -111,7 +111,6 @@ def solServicio():
         diccionariojason = json.dumps(datosContrato)
         guardarInfo((imprimirfac(datosContrato)), "bFacturas.txt")
         return diccionariojason
-    datosContrato["No. factura"]= str(contador)
 
 
 # Guarda informacion en base de datos
@@ -180,8 +179,7 @@ def organizar(base, item):
     if len(diccionario)==12:
         for i in diccionario_vehiculo:
             diccionario_vehiculo[i]=lista[contador]
-            caracteres=len(diccionario_vehiculo[i])
-            palabra=i.ljust(caracteres)
+            palabra=i.ljust(len(diccionario_vehiculo[i]))
             cabecera+=palabra+"|"
             contador+=1
 
@@ -189,14 +187,12 @@ def organizar(base, item):
     elif len(diccionario)==4:
         for i in diccionario_servicio:
             diccionario_servicio[i]=lista[contador]
-            caracteres=len(diccionario_servicio[i])
-            palabra=i.ljust(caracteres)
+            palabra=i.ljust(len(diccionario_servicio[i]))
             cabecera+=palabra+"|"
             contador+=1
     else:
         for i in diccionario:
-            caracteres=len(diccionario[i])
-            palabra=i.ljust(caracteres)
+            palabra=i.ljust(len(diccionario[i]))
             cabecera+=palabra+"|"
 
             

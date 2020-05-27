@@ -294,6 +294,7 @@ def imprimirfac(contrato):
     id_cliente = contrato["ID-Cliente"]
     placa = contrato["Placa"]
     codigo_servicio = contrato["Codigo del servicio"]
+    unidades = contrato["Unidades contratadas"]
 
     infoCliente = leerBase("bClientes.txt", "1", id_cliente, True)
     infoVehiculo = leerBase("bVehiculos.txt", "1", placa, True)
@@ -313,9 +314,11 @@ def imprimirfac(contrato):
     for i in infoServicio:
         cadena = infoServicio[i].rstrip()
         cadena_servicio += i+": "+cadena+"\t\t"
+    cadena_servicio+="\n"+"Unidades contratadas:"+unidades
+    
 
     Total = int(infoServicio["Precio/hora"]) * \
-        int(infoServicio["Horas del servicio"])
+        int(infoServicio["Horas del servicio"])*unidades
     factura = "FACTURA NUMERO "+str(contador)+"\n"*2+cadena_cliente+"\n"*2 + \
         cadena_vehiculo+"\n"*2+cadena_servicio + \
         "\n"*2+"TOTAL A PAGAR: $"+str(Total)+"\n"*3
@@ -517,8 +520,8 @@ def contratos():
                     if factura["consec"]==noFactura:
                         print(factura["infoFac"])
                         ex=True
-                    if not ex:
-                        print("Factura no encontrada.")
+                if not ex:
+                    print("Factura no encontrada.")
 
         elif op == '5':
             result = limpiarBase("bContratos.txt")

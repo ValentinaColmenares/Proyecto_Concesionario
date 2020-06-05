@@ -38,14 +38,6 @@ def infoVehiculo():
         nuevoDato = nuevoDato[0:(datosVehiculos[dato])]
         datosVehiculos[dato] = nuevoDato
 
-    # Comprueba que el propietario este en la base de clientes. Si no, solicita que se agregue informacion
-    verifCliente = leerBase("bClientes.txt", '1',
-                            datosVehiculos["ID-Cliente"], False)
-    if verifCliente == "No info":
-        print("Cliente con id #", datosVehiculos["ID-Cliente"],
-              "no esta en base de datos. Se debe ingresar informacion del cliente.")
-        guardarInfo(infoCliente(), "bClientes.txt")
-
     diccionariojason = json.dumps(datosVehiculos)
     return diccionariojason
 
@@ -90,13 +82,18 @@ def solServicio():
         return False
     else:
         # Comprueba que el vehiculo este en la base de datos. Si no, solicita que se agregue informacion
-        if leerBase("bVehiculos.txt", '1', datosContrato["Placa"], False) == "No info":
-            print("Vehiculo con placa #",
-                  datosContrato["Placa"], "no esta en base de datos. Se debe ingresar informacion del vehiculo.")
-            guardarInfo(infoVehiculo(), "bVehiculos.txt")
-        diccionariojason = json.dumps(datosContrato)
-        guardarInfo((imprimirfac(datosContrato)), "bFacturas.txt")
-        return diccionariojason
+        if leerBase ("bClientes.txt", '1', datosContrato["ID-Cliente"], False) != "No info" and leerBase ("bVehiculos.txt", '1', datosContrato["Placa"], False) != "No info":
+            diccionariojason = json.dumps(datosContrato)
+            guardarInfo((imprimirfac(datosContrato)), "bFacturas.txt")
+            return diccionariojason
+        else:
+            if leerBase ("bClientes.txt", '1', datosContrato["ID-Cliente"], False) == "No info" and leerBase ("bVehiculos.txt", '1', datosContrato["Placa"], False) != "No info":
+                print ("Cliente no existe, verifique la base de datos.")
+            elif leerBase ("bClientes.txt", '1', datosContrato["ID-Cliente"], False) != "No info" and leerBase ("bVehiculos.txt", '1', datosContrato["Placa"], False) == "No info":
+                print ("vehículo no existe, verifique la base de datos.")
+            else:
+                print("Cliente y vehículo no existen, verifique las bases de datos.")
+            return False
 
 #Limpia la consola
 

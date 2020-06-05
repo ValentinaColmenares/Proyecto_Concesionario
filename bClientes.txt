@@ -1,3 +1,0 @@
-{"ID-Cliente": "1           ", "Nombre": "1         ", "Apellido": "1         ", "Direcci\u00f3n": "1                   ", "Telefono": "1         ", "Ciudad": "1              "}
-{"ID-Cliente": "2           ", "Nombre": "2         ", "Apellido": "2         ", "Direcci\u00f3n": "2                   ", "Telefono": "2         ", "Ciudad": "2              "}
-{"ID-Cliente": "1           ", "Nombre": "A         ", "Apellido": "A         ", "Direcci\u00f3n": "A                   ", "Telefono": "A         ", "Ciudad": "A              "}

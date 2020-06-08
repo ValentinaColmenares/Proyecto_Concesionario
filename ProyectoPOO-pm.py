@@ -7,10 +7,56 @@ contador = 0
 # Solicita informacion del cliente
 
 
+class cliente:
+    def __init__(self,diccionario):
+
+        self.IdCliente= diccionario["ID-Cliente"]
+        self.Nombre= diccionario["Nombre"]
+        self.Apellido=diccionario["Apellido"]
+        self.Direccion=diccionario["Dirección"]
+        self.Telefono=diccionario["Telefono"]
+        self.Ciudad=diccionario["Ciudad"]
+
+    def guardar_base(self, diccionario):
+        diccionariojason = json.dumps(diccionario)
+        return diccionariojason
+
+class vehiculo:
+    def __init__(self,diccionario):
+            
+        self.placa= diccionario["Numero de placa"]
+        self.id= diccionario["ID-Cliente"]
+        self.marca=diccionario["Marca"]
+        self.numero_modelo=diccionario["Numero de modelo"]
+        self.cilindraje=diccionario["Cilindraje"]
+        self.color=diccionario["Color"]
+        self.servicio=diccionario["Tipo de servicio"]
+        self.combustible=diccionario["Tipo de combustible"]
+        self.pasajeros=diccionario["Capacidad de pasajeros"]
+        self.carga=diccionario["Capacidad de carga"]
+        self.chasis=diccionario["Numero de chasis"]
+        self.motor=diccionario["Numero de Motor"]
+
+    def guardar_base(self, diccionario):
+        diccionariojason = json.dumps(diccionario)
+        return diccionariojason
+
+
+class servicio:
+    def __init__(self,diccionario):
+        self.codigo=diccionario["Codigo del servicio"]
+        self.nombre=diccionario["Nombre del servicio"]
+        self.precio=diccionario["Precio/hora"]
+        self.horas=diccionario["Horas del servicio"]
+
+    def guardar_base(self, diccionario):
+        diccionariojason = json.dumps(diccionario)
+        return diccionariojason
+
+
 def infoCliente():
     datosClientes = {"ID-Cliente": 12, "Nombre": 10,
-                     "Apellido": 10, "Dirección": 20, "Telefono": 10, "Ciudad": 15}
-
+                     "Apellido": 10, "Dirección": 20, "Telefono": 10, "Ciudad": 15} 
     for dato in datosClientes:
         print(dato)
         nuevoDato = input().title()
@@ -20,8 +66,8 @@ def infoCliente():
         nuevoDato = nuevoDato[0:(datosClientes[dato])]
         datosClientes[dato] = nuevoDato
 
-    diccionariojason = json.dumps(datosClientes)
-    return diccionariojason
+    usuario=cliente(datosClientes)
+    return usuario.guardar_base(datosClientes)
 
 # Solicita informacion del Vehiculo
 
@@ -38,8 +84,8 @@ def infoVehiculo():
         nuevoDato = nuevoDato[0:(datosVehiculos[dato])]
         datosVehiculos[dato] = nuevoDato
 
-    diccionariojason = json.dumps(datosVehiculos)
-    return diccionariojason
+    Vehiculo=vehiculo(datosVehiculos)
+    return Vehiculo.guardar_base(datosVehiculos)
 
 # Solicita informacón del servicio
 
@@ -56,8 +102,8 @@ def infoServicio():
         nuevoDato = nuevoDato[0:(datosServicios[dato])]
         datosServicios[dato] = nuevoDato
 
-    diccionariojason = json.dumps(datosServicios)
-    return diccionariojason
+    Servicio=servicio(datosServicios)
+    return Servicio.guardar_base(datosServicios)
 
 # Contratar servicio
 

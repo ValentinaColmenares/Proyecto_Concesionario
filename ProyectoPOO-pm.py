@@ -4,157 +4,383 @@ import json
 contador = 0
 
 
-# Solicita informacion del cliente
+class clienteclass:
+    def __init__(self):
+     pass
 
 
-class cliente:
-    def __init__(self,diccionario):
+#setters para poder  cambiar las variables privadas
 
-        self.IdCliente= diccionario["ID-Cliente"]
-        self.Nombre= diccionario["Nombre"]
-        self.Apellido=diccionario["Apellido"]
-        self.Direccion=diccionario["Dirección"]
-        self.Telefono=diccionario["Telefono"]
-        self.Ciudad=diccionario["Ciudad"]
+    def setIdcliente(self, id_cliente):
+        self.__IdCliente = id_cliente
 
-    def guardar_base(self, diccionario):
+    def setNombre(self, nombre):
+        self.__Nombre = nombre
+
+    def setapellid(self, apellido):
+        self.__Apellido = apellido
+
+    def setDireccion(self, Direccion):
+        self.__Direccion = Direccion
+
+    def setTelefono(self, Telefono):
+        self.__Telefono = Telefono
+
+    def setCiudad(self, Ciudad):
+        self.__Ciudad = Ciudad
+
+ #getters para obtener las variables privadas
+    def getidcliente(self):
+        return clienteclass.ajustar_dato(self.__IdCliente, 12)
+
+    def getNombre(self):
+        return clienteclass.ajustar_dato(self.__Nombre, 10)
+
+    def getapellid(self):
+        return clienteclass.ajustar_dato(self.__Apellido, 10)
+
+    def getDireccion(self):
+        return clienteclass.ajustar_dato(self.__Direccion, 15)
+
+    def getTelefono(self):
+        return clienteclass.ajustar_dato(self.__Telefono, 10)
+
+    def getCiudad(self):
+        return clienteclass.ajustar_dato(self.__Ciudad, 15)
+
+    def ajustar_dato(dato, caracteres):
+        return (((((dato).title()).replace(" ", "-")).ljust(caracteres))[0:caracteres])
+
+    def creardiccionario(self, idcliente, nombre, apellido, direccion, telefono, ciudad):
+        diccionario = {"ID-Cliente": idcliente, "Nombre": nombre, "Apellido": apellido,
+            "Dirección": direccion, "Telefono": telefono, "Ciudad": ciudad}
         diccionariojason = json.dumps(diccionario)
         return diccionariojason
 
-class vehiculo:
-    def __init__(self,diccionario):
-            
-        self.placa= diccionario["Numero de placa"]
-        self.id= diccionario["ID-Cliente"]
-        self.marca=diccionario["Marca"]
-        self.numero_modelo=diccionario["Numero de modelo"]
-        self.cilindraje=diccionario["Cilindraje"]
-        self.color=diccionario["Color"]
-        self.servicio=diccionario["Tipo de servicio"]
-        self.combustible=diccionario["Tipo de combustible"]
-        self.pasajeros=diccionario["Capacidad de pasajeros"]
-        self.carga=diccionario["Capacidad de carga"]
-        self.chasis=diccionario["Numero de chasis"]
-        self.motor=diccionario["Numero de Motor"]
+    # Guarda informacion en base de datos
 
-    def guardar_base(self, diccionario):
-        diccionariojason = json.dumps(diccionario)
-        return diccionariojason
+    def guardarInfo(self, cad, base):
+        with open(base, "a") as baseDatos:
+            baseDatos.write(cad+"\n")
 
+    # Organizar cualquier base de datos
+    def organizar(base, item):
 
-class servicio:
-    def __init__(self,diccionario):
-        self.codigo=diccionario["Codigo del servicio"]
-        self.nombre=diccionario["Nombre del servicio"]
-        self.precio=diccionario["Precio/hora"]
-        self.horas=diccionario["Horas del servicio"]
+            contador = 0
+            item -= 1
+            lista2 = []
+            diccionario = {}
+            cadena = ""
+            cabecera = "|"
+            diccionario_vehiculo = {"#placa": "", "id-cliente": "", "marca": "", "#modelo": "", "cilindraje": "",
+                "color": "", "servicio": "", "combustible": "", "pasajeros": "", "carga": "", "#chasis": "", "#motor": ""}
+            diccionario_servicio = {
+                "cod": "", "servicio": "", "precio/hora": "", "horas": ""}
+            diccionario_contrato = {"id-cliente": "",
+                "#placa": "", "cod": "", "uds": "", "#": ""}
 
-    def guardar_base(self, diccionario):
-        diccionariojason = json.dumps(diccionario)
-        return diccionariojason
+            for linea in base:
+                diccionario = json.loads(linea)
+                lista = [i for i in diccionario.values()]
+                val = len(lista[item])
 
+                try:
+                    lista[item] = int(lista[item])
+                    lista2.append(lista)
+                    lista2.sort(key=lambda list: list[item])
+                except:
+                    lista2.append(lista)
+                    lista2.sort(key=lambda list: list[item])
 
-def infoCliente():
-    datosClientes = {"ID-Cliente": 12, "Nombre": 10,
-                     "Apellido": 10, "Dirección": 20, "Telefono": 10, "Ciudad": 15} 
-    for dato in datosClientes:
-        print(dato)
-        nuevoDato = input().title()
-        nuevoDato = nuevoDato.replace(" ", "-")
-        nuevoDato = nuevoDato.ljust(datosClientes[dato])
-        # esto va a restringir la entrada del usuario, la idea es cortar la entrada cuando el valor es mayor que el ljust definido. esto es para evitar que las tablas queden desalineadas
-        nuevoDato = nuevoDato[0:(datosClientes[dato])]
-        datosClientes[dato] = nuevoDato
+            for i in range(len(lista2)):
+                lista2[i][item] = str(lista2[i][item]).ljust(val)
 
-    usuario=cliente(datosClientes)
-    return usuario.guardar_base(datosClientes)
+            if len(diccionario) == 12:
+                for i in diccionario_vehiculo:
+                    diccionario_vehiculo[i] = lista[contador]
+                    palabra = i.ljust(len(diccionario_vehiculo[i]))
+                    cabecera += palabra+"|"
+                    contador += 1
 
-# Solicita informacion del Vehiculo
+            elif len(diccionario) == 4:
+                for i in diccionario_servicio:
+                    diccionario_servicio[i] = lista[contador]
+                    palabra = i.ljust(len(diccionario_servicio[i]))
+                    cabecera += palabra+"|"
+                    contador += 1
 
-
-def infoVehiculo():
-    datosVehiculos = {"Numero de placa": 10, "ID-Cliente": 12, "Marca": 15, "Numero de modelo": 10, "Cilindraje": 10, "Color": 10, "Tipo de servicio": 10,
-                      "Tipo de combustible": 15, "Capacidad de pasajeros": 10, "Capacidad de carga": 10, "Numero de chasis": 10, "Numero de Motor": 10}
-
-    for dato in datosVehiculos:
-        print(dato)
-        nuevoDato = input().title()
-        nuevoDato = nuevoDato.replace(" ", "-")
-        nuevoDato = nuevoDato.ljust(datosVehiculos[dato])
-        nuevoDato = nuevoDato[0:(datosVehiculos[dato])]
-        datosVehiculos[dato] = nuevoDato
-
-    Vehiculo=vehiculo(datosVehiculos)
-    return Vehiculo.guardar_base(datosVehiculos)
-
-# Solicita informacón del servicio
-
-
-def infoServicio():
-    datosServicios = {"Codigo del servicio": 4, "Nombre del servicio": 15,
-                      "Precio/hora": 15, "Horas del servicio": 5}
-
-    for dato in datosServicios:
-        print(dato)
-        nuevoDato = input().title()
-        nuevoDato = nuevoDato.replace(" ", "-")
-        nuevoDato = nuevoDato.ljust(datosServicios[dato])
-        nuevoDato = nuevoDato[0:(datosServicios[dato])]
-        datosServicios[dato] = nuevoDato
-
-    Servicio=servicio(datosServicios)
-    return Servicio.guardar_base(datosServicios)
-
-# Contratar servicio
-
-
-def solServicio():
-    global contador
-    datosContrato = {"ID-Cliente": 12, "Placa": 10,
-                     "Codigo del servicio": 4, "Unidades contratadas": 3}
-
-    for dato in datosContrato:
-        print(dato)
-        nuevoDato = input().title()
-        nuevoDato = nuevoDato.replace(" ", "-")
-        nuevoDato = nuevoDato.ljust(datosContrato[dato])
-        datosContrato[dato] = nuevoDato
-    leerBase("bFacturas.txt", "1", "0000", False)
-    datosContrato["No. factura"]= str(contador)
-
-    # Comprueba que servicio solicitado existe
-    if leerBase("bServicios.txt", '1', datosContrato["Codigo del servicio"], False) == "No info":
-        print("Servicio no existe, verifique base de datos.")
-        return False
-    else:
-        # Comprueba que el vehiculo este en la base de datos. Si no, solicita que se agregue informacion
-        if leerBase ("bClientes.txt", '1', datosContrato["ID-Cliente"], False) != "No info" and leerBase ("bVehiculos.txt", '1', datosContrato["Placa"], False) != "No info":
-            diccionariojason = json.dumps(datosContrato)
-            guardarInfo((imprimirfac(datosContrato)), "bFacturas.txt")
-            return diccionariojason
-        else:
-            if leerBase ("bClientes.txt", '1', datosContrato["ID-Cliente"], False) == "No info" and leerBase ("bVehiculos.txt", '1', datosContrato["Placa"], False) != "No info":
-                print ("Cliente no existe, verifique la base de datos.")
-            elif leerBase ("bClientes.txt", '1', datosContrato["ID-Cliente"], False) != "No info" and leerBase ("bVehiculos.txt", '1', datosContrato["Placa"], False) == "No info":
-                print ("vehículo no existe, verifique la base de datos.")
+            elif len(diccionario) == 5:
+                for i in diccionario_contrato:
+                    diccionario_contrato[i] = lista[contador]
+                    palabra = i.ljust(len(diccionario_contrato[i]))
+                    cabecera += palabra+"|"
+                    contador += 1
             else:
-                print("Cliente y vehículo no existen, verifique las bases de datos.")
+                for i in diccionario:
+                    palabra = i.ljust(len(diccionario[i]))
+                    cabecera += palabra+"|"
+
+            for i in lista2:
+                i = "|".join(i)
+                formato = "-"*(len(i)+2)+"\n"
+                cadena += formato + "|"+i+"|"+"\n"
+
+            if cadena == "":
+                return "Base de datos vacía"
+
+            else:
+                return formato+cabecera+"\n"+cadena+formato
+
+        # Leer base
+
+    def leerBase(base, op, noid, verif):
+        global contador
+        contador = 0
+        if op == '1':
+            c = ""
+
+            with open(base, "r") as baseDatos:
+
+                for linea in baseDatos:
+                    if base == "bFacturas.txt":
+                        c += linea
+                        if "FACTURA NUMERO" in linea:
+                            contador += 1
+                        continue
+                    datos = json.loads(linea)
+                    info = [i for i in datos.values()]
+                    noid = noid.ljust(len(info[0]))
+
+                    if noid == info[0]:
+                        for dato in info:
+                            c += dato+" "
+                        c += "\n"
+                        if verif == True and c != "":
+                            return datos
+
+            if c == "":
+                return "No info"
+            else:
+                return c
+
+        elif op == '2':
+            if base == "bClientes.txt":
+                borrarPantalla()
+                print("Ordenar información de clientes por:\n(1) Número de identificación\n(2) Nombre\n(3) Apellido\n(4) Dirección\n(5) Teléfono\n(6) Ciudad")
+                item = comprobar(1, 6)
+
+            elif base == "bVehiculos.txt":
+                borrarPantalla()
+                print("Organizar información de vehiculos por:\n(1) Número de placa\n(2) Número de identificación del cliente\n(3) Marca\n(4) Número de modelo\n(5) Cilindraje\n(6) Color\n(7) Tipo de servicio\n(8) Tipo de combustible\n(9) Capacidad de pasajeros\n(10) Capacidad de carga\n(11) Numero de chasis\n(12) Número de motor")
+                item = comprobar(1, 12)
+
+            elif base == "bServicios.txt":
+                borrarPantalla()
+                print("Organizar información de servicios por:\n(1) Código del servicio\n(2) Nombre del servicio\n(3) Precios/hora\n(4) Horas de servicio")
+                item = comprobar(1, 5)
+
+            elif base == "bContratos.txt":
+                borrarPantalla()
+                print("Organizar informacion de contratos por:\n(1) Identificacion del cliente\n(2) Placa del vehiculo\n(3) Codigo del servicio\n(4) Unidades contratadas\n(5) Numero de factura")
+                item = comprobar(1, 5)
+
+            with open(base, "r") as baseDatos:
+                return (clienteclass.organizar(baseDatos, item))
+
+        else:
+            return "Opcion ingresada no es valida."
+# Eliminar elemento en la base de datos
+
+    def eliminarElemento(base, noid, ident):
+        elementos = []
+        with open(base, "r") as baseDatos:
+            for linea in baseDatos:
+                datos = json.loads(linea)
+                elementos.append(datos)
+
+        with open(base, "w") as baseDatos:
+            for elemento in elementos:
+                if noid != elemento[ident]:
+                    datoGuardar = json.dumps(elemento)
+                    baseDatos.write(datoGuardar+"\n")
+# Limpia base de datos
+
+    def limpiarBase(base):
+        conf = input(
+            "Seguro que desea eliminar base de datos? (s/n): \n").lower()
+
+        if conf == 's':
+            os.remove(base)
+            if base == "bContratos.txt":
+                os.remove("bFacturas.txt")
+            print("Base de datos eliminada con exito! Volviendo al menu principal")
+            return conf
+
+        elif conf == 'n':
+            print("Base de datos no eliminada.")
+
+        else:
+            print("Opcion no valida!")
+
+
+class vehiculoclass(clienteclass):
+        def __init__(self):
+            pass
+        def setPlaca (self, placa):
+            self.__placa = placa
+        def setid(self, id):
+            self.__id = id
+        def setmarca(self, marca):
+            self.__marca = marca
+        def setmodelo(self, modelo):
+            self.__modelo = modelo
+
+        def setcilindraje (self, cilindraje):
+            self.__cilindraje = cilindraje
+
+        def setcolor (self, color):
+            self.__color = color
+
+        def setservicio (self, servicio):
+            self.__servicio = servicio
+        def setcombustible (self, combustible):
+            self.__combustible = combustible
+
+        def setpasajeros (self, pasajeros):
+            self.__pasajeros = pasajeros
+
+        def setcarga (self, carga):
+            self.__carga = carga
+
+        def setchasis(self, chasis):
+            self.__chasis = chasis
+        def setmotor (self, motor):
+            self.__motor = motor
+
+        def getplaca(self):
+            return vehiculoclass.ajustar_dato(self.__placa, 10)
+
+        def getidcliente(self):
+            return vehiculoclass.ajustar_dato(self.__id, 12)
+
+        def getmarca(self):
+            return vehiculoclass.ajustar_dato(self.__marca, 15)
+
+        def getmodelo (self):
+            return vehiculoclass.ajustar_dato(self.__modelo,  10)
+
+        def getcilindraje (self):
+            return vehiculoclass.ajustar_dato(self.__cilindraje, 10)
+
+        def getcolor (self):
+            return vehiculoclass.ajustar_dato(self.__color, 10)
+
+        def getservicio (self):
+            return vehiculoclass.ajustar_dato(self.__servicio, 10)
+
+        def getcombustle (self):
+            return vehiculoclass.ajustar_dato(self.__combustible, 15)
+
+        def getpasajeros(self):
+            return vehiculoclass.ajustar_dato(self.__pasajeros, 10)
+
+        def getcarga (self):
+            return vehiculoclass.ajustar_dato(self.__carga, 10)
+
+        def getchasisi(self):
+            return vehiculoclass.ajustar_dato(self.__chasis, 10)
+
+        def getmotor (self):
+            return vehiculoclass.ajustar_dato(self.__motor, 10)
+
+
+
+        def creardiccionario(self, placa,idcliente,marca,modelo,cilindraje,color,servicio,combustible,pasajeros,carga,chasis,motor):
+            diccionario ={"Numero de placa": placa, "ID-Cliente": idcliente, "Marca": marca, "Numero de modelo": modelo, "Cilindraje": cilindraje, "Color": color, "Tipo de servicio": servicio,
+                         "Tipo de combustible": combustible, "Capacidad de pasajeros": pasajeros, "Capacidad de carga": carga, "Numero de chasis": chasis, "Numero de Motor": motor}
+            diccionariojason = json.dumps(diccionario)
+            return diccionariojason
+
+
+class servicioclass(clienteclass):
+    def __init__(self):
+      pass
+    def setCodigo(self, codigo):
+        self.__Codigo = codigo
+    def setNombre(self, nombre):
+        self.__nombre = nombre
+    def setPrecio(self, precio):
+        self.__precio = precio
+    def setHoras(self, horas):
+        self.__horas = horas
+
+    def getCodigo (self):
+        return servicioclass.ajustar_dato(self.__Codigo, 4)
+
+    def getNombre(self):
+        return servicioclass.ajustar_dato(self.__nombre, 15)
+
+    def getPrecio(self):
+        return servicioclass.ajustar_dato(self.__precio, 15)
+
+    def getHoras(self):
+        return servicioclass.ajustar_dato(self.__horas, 5)
+
+
+    def creardiccionario(self, codigo,nombre,precio,horas):
+        diccionario ={"Codigo del servicio": codigo, "Nombre del servicio": nombre,
+                     "Precio/hora": precio, "Horas del servicio": horas}
+        diccionariojason = json.dumps(diccionario)
+        return diccionariojason
+
+
+    # Contratar servicio
+
+    def solServicio():
+        global contador
+        datosContrato = {"ID-Cliente": 12, "Placa": 10,
+                         "Codigo del servicio": 4, "Unidades contratadas": 3}
+
+        for dato in datosContrato:
+            print(dato)
+            nuevoDato = input().title()
+            nuevoDato = nuevoDato.replace(" ", "-")
+            nuevoDato = nuevoDato.ljust(datosContrato[dato])
+            datosContrato[dato] = nuevoDato
+        clienteclass.leerBase("bFacturas.txt", "1", "0000", False)
+        datosContrato["No. factura"] = str(contador)
+
+        # Comprueba que servicio solicitado existe
+        if clienteclass.leerBase("bServicios.txt", '1', datosContrato["Codigo del servicio"], False) == "No info":
+            print("Servicio no existe, verifique base de datos.")
             return False
+        else:
+            # Comprueba que el vehiculo este en la base de datos. Si no, solicita que se agregue informacion
+            if clienteclass.leerBase("bClientes.txt", '1', datosContrato["ID-Cliente"], False) != "No info" and clienteclass.leerBase ("bVehiculos.txt", '1', datosContrato["Placa"], False) != "No info":
+                diccionariojason = json.dumps(datosContrato)
+                servicio = servicioclass()
+                servicio.guardarInfo(
+                    (facturasclass.imprimirfac(datosContrato)), "bFacturas.txt")
+                return diccionariojason
+            else:
+                if clienteclass.leerBase("bClientes.txt", '1', datosContrato["ID-Cliente"], False) == "No info" and clienteclass.leerBase ("bVehiculos.txt", '1', datosContrato["Placa"], False) != "No info":
+                    print("Cliente no existe, verifique la base de datos.")
+                elif clienteclass.leerBase("bClientes.txt", '1', datosContrato["ID-Cliente"], False) != "No info" and clienteclass.leerBase ("bVehiculos.txt", '1', datosContrato["Placa"], False) == "No info":
+                    print("vehículo no existe, verifique la base de datos.")
+                else:
+                    print(
+                        "Cliente y vehículo no existen, verifique las bases de datos.")
+                return False
+
 
 #Limpia la consola
 
 def borrarPantalla():
     if os.name == "posix":
-        os.system ("clear")
+        os.system("clear")
     elif os.name == "ce" or os.name == "nt" or os.name == "dos":
-        os.system ("cls")
+        os.system("cls")
 
-# Guarda informacion en base de datos
-
-
-def guardarInfo(cad, base):
-    with open(base, "a") as baseDatos:
-        baseDatos.write(cad+"\n")
 
 # función que comprueba si la entrada es un entero
 
@@ -181,214 +407,54 @@ def comprobar(a, b):
         else:
             print("Debe ingresar un número entre ", a, "-", b, sep="")
 
-# Organizar cualquier base de datos
+
+class facturasclass(clienteclass):
+    def __init__(self):
+         pass
+    # imprimir facturas
+
+    def imprimirfac(contrato):
+        global contador
+
+        id_cliente = contrato["ID-Cliente"]
+        placa = contrato["Placa"]
+        codigo_servicio = contrato["Codigo del servicio"]
+        unidades = int((contrato["Unidades contratadas"]).rstrip())
+
+        infoCliente = clienteclass.leerBase(
+            "bClientes.txt", "1", id_cliente, True)
+        infoVehiculo = clienteclass.leerBase(
+            "bVehiculos.txt", "1", placa, True)
+        infoServicio = clienteclass.leerBase(
+            "bServicios.txt", "1", codigo_servicio, True)
+        clienteclass.leerBase("bFacturas.txt", "1", "0000", False)
+        cadena_cliente, cadena_vehiculo, cadena_servicio = "INFORMACIÓN DE USUARIO\n", "INFORMACIÓN DE VEHICULO\n", "INFORMACIÓN DE SERVICIO\n"
+
+        for i in infoCliente:
+            cadena = infoCliente[i].rstrip()
+            cadena_cliente += i+": "+cadena+"\t\t"
+
+        cadena_vehiculo += "Numero de placa: " + infoVehiculo["Numero de placa"].rstrip() + "\t\t" + \
+            "Marca: " + infoVehiculo["Marca"].rstrip() + "\t\t" + \
+            "Numero de Modelo: " + infoVehiculo["Numero de modelo"].rstrip() + "\t\t" + \
+            "Color: " + infoVehiculo["Color"].rstrip()
+
+        for i in infoServicio:
+            cadena = infoServicio[i].rstrip()
+            cadena_servicio += i+": "+cadena+"\t\t"
+        cadena_servicio += "\n"+"Unidades contratadas:"+str(unidades)
 
 
-def organizar(base, item):
+        Total = int(infoServicio["Precio/hora"]) * int(infoServicio["Horas del servicio"])*unidades
+        factura = "FACTURA NUMERO "+str(contador)+"\n"*2+cadena_cliente+"\n"*2 + \
+            cadena_vehiculo+"\n"*2+cadena_servicio + \
+            "\n"*2+"TOTAL A PAGAR: $"+str(Total)+"\n"*3
 
-    contador=0
-    item -= 1
-    lista2 = []
-    diccionario={}
-    cadena = ""
-    cabecera= "|"
-    diccionario_vehiculo={"#placa":"","id-cliente":"","marca":"","#modelo":"","cilindraje":"","color":"","servicio":"","combustible":"","pasajeros": "","carga":"","#chasis":"","#motor":""}
-    diccionario_servicio={"cod":"","servicio":"","precio/hora":"","horas":""}
-    diccionario_contrato={"id-cliente":"","#placa":"","cod":"","uds":"","#":""}
+        print(factura)
+        nuevaFactura = {"consec": contador, "infoFac": factura}
+        factura = json.dumps(nuevaFactura)
+        return factura
 
-    for linea in base:
-        diccionario = json.loads(linea)
-        lista = [i for i in diccionario.values()]
-        val=len(lista[item])
-        
-        try:
-            lista[item]=int(lista[item])
-            lista2.append(lista)
-            lista2.sort(key=lambda list: list[item])
-        except:
-            lista2.append(lista)
-            lista2.sort(key=lambda list: list[item])
-            
-    for i in range(len(lista2)):
-        lista2[i][item]=str(lista2[i][item]).ljust(val)
-
-
-    if len(diccionario)==12:
-        for i in diccionario_vehiculo:
-            diccionario_vehiculo[i]=lista[contador]
-            palabra=i.ljust(len(diccionario_vehiculo[i]))
-            cabecera+=palabra+"|"
-            contador+=1
-
-
-    elif len(diccionario)==4:
-        for i in diccionario_servicio:
-            diccionario_servicio[i]=lista[contador]
-            palabra=i.ljust(len(diccionario_servicio[i]))
-            cabecera+=palabra+"|"
-            contador+=1
-
-    elif len(diccionario)==5:
-        for i in diccionario_contrato:
-            diccionario_contrato[i]=lista[contador]
-            palabra=i.ljust(len(diccionario_contrato[i]))
-            cabecera+=palabra+"|"
-            contador+=1
-    else:
-        for i in diccionario:
-            palabra=i.ljust(len(diccionario[i]))
-            cabecera+=palabra+"|"
-
-            
-    for i in lista2:
-        i = "|".join(i)
-        formato="-"*(len(i)+2)+"\n"
-        cadena +=formato+ "|"+i+"|"+"\n"
-
-
-    if cadena == "":
-        return "Base de datos vacía"
-
-    else:
-        return formato+cabecera+"\n"+cadena+formato
-
-# Leer base
-
-
-def leerBase(base, op, noid, verif):
-    global contador
-    contador = 0
-    if op == '1':
-        c = ""
-
-        with open(base, "r") as baseDatos:
-
-            for linea in baseDatos:
-                if base == "bFacturas.txt":
-                    c += linea
-                    if "FACTURA NUMERO" in linea:
-                        contador += 1
-                    continue
-                datos = json.loads(linea)
-                info = [i for i in datos.values()]
-                noid = noid.ljust(len(info[0]))
-
-                if noid == info[0]:
-                    for dato in info:
-                        c += dato+" "
-                    c += "\n"
-                    if verif == True and c != "":
-                        return datos
-
-        if c == "":
-            return "No info"
-        else:
-            return c
-
-    elif op == '2':
-        if base == "bClientes.txt":
-            borrarPantalla()
-            print("Ordenar información de clientes por:\n(1) Número de identificación\n(2) Nombre\n(3) Apellido\n(4) Dirección\n(5) Teléfono\n(6) Ciudad")
-            item = comprobar(1, 6)
-
-        elif base == "bVehiculos.txt":
-            borrarPantalla()
-            print("Organizar información de vehiculos por:\n(1) Número de placa\n(2) Número de identificación del cliente\n(3) Marca\n(4) Número de modelo\n(5) Cilindraje\n(6) Color\n(7) Tipo de servicio\n(8) Tipo de combustible\n(9) Capacidad de pasajeros\n(10) Capacidad de carga\n(11) Numero de chasis\n(12) Número de motor")
-            item = comprobar(1, 12)
-
-        elif base == "bServicios.txt":
-            borrarPantalla()
-            print("Organizar información de servicios por:\n(1) Código del servicio\n(2) Nombre del servicio\n(3) Precios/hora\n(4) Horas de servicio")
-            item = comprobar(1, 5)
-
-        elif base == "bContratos.txt":
-            borrarPantalla()
-            print("Organizar informacion de contratos por:\n(1) Identificacion del cliente\n(2) Placa del vehiculo\n(3) Codigo del servicio\n(4) Unidades contratadas\n(5) Numero de factura")
-            item = comprobar(1, 5)
-
-        with open(base, "r") as baseDatos:
-            return (organizar(baseDatos, item))
-
-    else:
-        return "Opcion ingresada no es valida."
-
-
-# Eliminar elemento en la base de datos
-
-
-def eliminarElemento(base, noid, ident):
-    elementos = []
-    with open(base, "r") as baseDatos:
-        for linea in baseDatos:
-            datos = json.loads(linea)
-            elementos.append(datos)
-
-    with open(base, "w") as baseDatos:
-        for elemento in elementos:
-            if noid != elemento[ident]:
-                datoGuardar = json.dumps(elemento)
-                baseDatos.write(datoGuardar+"\n")
-
-# imprimir facturas
-
-
-def imprimirfac(contrato):
-    global contador
-
-    id_cliente = contrato["ID-Cliente"]
-    placa = contrato["Placa"]
-    codigo_servicio = contrato["Codigo del servicio"]
-    unidades = int((contrato["Unidades contratadas"]).rstrip())
-
-
-    infoCliente = leerBase("bClientes.txt", "1", id_cliente, True)
-    infoVehiculo = leerBase("bVehiculos.txt", "1", placa, True)
-    infoServicio = leerBase("bServicios.txt", "1", codigo_servicio, True)
-    leerBase("bFacturas.txt", "1", "0000", False)
-    cadena_cliente, cadena_vehiculo, cadena_servicio = "INFORMACIÓN DE USUARIO\n", "INFORMACIÓN DE VEHICULO\n", "INFORMACIÓN DE SERVICIO\n"
-
-    for i in infoCliente:
-        cadena = infoCliente[i].rstrip()
-        cadena_cliente += i+": "+cadena+"\t\t"
-
-    cadena_vehiculo += "Numero de placa: " + infoVehiculo["Numero de placa"].rstrip() + "\t\t" + \
-        "Marca: " + infoVehiculo["Marca"].rstrip() + "\t\t" + \
-        "Numero de Modelo: " + infoVehiculo["Numero de modelo"].rstrip() + "\t\t" + \
-        "Color: " + infoVehiculo["Color"].rstrip()
-
-    for i in infoServicio:
-        cadena = infoServicio[i].rstrip()
-        cadena_servicio += i+": "+cadena+"\t\t"
-    cadena_servicio+="\n"+"Unidades contratadas:"+str(unidades)
-    
-
-    Total = int(infoServicio["Precio/hora"]) *int(infoServicio["Horas del servicio"])*unidades
-    factura = "FACTURA NUMERO "+str(contador)+"\n"*2+cadena_cliente+"\n"*2 + \
-        cadena_vehiculo+"\n"*2+cadena_servicio + \
-        "\n"*2+"TOTAL A PAGAR: $"+str(Total)+"\n"*3
-
-    print(factura)
-    nuevaFactura = {"consec": contador, "infoFac": factura}
-    factura = json.dumps(nuevaFactura)
-    return factura
-
-
-# Limpia base de datos
-def limpiarBase(base):
-    conf = input("Seguro que desea eliminar base de datos? (s/n): \n").lower()
-
-    if conf == 's':
-        os.remove(base)
-        if base=="bContratos.txt":
-            os.remove("bFacturas.txt")
-        print("Base de datos eliminada con exito! Volviendo al menu principal")
-        return conf
-
-    elif conf == 'n':
-        print("Base de datos no eliminada.")
-
-    else:
-        print("Opcion no valida!")
 
 # Base de Datos de Clientes
 
@@ -409,25 +475,33 @@ def clientes():
                 noid = input("Inserte no. identificacion del cliente:\n")
             else:
                 noid = ""
-            result = leerBase("bClientes.txt", sop, noid, False)
+            result = clienteclass.leerBase("bClientes.txt", sop, noid, False)
             if result != "No info":
                 print(result)
             else:
                 print("Informacion no encontrada.")
 
         elif op == '2':  # Agregar cliente
-            guardarInfo(infoCliente(), "bClientes.txt")
+            cliente = clienteclass()
+            cliente.setIdcliente(input("Id-cliente:"))
+            cliente.setNombre(input("Nombre:"))
+            cliente.setapellid(input("apellido:"))
+            cliente.setDireccion(input("Dirección:"))
+            cliente.setTelefono(input("Teléfono:"))
+            cliente.setCiudad(input("Ciudad:"))
+            diccionario = cliente.creardiccionario(cliente.getidcliente(),cliente.getNombre(), cliente.getapellid(),cliente.getDireccion(), cliente.getTelefono(), cliente.getCiudad())
+            cliente.guardarInfo(diccionario, "bClientes.txt" )
             print("Cliente agregado con exito!")
 
         elif op == '3':  # Elimina un cliente de la base de datos
             noid = input(
                 "Ingrese no. identificacion del cliente que desea eliminar:\n").ljust(12)
-            eliminarElemento("bClientes.txt", noid, "ID-Cliente")
-            eliminarElemento("bVehiculos.txt", noid, "ID-Cliente")
+            clienteclass.eliminarElemento("bClientes.txt", noid, "ID-Cliente")
+            clienteclass.eliminarElemento("bVehiculos.txt", noid, "ID-Cliente")
             print("Cliente eliminado con exito!")
 
         elif op == '4':  # Borra toda la informacion en la base de datos
-            result = limpiarBase("bClientes.txt")
+            result = clienteclass.limpiarBase("bClientes.txt")
             if result == 's':
                 break
             else:
@@ -460,24 +534,39 @@ def vehiculos():
                 noid = input("Inserte placa del vehiculo:\n")
             else:
                 noid = ""
-            result = leerBase("bVehiculos.txt", sop, noid, False)
+            result = clienteclass.leerBase("bVehiculos.txt", sop, noid, False)
             if result != "No info":
                 print(result)
             else:
                 print("Informacion no encontrada.")
 
         elif op == '2':  # Agregar vehiculo
-            guardarInfo(infoVehiculo(), "bVehiculos.txt")
+            vehiculo = vehiculoclass()
+            vehiculo.setPlaca(input("Placa:"))
+            vehiculo.setid(input("Id-Cliente:"))
+            vehiculo.setmarca(input("Marca:"))
+            vehiculo.setmodelo(input("Modelo:"))
+            vehiculo.setcilindraje(input("Cilindraje:"))
+            vehiculo.setcolor(input("Color:"))
+            vehiculo.setservicio(input("Servicio:"))
+            vehiculo.setcombustible(input("Combustible:"))
+            vehiculo.setpasajeros(input("Pasajeros:"))
+            vehiculo.setcarga(input("Carga:"))
+            vehiculo.setchasis(input("Chasis:"))
+            vehiculo.setmotor(input("Motor:"))
+            diccionario = vehiculo.creardiccionario(vehiculo.getplaca(),vehiculo.getidcliente(),vehiculo.getmarca(),vehiculo.getmodelo(),vehiculo.getcilindraje(),vehiculo.getcolor(),vehiculo.getservicio(),vehiculo.getcombustle(), vehiculo.getpasajeros(),vehiculo.getcarga(),vehiculo.getchasisi(),vehiculo.getmotor())
+            vehiculo.guardarInfo(diccionario, "bVehiculos.txt")
             print("Vehiculo agregado con exito!")
 
         elif op == '3':  # Elimina un vehiculo
             placa = input(
                 "Ingrese placa del vehiculo que desea eliminar: \n").ljust(10)
-            eliminarElemento("bVehiculos.txt", placa, "Numero de placa")
+            clienteclass.eliminarElemento(
+                "bVehiculos.txt", placa, "Numero de placa")
             print("Vehiculo eliminado con exito!")
 
         elif op == '4':  # Borra toda la informacion en la base de datos
-            result = limpiarBase("bVehiculos.txt")
+            result = clienteclass.limpiarBase("bVehiculos.txt")
             if result == 's':
                 break
             else:
@@ -510,23 +599,31 @@ def servicios():
                 noid = input("Inserte codigo del servicio:\n")
             else:
                 noid = ""
-            result = leerBase("bServicios.txt", sop, noid, False)
+            result = clienteclass.leerBase("bServicios.txt", sop, noid, False)
             if result != "No info":
                 print(result)
             else:
                 print("Informacion no encontrada.")
 
         elif op == '2':  # Agregar servicio
-            guardarInfo(infoServicio(), "bServicios.txt")
+            servicio = servicioclass()
+            servicio.setCodigo(input("Código:"))
+            servicio.setNombre(input("Nombre:"))
+            servicio.setPrecio(input("Precio:"))
+            servicio.setHoras(input("Horas:"))
+            codigo, nombre, precio, horas = servicio.getCodigo(),servicio.getNombre(),servicio.getPrecio(), servicio.getHoras()
+            diccionario = servicio.creardiccionario(codigo,nombre,precio,horas)
+            servicio.guardarInfo(diccionario, "bServicios.txt")
             print("Servicio agregado con exito!")
 
         elif op == '3':  # Eliminar un servicio
             noid = input("Ingrese codigo del servicio: \n").ljust(4)
-            eliminarElemento("bServicios.txt", noid, "Codigo del servicio")
+            clienteclass.eliminarElemento(
+                "bServicios.txt", noid, "Codigo del servicio")
             print("Servicio eliminado con exito!")
 
         elif op == '4':  # Borra toda la informacion en la base de datos
-            result = limpiarBase("bServicios.txt")
+            result = clienteclass.limpiarBase("bServicios.txt")
             if result == 's':
                 break
             else:
@@ -559,31 +656,32 @@ def contratos():
                 noid = input("Inserte ID-Cliente:\n")
             else:
                 noid = ""
-            result = leerBase("bContratos.txt", sop, noid, False)
+            result = clienteclass.leerBase("bContratos.txt", sop, noid, False)
             if result != "No info":
                 print(result)
             else:
                 print("Informacion no encontrada.")
 
         elif op == '2':  # Agregar Contrato
-            contrato = solServicio()
+            contrato = servicioclass.solServicio()
             if contrato != False:
-                guardarInfo(contrato, "bContratos.txt")
+                cliente = clienteclass()
+                cliente.guardarInfo(contrato, "bContratos.txt")
 
         elif op == '3':
             noid = input("Ingrese ID-Cliente: \n").ljust(12)
-            eliminarElemento("bContratos.txt", noid, "ID-Cliente")
+            clienteclass.eliminarElemento("bContratos.txt", noid, "ID-Cliente")
             print("Contrato eliminado con exito!")
 
         elif op == '4':
             noFactura = int(input("Ingrese numero de factura:\n"))
-            ex=False
-            with open("bFacturas.txt","r") as baseFacturas:
+            ex = False
+            with open("bFacturas.txt", "r") as baseFacturas:
                 for linea in baseFacturas:
                     factura = json.loads(linea)
-                    if factura["consec"]==noFactura:
+                    if factura["consec"] ==noFactura:
                         print(factura["infoFac"])
-                        ex=True
+                        ex = True
                 if not ex:
                     print("Factura no encontrada.")
 

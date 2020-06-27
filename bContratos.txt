@@ -1,0 +1,2 @@
+{"ID-Cliente": "1234        ", "Placa": "1234      ", "Codigo del servicio": "1234", "Unidades contratadas": "2  ", "No. factura": "2"}
+{"ID-Cliente": "54321       ", "Placa": "12345     ", "Codigo del servicio": "1234", "Unidades contratadas": "2  ", "No. factura": "3"}

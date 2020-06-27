@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>adduser</class>
+ <widget class="QDialog" name="adduser">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>590</width>
+    <height>329</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <layout class="QHBoxLayout" name="horizontalLayout">
+   <item>
+    <widget class="QSplitter" name="splitter">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <widget class="QWidget" name="">
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="0">
+        <widget class="QLabel" name="lbIdcliente">
+         <property name="text">
+          <string>Id-Cliente</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="lbNombre">
+         <property name="text">
+          <string>Nombre</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLineEdit" name="le_cliente_4"/>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="le_cliente"/>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="lbapellido">
+         <property name="text">
+          <string>apellido</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="le_cliente_5"/>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="Lbcelular">
+         <property name="text">
+          <string>celular</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="lbdireccion">
+         <property name="text">
+          <string>dirección</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="0">
+        <widget class="QLabel" name="lbciudad">
+         <property name="text">
+          <string>ciudad</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="1">
+        <widget class="QLineEdit" name="le_cliente_6"/>
+       </item>
+       <item row="3" column="1">
+        <widget class="QLineEdit" name="le_cliente_3"/>
+       </item>
+       <item row="4" column="1">
+        <widget class="QLineEdit" name="le_cliente_2"/>
+       </item>
+       <item row="7" column="1">
+        <widget class="QPushButton" name="bguardar">
+         <property name="text">
+          <string>Guardar</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

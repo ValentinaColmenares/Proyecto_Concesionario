@@ -18,7 +18,7 @@
     <item>
      <widget class="QTabWidget" name="Modulos">
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="usuarios">
        <attribute name="title">
@@ -74,10 +74,10 @@
          </widget>
         </item>
         <item>
-         <widget class="QTableWidget" name="tabladatos_9"/>
+         <widget class="QTableWidget" name="td_vehiculos"/>
         </item>
         <item>
-         <widget class="QPushButton" name="bactualizar_9">
+         <widget class="QPushButton" name="ba_vehiculos">
           <property name="enabled">
            <bool>true</bool>
           </property>
@@ -104,10 +104,10 @@
          </widget>
         </item>
         <item>
-         <widget class="QTableWidget" name="tabladatos_10"/>
+         <widget class="QTableWidget" name="tb_servicios"/>
         </item>
         <item>
-         <widget class="QPushButton" name="bactualizar_10">
+         <widget class="QPushButton" name="ba_servicios">
           <property name="enabled">
            <bool>true</bool>
           </property>
@@ -134,10 +134,10 @@
          </widget>
         </item>
         <item>
-         <widget class="QTableWidget" name="tabladatos_11"/>
+         <widget class="QTableWidget" name="tb_contratos"/>
         </item>
         <item>
-         <widget class="QPushButton" name="bactualizar_11">
+         <widget class="QPushButton" name="ba_contratos">
           <property name="enabled">
            <bool>true</bool>
           </property>
@@ -164,10 +164,10 @@
          </widget>
         </item>
         <item>
-         <widget class="QTableWidget" name="tabladatos_12"/>
+         <widget class="QTableWidget" name="tb_facturas"/>
         </item>
         <item>
-         <widget class="QPushButton" name="bactualizar_12">
+         <widget class="QPushButton" name="ba_facturas">
           <property name="enabled">
            <bool>true</bool>
           </property>

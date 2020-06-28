@@ -6,8 +6,7 @@ contador = 0
 
 class clienteclass:
     def __init__(self):
-        self.diccionario = {"ID-Cliente":"", "Nombre": "", "Apellido": "",
-            "Dirección": "", "Telefono": "", "Ciudad": ""}
+        self.datos = ["ID-Cliente", "Nombre", "Apellido","Dirección", "Telefono", "Ciudad"]
     
 
 
@@ -207,7 +206,8 @@ class clienteclass:
 
 class vehiculoclass(clienteclass):
         def __init__(self):
-            pass
+            self.datos=["Numero de placa", "ID-Cliente", "Marca", "Numero de modelo", "Cilindraje", "Color", "Tipo de servicio","Tipo de combustible", "Capacidad de pasajeros", "Capacidad de carga", "Numero de chasis", "Numero de Motor"]
+            
         def setPlaca (self, placa):
             self.__placa = placa
         def setid(self, id):
@@ -286,7 +286,8 @@ class vehiculoclass(clienteclass):
 
 class servicioclass(clienteclass):
     def __init__(self):
-      pass
+        self.datos=["Codigo del servicio", "Nombre del servicio","Precio/hora", "Horas del servicio"]
+      
     def setCodigo(self, codigo):
         self.__Codigo = codigo
     def setNombre(self, nombre):
@@ -349,7 +350,7 @@ class servicioclass(clienteclass):
     # Contratar servicio
 class contratoclass(clienteclass):
     def __init__(self):
-        pass
+        self.datos=["ID-Cliente", "Placa", "Codigo del servicio", "Unidades contratadas", "No. factura"]
 
     def setIDCliente (self, idcliente):
         self.__idcliente= idcliente

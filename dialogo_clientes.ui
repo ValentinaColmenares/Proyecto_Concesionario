@@ -19,7 +19,7 @@
      <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <layout class="QGridLayout" name="gridLayout">
        <item row="0" column="0">
         <widget class="QLabel" name="lbIdcliente">
@@ -94,6 +94,15 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>le_cliente</tabstop>
+  <tabstop>le_cliente_5</tabstop>
+  <tabstop>le_cliente_4</tabstop>
+  <tabstop>le_cliente_3</tabstop>
+  <tabstop>le_cliente_2</tabstop>
+  <tabstop>le_cliente_6</tabstop>
+  <tabstop>bguardar</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

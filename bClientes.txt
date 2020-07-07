@@ -1,5 +1,5 @@
-{"ID-Cliente": "312321      ", "Nombre": "Juan      ", "Apellido": "Vargas    ", "Direcci\u00f3n": "Calle-4        ", "Telefono": "1213213   ", "Ciudad": "Bogota         "}
-{"ID-Cliente": "213213      ", "Nombre": "Andrea    ", "Apellido": "Vargas    ", "Direcci\u00f3n": "Calle3         ", "Telefono": "4332432   ", "Ciudad": "Bogota         "}
-{"ID-Cliente": "Id-Cliente  ", "Nombre": "Nombre    ", "Apellido": "Apellido  ", "Direcci\u00f3n": "Direcci\u00f3n      ", "Telefono": "Celular   ", "Ciudad": "Ciudad         "}
-{"ID-Cliente": "6764        ", "Nombre": "Yufu      ", "Apellido": "Yfuf      ", "Direcci\u00f3n": "Yyuf           ", "Telefono": "564       ", "Ciudad": "Yyff           "}
-{"ID-Cliente": "15243621    ", "Nombre": "Juan      ", "Apellido": "Cortez    ", "Direcci\u00f3n": "67476476       ", "Telefono": "644764    ", "Ciudad": "Palmira        "}
+{"ID-Cliente": "1234", "Nombre": "juan", "Apellido": "gomez", "Direcci\u00f3n": "calle 44", "Telefono": "12345", "Ciudad": "bogota"}
+{"ID-Cliente": "12345", "Nombre": "maria", "Apellido": "suarez", "Direcci\u00f3n": "calle 77", "Telefono": "5416241", "Ciudad": "manizales"}
+{"ID-Cliente": "2345", "Nombre": "maria", "Apellido": "valencia", "Direcci\u00f3n": "calle 44", "Telefono": "12313", "Ciudad": "medellin"}
+{"ID-Cliente": "2345", "Nombre": "maria", "Apellido": "valencia", "Direcci\u00f3n": "calle 44", "Telefono": "12313", "Ciudad": "medellin"}
+{"ID-Cliente": "43223", "Nombre": "daniel", "Apellido": "carvajal", "Direcci\u00f3n": "calle6 66", "Telefono": "12313", "Ciudad": "barranquilla"}

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>dialogo_vehculo</class>
- <widget class="QMainWindow" name="dialogo_vehculo">
+ <class>dialogo_vehiculo</class>
+ <widget class="QMainWindow" name="dialogo_vehiculo">
   <property name="windowModality">
    <enum>Qt::WindowModal</enum>
   </property>
@@ -21,7 +21,7 @@
     <item row="0" column="0">
      <layout class="QGridLayout" name="gridLayout">
       <item row="11" column="2">
-       <widget class="QLineEdit" name="leciudad_7">
+       <widget class="QLineEdit" name="lemotor">
         <property name="enabled">
          <bool>true</bool>
         </property>
@@ -85,7 +85,7 @@
        </widget>
       </item>
       <item row="2" column="2">
-       <widget class="QLineEdit" name="leapellido">
+       <widget class="QLineEdit" name="lemarca">
         <property name="enabled">
          <bool>true</bool>
         </property>
@@ -98,7 +98,7 @@
        </widget>
       </item>
       <item row="3" column="0" colspan="2">
-       <widget class="QLabel" name="lbdireccion">
+       <widget class="QLabel" name="lbmodelo">
         <property name="enabled">
          <bool>true</bool>
         </property>
@@ -140,7 +140,7 @@
        </widget>
       </item>
       <item row="4" column="2">
-       <widget class="QLineEdit" name="leciudad">
+       <widget class="QLineEdit" name="lecilindraje">
         <property name="enabled">
          <bool>true</bool>
         </property>
@@ -153,7 +153,7 @@
        </widget>
       </item>
       <item row="6" column="0">
-       <widget class="QLabel" name="lbciudad_2">
+       <widget class="QLabel" name="lbtiposervicio">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -166,7 +166,7 @@
        </widget>
       </item>
       <item row="6" column="2">
-       <widget class="QLineEdit" name="lecelular">
+       <widget class="QLineEdit" name="leservicio">
         <property name="enabled">
          <bool>true</bool>
         </property>
@@ -179,7 +179,7 @@
        </widget>
       </item>
       <item row="7" column="0" colspan="2">
-       <widget class="QLabel" name="lbciudad_3">
+       <widget class="QLabel" name="lbcombustible">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -192,7 +192,7 @@
        </widget>
       </item>
       <item row="7" column="2">
-       <widget class="QLineEdit" name="leciudad_3">
+       <widget class="QLineEdit" name="lecombustible">
         <property name="enabled">
          <bool>true</bool>
         </property>
@@ -221,7 +221,7 @@
        </widget>
       </item>
       <item row="8" column="0" colspan="2">
-       <widget class="QLabel" name="lbciudad_4">
+       <widget class="QLabel" name="lbpasajeros">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -234,7 +234,7 @@
        </widget>
       </item>
       <item row="8" column="2">
-       <widget class="QLineEdit" name="leciudad_4">
+       <widget class="QLineEdit" name="lepasajeros">
         <property name="enabled">
          <bool>true</bool>
         </property>
@@ -247,7 +247,7 @@
        </widget>
       </item>
       <item row="5" column="0">
-       <widget class="QLabel" name="lbciudad">
+       <widget class="QLabel" name="lbcolor">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -260,7 +260,7 @@
        </widget>
       </item>
       <item row="5" column="2">
-       <widget class="QLineEdit" name="leciudad_2">
+       <widget class="QLineEdit" name="lecolor">
         <property name="enabled">
          <bool>true</bool>
         </property>
@@ -286,7 +286,7 @@
        </widget>
       </item>
       <item row="11" column="0" colspan="2">
-       <widget class="QLabel" name="lbciudad_6">
+       <widget class="QLabel" name="lbmotor">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -299,7 +299,7 @@
        </widget>
       </item>
       <item row="9" column="2">
-       <widget class="QLineEdit" name="leciudad_5">
+       <widget class="QLineEdit" name="lechasis">
         <property name="enabled">
          <bool>true</bool>
         </property>
@@ -312,7 +312,7 @@
        </widget>
       </item>
       <item row="9" column="0" colspan="2">
-       <widget class="QLabel" name="lbciudad_5">
+       <widget class="QLabel" name="lbchasis">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -325,7 +325,7 @@
        </widget>
       </item>
       <item row="10" column="0" colspan="2">
-       <widget class="QLabel" name="lbciudad_7">
+       <widget class="QLabel" name="lbcarga">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -338,7 +338,7 @@
        </widget>
       </item>
       <item row="10" column="2">
-       <widget class="QLineEdit" name="leciudad_6">
+       <widget class="QLineEdit" name="lecarga">
         <property name="enabled">
          <bool>true</bool>
         </property>

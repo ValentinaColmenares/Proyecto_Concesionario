@@ -321,25 +321,25 @@ class servicioclass(clienteclass):
         datosContrato ={"ID-Cliente": idcliente, "Placa": placa,
                          "Codigo del servicio": codigo, "Unidades contratadas": unidades}
 
-        clienteclass.leerBase("bFacturas.txt", "1", "0000", False)
+        clienteclass.leerBase("bFacturas.txt", "1", "0000", False,0)
         datosContrato["No. factura"] = str(contador)
 
         # Comprueba que servicio solicitado existe
-        if clienteclass.leerBase("bServicios.txt", '1', datosContrato["Codigo del servicio"], False) == "No info":
+        if clienteclass.leerBase("bServicios.txt", '1', datosContrato["Codigo del servicio"], False,0) == "No info":
             print("Servicio no existe, verifique base de datos.")
             return False
         else:
             # Comprueba que el vehiculo este en la base de datos. Si no, solicita que se agregue informacion
-            if clienteclass.leerBase("bClientes.txt", '1', datosContrato["ID-Cliente"], False) != "No info" and clienteclass.leerBase ("bVehiculos.txt", '1', datosContrato["Placa"], False) != "No info":
+            if clienteclass.leerBase("bClientes.txt", '1', datosContrato["ID-Cliente"], False,0) != "No info" and clienteclass.leerBase ("bVehiculos.txt", '1', datosContrato["Placa"], False,0) != "No info":
                 diccionariojason = json.dumps(datosContrato)
                 servicio = servicioclass()
-                servicio.guardarInfo(
-                    (facturasclass.imprimirfac(datosContrato)), "bFacturas.txt")
-                return diccionariojason
+                informacion=(facturasclass.imprimirfac(datosContrato))
+                servicio.guardarInfo(informacion[1], "bFacturas.txt")
+                return diccionariojason, informacion[0], contador
             else:
-                if clienteclass.leerBase("bClientes.txt", '1', datosContrato["ID-Cliente"], False) == "No info" and clienteclass.leerBase ("bVehiculos.txt", '1', datosContrato["Placa"], False) != "No info":
+                if clienteclass.leerBase("bClientes.txt", '1', datosContrato["ID-Cliente"], False,0) == "No info" and clienteclass.leerBase ("bVehiculos.txt", '1', datosContrato["Placa"], False,0) != "No info":
                     print("Cliente no existe, verifique la base de datos.")
-                elif clienteclass.leerBase("bClientes.txt", '1', datosContrato["ID-Cliente"], False) != "No info" and clienteclass.leerBase ("bVehiculos.txt", '1', datosContrato["Placa"], False) == "No info":
+                elif clienteclass.leerBase("bClientes.txt", '1', datosContrato["ID-Cliente"], False,0) != "No info" and clienteclass.leerBase ("bVehiculos.txt", '1', datosContrato["Placa"], False,0) == "No info":
                     print("vehículo no existe, verifique la base de datos.")
                 else:
                     print(
@@ -369,6 +369,11 @@ class contratoclass(clienteclass):
         return contratoclass.ajustar_dato(self.__codigo, 4)
     def getUnidades (self):
         return contratoclass.ajustar_dato(self.__unidades, 3)
+    
+    def creardiccionario(self, id, placa, codigo, unidades, factura):
+        diccionario ={"ID-Cliente": id       , "Placa":placa, "Codigo del servicio": codigo, "Unidadescontratadas":unidades, "No. factura": factura}
+        diccionariojason = json.dumps(diccionario)
+        return diccionariojason
 
 
 
@@ -387,12 +392,12 @@ class facturasclass(clienteclass):
         unidades = int((contrato["Unidades contratadas"]).rstrip())
 
         infoCliente = clienteclass.leerBase(
-            "bClientes.txt", "1", id_cliente, True)
+            "bClientes.txt", "1", id_cliente, True,4)
         infoVehiculo = clienteclass.leerBase(
-            "bVehiculos.txt", "1", placa, True)
+            "bVehiculos.txt", "1", placa, True,4)
         infoServicio = clienteclass.leerBase(
-            "bServicios.txt", "1", codigo_servicio, True)
-        clienteclass.leerBase("bFacturas.txt", "1", "0000", False)
+            "bServicios.txt", "1", codigo_servicio, True,4)
+        clienteclass.leerBase("bFacturas.txt", "1", "0000", False,4)
         cadena_cliente, cadena_vehiculo, cadena_servicio = "INFORMACIÓN DE USUARIO\n", "INFORMACIÓN DE VEHICULO\n", "INFORMACIÓN DE SERVICIO\n"
 
         for i in infoCliente:
@@ -415,10 +420,12 @@ class facturasclass(clienteclass):
             cadena_vehiculo+"\n"*2+cadena_servicio + \
             "\n"*2+"TOTAL A PAGAR: $"+str(Total)+"\n"*3
 
+     
         print(factura)
         nuevaFactura = {"consec": contador, "infoFac": factura}
-        factura = json.dumps(nuevaFactura)
-        return factura
+        factura1 = json.dumps(nuevaFactura)
+        
+        return factura,factura1
 
 #Limpia la consola
 

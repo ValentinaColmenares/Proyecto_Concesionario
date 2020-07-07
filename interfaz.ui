@@ -6,19 +6,19 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>563</width>
-    <height>631</height>
+    <width>596</width>
+    <height>630</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>consecionario</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout_11">
     <item>
      <widget class="QTabWidget" name="Modulos">
       <property name="currentIndex">
-       <number>1</number>
+       <number>4</number>
       </property>
       <widget class="QWidget" name="usuarios">
        <attribute name="title">
@@ -172,7 +172,7 @@
            <bool>true</bool>
           </property>
           <property name="text">
-           <string>Agregar Factura</string>
+           <string>Ver facturas</string>
           </property>
          </widget>
         </item>

@@ -13,7 +13,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(563, 631)
+        MainWindow.resize(596, 630)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayout_11 = QtWidgets.QVBoxLayout(self.centralwidget)
@@ -123,12 +123,12 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
-        self.Modulos.setCurrentIndex(1)
+        self.Modulos.setCurrentIndex(4)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "consecionario"))
         self.label.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\">Base de datos de clientes</p></body></html>"))
         self.bactualizar.setText(_translate("MainWindow", "Agregar cliente"))
         self.Modulos.setTabText(self.Modulos.indexOf(self.usuarios), _translate("MainWindow", "Usuario"))
@@ -142,5 +142,5 @@ class Ui_MainWindow(object):
         self.ba_contratos.setText(_translate("MainWindow", "Agregar contrato"))
         self.Modulos.setTabText(self.Modulos.indexOf(self.contratos), _translate("MainWindow", "Contratos"))
         self.label_12.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\">Base de datos de Facturas</p></body></html>"))
-        self.ba_facturas.setText(_translate("MainWindow", "Agregar Factura"))
+        self.ba_facturas.setText(_translate("MainWindow", "Ver facturas"))
         self.Modulos.setTabText(self.Modulos.indexOf(self.facturas), _translate("MainWindow", "Facturas"))

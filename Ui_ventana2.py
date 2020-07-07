@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'ventana2.ui'
+# Form implementation generated from reading ui file 'c:\Users\aldo\Documents\GitHub\Proyecto_Concesionario\ventana2.ui'
 #
 # Created by: PyQt5 UI code generator 5.14.2
 #
@@ -95,7 +95,7 @@ class Ui_ventana2(object):
 
     def retranslateUi(self, ventana2):
         _translate = QtCore.QCoreApplication.translate
-        ventana2.setWindowTitle(_translate("ventana2", "agregar cliente"))
+        ventana2.setWindowTitle(_translate("ventana2", "MainWindow"))
         self.lbNombre.setText(_translate("ventana2", "Nombre"))
         self.lbapellido.setText(_translate("ventana2", "apellido"))
         self.lbdireccion.setText(_translate("ventana2", "dirección"))

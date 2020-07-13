@@ -1,8 +1,9 @@
 import sys
 from Ui_interfaz import Ui_MainWindow
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtGui import QPixmap
 from ProyectoPOO import clienteclass,servicioclass,vehiculoclass,facturasclass,contratoclass
-from PyQt5.QtWidgets import QApplication, QTableWidgetItem, QLineEdit
+from PyQt5.QtWidgets import QApplication, QTableWidgetItem, QLineEdit, QFileDialog
 from ventana2 import Ui_ventana2
 from Ui_Agregarvehiculo import Ui_dialogo_vehculo
 from Ui_dialogoservicio import Ui_dialogo_servicio
@@ -21,17 +22,32 @@ class myapp(QtWidgets.QMainWindow,Ui_MainWindow,Ui_ventana2):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self) 
         self.abrir_bdatos()
-        self.ui.bactualizar.clicked.connect(lambda: self.iniciar_dialogo(Ui_ventana2(),clienteclass(),"cliente")) # importante usar lambda
-        self.ui.ba_servicios.clicked.connect(lambda: self.iniciar_dialogo(Ui_dialogo_servicio(),servicioclass(),"servicios"))
-        self.ui.ba_contratos.clicked.connect(lambda: self.iniciar_dialogo(Ui_dialogo_contrato(),contratoclass(),"contrato"))
-        self.ui.ba_vehiculos.clicked.connect(lambda: self.iniciar_dialogo(Ui_dialogo_vehculo(),vehiculoclass(),"vehiculo"))
+        self.ui.bactualizar.clicked.connect(lambda: self.iniciar_dialogo(Ui_ventana2(),clienteclass(),"cliente", False)) # importante usar lambda
+        self.ui.ba_servicios.clicked.connect(lambda: self.iniciar_dialogo(Ui_dialogo_servicio(),servicioclass(),"servicios", False))
+        self.ui.ba_contratos.clicked.connect(lambda: self.iniciar_dialogo(Ui_dialogo_contrato(),contratoclass(),"contrato", True))
+        self.ui.ba_vehiculos.clicked.connect(lambda: self.iniciar_dialogo(Ui_dialogo_vehculo(),vehiculoclass(),"vehiculo", False))
         self.ui.ba_facturas.clicked.connect(lambda: os.system("start "+directorio+"\Facturas "))  
 
-    def iniciar_dialogo(self,ventana,clase,origen): # abre la ventana para tomar datos
+    def iniciar_dialogo(self,ventana,clase,origen,imagen): # abre la ventana para tomar datos
             self.ventana=QtWidgets.QMainWindow()
             ventana.setupUi(self.ventana)
             self.ventana.show()
+            if imagen == True:
+                ventana.badjuntar.clicked.connect(lambda: self.getImage(ventana, 1))
+                ventana.badjuntar_2.clicked.connect(lambda: self.getImage(ventana, 2))
             ventana.bguardar.clicked.connect (lambda: self.crear_datos(clase,origen,ventana))#importante usar lambda
+
+    def getImage(self, ventana, label):
+        self.fname = QFileDialog.getOpenFileName(self, 'Open file','c:\'',"Image files (*.jpg *.png)")
+        self.imagePath = self.fname[0]
+        with open("bImagenes.txt", "a") as baseDatos:
+            baseDatos.write(self.imagePath+"\n")
+        self.pixmap = QPixmap(self.imagePath)
+        if label == 1:
+            ventana.lbantes.setPixmap(QPixmap(self.pixmap))
+        else:
+            ventana.lbdespues.setPixmap(QPixmap(self.pixmap))
+    
 
 
     def crear_datos(self,clase,origen,ventana): # toma los datos de los qlineedit
@@ -58,7 +74,7 @@ class myapp(QtWidgets.QMainWindow,Ui_MainWindow,Ui_ventana2):
         if origen== "contrato":
             diccionario = clase.creardiccionario(qlines[3],qlines[2],qlines[0],qlines[1],3)
             servicio=servicioclass()
-            contrato=servicio.solServicio(qlines[3],qlines[2],qlines[0],qlines[1])
+            contrato=servicio.solServicio(qlines[0],qlines[1],qlines[2],qlines[3])
             if contrato != False:
                 cliente = clienteclass()
                 cliente.guardarInfo(contrato[0], "bContratos.txt")
@@ -82,6 +98,18 @@ class myapp(QtWidgets.QMainWindow,Ui_MainWindow,Ui_ventana2):
                 print(m)
                 c.drawString(x,y,m)
                 y-=20
+
+        file = open("bImagenes.txt", "r")
+        j = -1 
+        facturanum = numero * 2
+        for ruta in file.readlines(): 
+            if j == (facturanum - 1):
+                i = 1
+                c.drawImage(ruta.replace("\n", ""), 100, 100)
+            if j == facturanum:
+                c.drawImage(ruta.replace("\n", ""), 300, 100)
+            j += 1
+        file.close
         c.save()
         os.system("start "+directorio+"\Facturas"+"\Factura"+str(numero)+".pdf &")
 

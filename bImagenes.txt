@@ -8,3 +8,5 @@ C:\Users\aldo\Documents\GitHub\Proyecto_Concesionario\imagenes\ foto_antes43.jpg
 C:\Users\aldo\Documents\GitHub\Proyecto_Concesionario\imagenes\ foto_antes44.jpg
 C:\Users\aldo\Documents\GitHub\Proyecto_Concesionario\imagenes\ foto_antes45.jpg
 C:\Users\aldo\Documents\GitHub\Proyecto_Concesionario\imagenes\ foto_despues45.jpg
+C:\Users\Claudia\Documents\GitHub\Proyecto_Concesionario\imagenes\ foto_antes46.jpg
+C:\Users\Claudia\Documents\GitHub\Proyecto_Concesionario\imagenes\ foto_despues46.jpg

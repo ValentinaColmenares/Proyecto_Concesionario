@@ -18,7 +18,7 @@
     <item>
      <widget class="QTabWidget" name="Modulos">
       <property name="currentIndex">
-       <number>4</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="usuarios">
        <attribute name="title">
@@ -180,10 +180,34 @@
       </widget>
      </widget>
     </item>
+    <item>
+     <widget class="QPushButton" name="bSalir">
+      <property name="text">
+       <string>Salir</string>
+      </property>
+     </widget>
+    </item>
    </layout>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>bSalir</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>295</x>
+     <y>594</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>296</x>
+     <y>606</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

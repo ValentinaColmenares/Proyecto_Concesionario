@@ -5,9 +5,9 @@ from PyQt5.QtGui import QPixmap
 from ProyectoPOO import clienteclass,servicioclass,vehiculoclass,facturasclass,contratoclass
 from PIL import Image, ImageOps
 from PyQt5.QtCore import Qt, pyqtSignal, QByteArray, QIODevice, QBuffer
-from PyQt5.QtWidgets import QApplication, QTableWidgetItem, QLineEdit, QFileDialog
+from PyQt5.QtWidgets import QApplication, QTableWidgetItem, QLineEdit, QFileDialog, QHeaderView
 from ventana2 import Ui_ventana2
-from Ui_Agregarvehiculo import Ui_dialogo_vehculo
+from Ui_Agregarvehiculo import Ui_dialogo_vehiculo
 from Ui_dialogoservicio import Ui_dialogo_servicio
 from Ui_dialogo_contrato import Ui_dialogo_contrato 
 from test.test_importlib.namespace_pkgs.project1 import parent
@@ -29,7 +29,7 @@ class myapp(QtWidgets.QMainWindow,Ui_MainWindow,Ui_ventana2):
         self.ui.bactualizar.clicked.connect(lambda: self.iniciar_dialogo(Ui_ventana2(),clienteclass(),"cliente", False)) # importante usar lambda
         self.ui.ba_servicios.clicked.connect(lambda: self.iniciar_dialogo(Ui_dialogo_servicio(),servicioclass(),"servicios", False))
         self.ui.ba_contratos.clicked.connect(lambda: self.iniciar_dialogo(Ui_dialogo_contrato(),contratoclass(),"contrato", True))
-        self.ui.ba_vehiculos.clicked.connect(lambda: self.iniciar_dialogo(Ui_dialogo_vehculo(),vehiculoclass(),"vehiculo", False))
+        self.ui.ba_vehiculos.clicked.connect(lambda: self.iniciar_dialogo(Ui_dialogo_vehiculo(),vehiculoclass(),"vehiculo", False))
         self.ui.ba_facturas.clicked.connect(lambda: os.system("start "+directorio+"\Facturas "))
           
 
@@ -86,7 +86,7 @@ class myapp(QtWidgets.QMainWindow,Ui_MainWindow,Ui_ventana2):
 
         qlines=[child for child in ventana.centralwidget.findChildren(QtWidgets.QLineEdit)]
         qlines=[texto.text() for texto in qlines]
-        print(qlines)
+        
 
         if origen=="cliente":
             diccionario = clase.creardiccionario(qlines[5],qlines[1],qlines[4],qlines[0],qlines[2],qlines[3])
@@ -110,7 +110,6 @@ class myapp(QtWidgets.QMainWindow,Ui_MainWindow,Ui_ventana2):
             if contrato != False:
                 cliente = clienteclass()
                 cliente.guardarInfo(contrato[0], "bContratos.txt")
-                print(contrato[0], contrato[1])
                 pdf=(contrato[1].split(sep='\n'))
                 self.guardarimagen(self.path1,contrato[2],"foto1")
                 self.guardarimagen(self.path2,contrato[2],"foto2")
@@ -128,8 +127,6 @@ class myapp(QtWidgets.QMainWindow,Ui_MainWindow,Ui_ventana2):
             for m in n:
                 if len(n)==1 and m!='':
                     c.line(x,y,500,y)
-
-                print(m)
                 c.drawString(x,y,m)
                 y-=20
 
@@ -159,11 +156,14 @@ class myapp(QtWidgets.QMainWindow,Ui_MainWindow,Ui_ventana2):
         cabecera_v, listav= vehiculo.datos, clienteclass.leerBase("bVehiculos.txt","2","",False,0)
         cabecera_s, listas= servicio.datos, clienteclass.leerBase("bServicios.txt","2","",False,0)
         cabecera_co, listaco= contrato.datos, clienteclass.leerBase("bContratos.txt","2","",False,0)
+        listaf=clienteclass.leerBase("bFacturas.txt","2","",False,0)
 
         self.actualizar_tabla(listac,cabecera_c, self.ui.tabladatos)
         self.actualizar_tabla(listaco,cabecera_co, self.ui.tb_contratos)
         self.actualizar_tabla(listas,cabecera_s, self.ui.tb_servicios)
         self.actualizar_tabla(listav,cabecera_v, self.ui.td_vehiculos)
+        self.actualizar_tabla(listaf,["facturas"], self.ui.tb_facturas)
+        
 
 
     def actualizar_tabla(self, info, cabecera,tabladatos):
@@ -175,13 +175,26 @@ class myapp(QtWidgets.QMainWindow,Ui_MainWindow,Ui_ventana2):
         tabladatos.setColumnCount(len(cabecera)) #pone el numero de columnas de la tabal
         tabladatos.setRowCount(len(info)) #pone el numero de filas
         tabladatos.setHorizontalHeaderLabels(cabecera)#pone los nombres alas columnas
+                # Hacer que la última sección visible del encabezado ocupa todo el espacio disponible
+        tabladatos.horizontalHeader().setStretchLastSection ( True )
         tabladatos.setSortingEnabled(True)#ordena por columnas cuando elusuario presiona una columna
-           
+        tabladatos.setAlternatingRowColors ( True )
+        if len(cabecera)==1:
+            tabladatos.verticalHeader().setDefaultSectionSize(300)
+
+
+
+
+
         fila=0
         for registro in info:
             columna=0
             for dato in registro:
-                cellinfo=QTableWidgetItem(dato)
+                if len(registro)==2:
+                    cellinfo=QTableWidgetItem(registro[1])
+                else:
+                    cellinfo=QTableWidgetItem(dato)
+                
                 cellinfo.setFlags(QtCore.Qt.ItemIsSelectable| QtCore.Qt.ItemIsEditable)#hace que las celdas no sean editables
                 tabladatos.setItem(fila,columna,cellinfo)
                 columna+=1

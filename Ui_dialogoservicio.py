@@ -111,7 +111,7 @@ class Ui_dialogo_servicio(object):
 
     def retranslateUi(self, dialogo_servicio):
         _translate = QtCore.QCoreApplication.translate
-        dialogo_servicio.setWindowTitle(_translate("dialogo_servicio", "MainWindow"))
+        dialogo_servicio.setWindowTitle(_translate("dialogo_servicio", "agregar servicio"))
         self.lbNombre.setText(_translate("dialogo_servicio", "Nombre del servicio"))
         self.lbcodigo.setText(_translate("dialogo_servicio", "Código del servicio"))
         self.lbprecio.setText(_translate("dialogo_servicio", "Precio/hora"))

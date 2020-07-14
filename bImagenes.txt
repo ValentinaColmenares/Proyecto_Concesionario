@@ -2,3 +2,9 @@ C:\Users\Claudia\Documents\GitHub\Proyecto_Concesionario\imagenes\ foto_antes40.
 C:\Users\Claudia\Documents\GitHub\Proyecto_Concesionario\imagenes\ foto_despues40.jpg
 C:\Users\Claudia\Documents\GitHub\Proyecto_Concesionario\imagenes\ foto_antes41.jpg
 C:\Users\Claudia\Documents\GitHub\Proyecto_Concesionario\imagenes\ foto_despues41.jpg
+C:\Users\aldo\Documents\GitHub\Proyecto_Concesionario\imagenes\ foto_antes42.jpg
+C:\Users\aldo\Documents\GitHub\Proyecto_Concesionario\imagenes\ foto_despues42.jpg
+C:\Users\aldo\Documents\GitHub\Proyecto_Concesionario\imagenes\ foto_antes43.jpg
+C:\Users\aldo\Documents\GitHub\Proyecto_Concesionario\imagenes\ foto_antes44.jpg
+C:\Users\aldo\Documents\GitHub\Proyecto_Concesionario\imagenes\ foto_antes45.jpg
+C:\Users\aldo\Documents\GitHub\Proyecto_Concesionario\imagenes\ foto_despues45.jpg

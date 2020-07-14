@@ -71,15 +71,8 @@ class clienteclass:
             item -= 1
             lista2 = []
             diccionario = {}
-            cadena = ""
-            cabecera = "|"
-            diccionario_vehiculo = {"#placa": "", "id-cliente": "", "marca": "", "#modelo": "", "cilindraje": "",
-                "color": "", "servicio": "", "combustible": "", "pasajeros": "", "carga": "", "#chasis": "", "#motor": ""}
-            diccionario_servicio = {
-                "cod": "", "servicio": "", "precio/hora": "", "horas": ""}
-            diccionario_contrato = {"id-cliente": "",
-                "#placa": "", "cod": "", "uds": "", "#": ""}
-
+         
+           
             for linea in base:
                 diccionario = json.loads(linea)
                 lista = [i for i in diccionario.values()]
@@ -96,37 +89,8 @@ class clienteclass:
             for i in range(len(lista2)):
                 lista2[i][item] = str(lista2[i][item]).ljust(val)
 
-            if len(diccionario) == 12:
-                for i in diccionario_vehiculo:
-                    diccionario_vehiculo[i] = lista[contador]
-                    palabra = i.ljust(len(diccionario_vehiculo[i]))
-                    cabecera += palabra+"|"
-                    contador += 1
 
-            elif len(diccionario) == 4:
-                for i in diccionario_servicio:
-                    diccionario_servicio[i] = lista[contador]
-                    palabra = i.ljust(len(diccionario_servicio[i]))
-                    cabecera += palabra+"|"
-                    contador += 1
-
-            elif len(diccionario) == 5:
-                for i in diccionario_contrato:
-                    diccionario_contrato[i] = lista[contador]
-                    palabra = i.ljust(len(diccionario_contrato[i]))
-                    cabecera += palabra+"|"
-                    contador += 1
-            else:
-                for i in diccionario:
-                    palabra = i.ljust(len(diccionario[i]))
-                    cabecera += palabra+"|"
-
-            for i in lista2:
-                i = "|".join(i)
-                formato = "-"*(len(i)+2)+"\n"
-                cadena += formato + "|"+i+"|"+"\n"
-
-            if cadena == "":
+            if len(lista2)==0 :
                 return "Base de datos vacía"
 
             else:
@@ -206,7 +170,7 @@ class clienteclass:
 
 class vehiculoclass(clienteclass):
         def __init__(self):
-            self.datos=["Numero de placa", "ID-Cliente", "Marca", "Numero de modelo", "Cilindraje", "Color", "Tipo de servicio","Tipo de combustible", "Capacidad de pasajeros", "Capacidad de carga", "Numero de chasis", "Numero de Motor"]
+            self.datos=["No. Placa", "ID-Cliente", "Marca", "No. modelo", "Cilindraje", "Color", "servicio","Combustible", "Cap pasajeros", "Cap carga", "No. chasis", "No. Motor"]
             
         def setPlaca (self, placa):
             self.__placa = placa
@@ -286,7 +250,7 @@ class vehiculoclass(clienteclass):
 
 class servicioclass(clienteclass):
     def __init__(self):
-        self.datos=["Codigo del servicio", "Nombre del servicio","Precio/hora", "Horas del servicio"]
+        self.datos=["Código servicio", "Nombre servicio","Precio/hora", "Horas servicio"]
       
     def setCodigo(self, codigo):
         self.__Codigo = codigo
@@ -350,7 +314,7 @@ class servicioclass(clienteclass):
     # Contratar servicio
 class contratoclass(clienteclass):
     def __init__(self):
-        self.datos=["ID-Cliente", "Placa", "Codigo del servicio", "Unidades contratadas", "No. factura"]
+        self.datos=["ID-Cliente", "Placa", "Código servicio", "Unidades contratadas", "No. factura"]
 
     def setIDCliente (self, idcliente):
         self.__idcliente= idcliente

@@ -6,16 +6,23 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>596</width>
-    <height>630</height>
+    <width>604</width>
+    <height>610</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>consecionario</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout_11">
-    <item>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="1" column="0">
+     <widget class="QPushButton" name="bSalir">
+      <property name="text">
+       <string>Salir</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0">
      <widget class="QTabWidget" name="Modulos">
       <property name="currentIndex">
        <number>0</number>
@@ -49,6 +56,13 @@
               </property>
               <property name="text">
                <string>Agregar cliente</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButton_3">
+              <property name="text">
+               <string>borrar base de datos</string>
               </property>
              </widget>
             </item>
@@ -86,6 +100,13 @@
           </property>
          </widget>
         </item>
+        <item>
+         <widget class="QPushButton" name="pushButton_2">
+          <property name="text">
+           <string>borrar base de datos</string>
+          </property>
+         </widget>
+        </item>
        </layout>
       </widget>
       <widget class="QWidget" name="servicios">
@@ -113,6 +134,13 @@
           </property>
           <property name="text">
            <string>Agregar servicio</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton_4">
+          <property name="text">
+           <string>borrar base de datos</string>
           </property>
          </widget>
         </item>
@@ -176,15 +204,15 @@
           </property>
          </widget>
         </item>
+        <item>
+         <widget class="QPushButton" name="pushButton">
+          <property name="text">
+           <string>borrar base de datos</string>
+          </property>
+         </widget>
+        </item>
        </layout>
       </widget>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="bSalir">
-      <property name="text">
-       <string>Salir</string>
-      </property>
      </widget>
     </item>
    </layout>
@@ -201,11 +229,75 @@
    <hints>
     <hint type="sourcelabel">
      <x>295</x>
-     <y>594</y>
+     <y>574</y>
     </hint>
     <hint type="destinationlabel">
      <x>296</x>
      <y>606</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>tb_facturas</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>279</x>
+     <y>316</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>279</x>
+     <y>267</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_3</sender>
+   <signal>clicked()</signal>
+   <receiver>tabladatos</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>277</x>
+     <y>309</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>277</x>
+     <y>265</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>td_vehiculos</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>279</x>
+     <y>314</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>279</x>
+     <y>267</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_4</sender>
+   <signal>clicked()</signal>
+   <receiver>tb_servicios</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>209</x>
+     <y>318</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>218</x>
+     <y>267</y>
     </hint>
    </hints>
   </connection>

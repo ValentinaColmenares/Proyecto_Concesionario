@@ -40,3 +40,7 @@
 {"ID-Cliente": "12345", "Placa": "54321", "Codigo del servicio": "123", "Unidades contratadas": "4", "No. factura": "39"}
 {"ID-Cliente": "12345", "Placa": "54321", "Codigo del servicio": "123", "Unidades contratadas": "2", "No. factura": "40"}
 {"ID-Cliente": "12345", "Placa": "54321", "Codigo del servicio": "123", "Unidades contratadas": "5", "No. factura": "41"}
+{"ID-Cliente": "12345", "Placa": "54321", "Codigo del servicio": "123", "Unidades contratadas": "4", "No. factura": "42"}
+{"ID-Cliente": "12345", "Placa": "54321", "Codigo del servicio": "123", "Unidades contratadas": "4", "No. factura": "43"}
+{"ID-Cliente": "12345", "Placa": "54321", "Codigo del servicio": "123", "Unidades contratadas": "4", "No. factura": "44"}
+{"ID-Cliente": "12345", "Placa": "54321", "Codigo del servicio": "123", "Unidades contratadas": "5", "No. factura": "45"}

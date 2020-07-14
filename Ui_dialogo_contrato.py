@@ -140,7 +140,7 @@ class Ui_dialogo_contrato(object):
 
     def retranslateUi(self, dialogo_contrato):
         _translate = QtCore.QCoreApplication.translate
-        dialogo_contrato.setWindowTitle(_translate("dialogo_contrato", "MainWindow"))
+        dialogo_contrato.setWindowTitle(_translate("dialogo_contrato", "agregar contrato"))
         self.bguardar.setText(_translate("dialogo_contrato", "Guardar"))
         self.lbantes.setText(_translate("dialogo_contrato", "FOTO ANTES"))
         self.lbdespues.setText(_translate("dialogo_contrato", "FOTO DESPUÉS"))

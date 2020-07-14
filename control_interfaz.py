@@ -3,6 +3,8 @@ from Ui_interfaz import Ui_MainWindow
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QPixmap
 from ProyectoPOO import clienteclass,servicioclass,vehiculoclass,facturasclass,contratoclass
+from PIL import Image, ImageOps
+from PyQt5.QtCore import Qt, pyqtSignal, QByteArray, QIODevice, QBuffer
 from PyQt5.QtWidgets import QApplication, QTableWidgetItem, QLineEdit, QFileDialog
 from ventana2 import Ui_ventana2
 from Ui_Agregarvehiculo import Ui_dialogo_vehculo
@@ -19,6 +21,8 @@ directorio= os.getcwd()# para obtener la ruta de la carpeta que contiene el prog
 class myapp(QtWidgets.QMainWindow,Ui_MainWindow,Ui_ventana2):
     def __init__(self):
         super(myapp, self).__init__()
+        self.path1=""
+        self.path2=""
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self) 
         self.abrir_bdatos()
@@ -26,7 +30,8 @@ class myapp(QtWidgets.QMainWindow,Ui_MainWindow,Ui_ventana2):
         self.ui.ba_servicios.clicked.connect(lambda: self.iniciar_dialogo(Ui_dialogo_servicio(),servicioclass(),"servicios", False))
         self.ui.ba_contratos.clicked.connect(lambda: self.iniciar_dialogo(Ui_dialogo_contrato(),contratoclass(),"contrato", True))
         self.ui.ba_vehiculos.clicked.connect(lambda: self.iniciar_dialogo(Ui_dialogo_vehculo(),vehiculoclass(),"vehiculo", False))
-        self.ui.ba_facturas.clicked.connect(lambda: os.system("start "+directorio+"\Facturas "))  
+        self.ui.ba_facturas.clicked.connect(lambda: os.system("start "+directorio+"\Facturas "))
+          
 
     def iniciar_dialogo(self,ventana,clase,origen,imagen): # abre la ventana para tomar datos
             self.ventana=QtWidgets.QMainWindow()
@@ -38,15 +43,42 @@ class myapp(QtWidgets.QMainWindow,Ui_MainWindow,Ui_ventana2):
             ventana.bguardar.clicked.connect (lambda: self.crear_datos(clase,origen,ventana))#importante usar lambda
 
     def getImage(self, ventana, label):
-        self.fname = QFileDialog.getOpenFileName(self, 'Open file','c:\'',"Image files (*.jpg *.png)")
+        self.fname = QFileDialog.getOpenFileName(parent=None, caption='Open file',directory='c:\'',filter="Image files (*.jpg *.png)")
+        #para ajustar la imágen
+        self.pixmap = QPixmap(self.fname[0]).scaled(166, 178, Qt.KeepAspectRatio,
+                                                  Qt.SmoothTransformation)
+                                                  
         self.imagePath = self.fname[0]
-        with open("bImagenes.txt", "a") as baseDatos:
-            baseDatos.write(self.imagePath+"\n")
-        self.pixmap = QPixmap(self.imagePath)
+
+
         if label == 1:
             ventana.lbantes.setPixmap(QPixmap(self.pixmap))
         else:
             ventana.lbdespues.setPixmap(QPixmap(self.pixmap))
+
+        if label ==1:
+            self.path1=self.imagePath
+        else:
+            self.path2=self.imagePath
+
+
+
+    def guardarimagen(self,path,num,foto):
+            global directorio
+            ruta=directorio+"\imagenes"
+            img=Image.open(path)
+            if foto=="foto1":
+
+                path=(ruta+"\ "+"foto_antes"+str(num)+".jpg")
+                img.save(ruta+"\ "+"foto_antes"+str(num)+".jpg") # se guarda la imagèn en la carpeta imagenes del còdigo
+            else:
+                path=(ruta+"\ "+"foto_despues"+str(num)+".jpg")
+                img.save(ruta+"\ "+"foto_despues"+str(num)+".jpg")
+
+
+            with open("bImagenes.txt", "a") as baseDatos:
+                baseDatos.write(path+"\n")# se guarda la imágen en la base de datos con el número de fáctura
+                baseDatos.close
     
 
 
@@ -80,6 +112,8 @@ class myapp(QtWidgets.QMainWindow,Ui_MainWindow,Ui_ventana2):
                 cliente.guardarInfo(contrato[0], "bContratos.txt")
                 print(contrato[0], contrato[1])
                 pdf=(contrato[1].split(sep='\n'))
+                self.guardarimagen(self.path1,contrato[2],"foto1")
+                self.guardarimagen(self.path2,contrato[2],"foto2")
                 self.generar_pdf(pdf,contrato[2])
             self.abrir_bdatos()
 
@@ -100,15 +134,16 @@ class myapp(QtWidgets.QMainWindow,Ui_MainWindow,Ui_ventana2):
                 y-=20
 
         file = open("bImagenes.txt", "r")
-        j = -1 
-        facturanum = numero * 2
+        j=100
         for ruta in file.readlines(): 
-            if j == (facturanum - 1):
-                i = 1
-                c.drawImage(ruta.replace("\n", ""), 100, 100)
-            if j == facturanum:
-                c.drawImage(ruta.replace("\n", ""), 300, 100)
-            j += 1
+            if str(numero) in ruta: #busca por el número de factura
+                if j==100:
+                    c.drawString(j,70,"FOTO ANTES")
+                else:
+                    c.drawString(j,70,"FOTO DESPUÉS",)
+                c.drawImage(ruta.replace("\n", ""), j, 100,104, 124)
+                j+=200
+  
         file.close
         c.save()
         os.system("start "+directorio+"\Facturas"+"\Factura"+str(numero)+".pdf &")

@@ -1,5 +1,0 @@
-{"ID-Cliente": "1234", "Nombre": "juan", "Apellido": "gomez", "Direcci\u00f3n": "calle 44", "Telefono": "12345", "Ciudad": "bogota"}
-{"ID-Cliente": "12345", "Nombre": "maria", "Apellido": "suarez", "Direcci\u00f3n": "calle 77", "Telefono": "5416241", "Ciudad": "manizales"}
-{"ID-Cliente": "2345", "Nombre": "maria", "Apellido": "valencia", "Direcci\u00f3n": "calle 44", "Telefono": "12313", "Ciudad": "medellin"}
-{"ID-Cliente": "2345", "Nombre": "maria", "Apellido": "valencia", "Direcci\u00f3n": "calle 44", "Telefono": "12313", "Ciudad": "medellin"}
-{"ID-Cliente": "43223", "Nombre": "daniel", "Apellido": "carvajal", "Direcci\u00f3n": "calle6 66", "Telefono": "12313", "Ciudad": "barranquilla"}

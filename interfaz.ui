@@ -15,60 +15,62 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="1" column="0">
-     <widget class="QPushButton" name="bSalir">
-      <property name="text">
-       <string>Salir</string>
-      </property>
-     </widget>
-    </item>
     <item row="0" column="0">
      <widget class="QTabWidget" name="Modulos">
       <property name="currentIndex">
-       <number>0</number>
+       <number>4</number>
       </property>
       <widget class="QWidget" name="usuarios">
        <attribute name="title">
         <string>Usuario</string>
        </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout_10">
-        <item>
-         <layout class="QVBoxLayout" name="verticalLayout_9">
-          <item>
-           <layout class="QVBoxLayout" name="verticalLayout">
-            <item>
-             <widget class="QLabel" name="label">
-              <property name="styleSheet">
-               <string notr="true">font: 16pt &quot;MS Shell Dlg 2&quot;;</string>
-              </property>
-              <property name="text">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Base de datos de clientes&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QTableWidget" name="tabladatos"/>
-            </item>
-            <item>
-             <widget class="QPushButton" name="bactualizar">
-              <property name="enabled">
-               <bool>true</bool>
-              </property>
-              <property name="text">
-               <string>Agregar cliente</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pushButton_3">
-              <property name="text">
-               <string>borrar base de datos</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-         </layout>
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="4" column="0" colspan="2">
+         <widget class="QPushButton" name="bactualizar">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="text">
+           <string>Agregar cliente</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0" colspan="2">
+         <widget class="QPushButton" name="pushButton_3">
+          <property name="text">
+           <string>borrar base de datos</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0" colspan="2">
+         <widget class="QLabel" name="label">
+          <property name="styleSheet">
+           <string notr="true">font: 16pt &quot;MS Shell Dlg 2&quot;;</string>
+          </property>
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Base de datos de clientes&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QPushButton" name="b_buscarCliente">
+          <property name="text">
+           <string>Buscar cliente</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0" colspan="2">
+         <widget class="QTableWidget" name="tabladatos"/>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="le_busacarCliente"/>
+        </item>
+        <item row="2" column="0" colspan="2">
+         <widget class="QPushButton" name="bactualizarCliente">
+          <property name="text">
+           <string>Actualizar</string>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -76,8 +78,8 @@
        <attribute name="title">
         <string>Vehículos</string>
        </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout_12">
-        <item>
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="0" column="0" colspan="2">
          <widget class="QLabel" name="label_9">
           <property name="styleSheet">
            <string notr="true">font: 16pt &quot;MS Shell Dlg 2&quot;;</string>
@@ -87,10 +89,24 @@
           </property>
          </widget>
         </item>
-        <item>
-         <widget class="QTableWidget" name="td_vehiculos"/>
+        <item row="1" column="0">
+         <widget class="QPushButton" name="b_buscarVehiculo">
+          <property name="text">
+           <string>Buscar vehículo</string>
+          </property>
+         </widget>
         </item>
-        <item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="le_buscarVehiculo"/>
+        </item>
+        <item row="5" column="0" colspan="2">
+         <widget class="QPushButton" name="pushButton_2">
+          <property name="text">
+           <string>borrar base de datos</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0" colspan="2">
          <widget class="QPushButton" name="ba_vehiculos">
           <property name="enabled">
            <bool>true</bool>
@@ -100,10 +116,13 @@
           </property>
          </widget>
         </item>
-        <item>
-         <widget class="QPushButton" name="pushButton_2">
+        <item row="3" column="0" colspan="2">
+         <widget class="QTableWidget" name="td_vehiculos"/>
+        </item>
+        <item row="2" column="0" colspan="2">
+         <widget class="QPushButton" name="bactualizarVehiculo">
           <property name="text">
-           <string>borrar base de datos</string>
+           <string>Actualizar</string>
           </property>
          </widget>
         </item>
@@ -113,8 +132,18 @@
        <attribute name="title">
         <string>Servicios</string>
        </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout_13">
-        <item>
+       <layout class="QGridLayout" name="gridLayout_4">
+        <item row="1" column="0">
+         <widget class="QPushButton" name="b_buscarServicio">
+          <property name="text">
+           <string>Buscar servicio</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="le_buscarServicio"/>
+        </item>
+        <item row="0" column="0" colspan="2">
          <widget class="QLabel" name="label_10">
           <property name="styleSheet">
            <string notr="true">font: 16pt &quot;MS Shell Dlg 2&quot;;</string>
@@ -124,10 +153,17 @@
           </property>
          </widget>
         </item>
-        <item>
+        <item row="3" column="0" colspan="2">
          <widget class="QTableWidget" name="tb_servicios"/>
         </item>
-        <item>
+        <item row="5" column="0" colspan="2">
+         <widget class="QPushButton" name="pushButton_4">
+          <property name="text">
+           <string>borrar base de datos</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0" colspan="2">
          <widget class="QPushButton" name="ba_servicios">
           <property name="enabled">
            <bool>true</bool>
@@ -137,10 +173,10 @@
           </property>
          </widget>
         </item>
-        <item>
-         <widget class="QPushButton" name="pushButton_4">
+        <item row="2" column="0" colspan="2">
+         <widget class="QPushButton" name="bactualizarServicio">
           <property name="text">
-           <string>borrar base de datos</string>
+           <string>Actualizar</string>
           </property>
          </widget>
         </item>
@@ -150,8 +186,18 @@
        <attribute name="title">
         <string>Contratos</string>
        </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout_14">
-        <item>
+       <layout class="QGridLayout" name="gridLayout_5">
+        <item row="3" column="0" colspan="2">
+         <widget class="QTableWidget" name="tb_contratos"/>
+        </item>
+        <item row="1" column="0">
+         <widget class="QPushButton" name="b_buscarContrato">
+          <property name="text">
+           <string>Buscar Contrato</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0" colspan="2">
          <widget class="QLabel" name="label_11">
           <property name="styleSheet">
            <string notr="true">font: 16pt &quot;MS Shell Dlg 2&quot;;</string>
@@ -161,10 +207,7 @@
           </property>
          </widget>
         </item>
-        <item>
-         <widget class="QTableWidget" name="tb_contratos"/>
-        </item>
-        <item>
+        <item row="4" column="0" colspan="2">
          <widget class="QPushButton" name="ba_contratos">
           <property name="enabled">
            <bool>true</bool>
@@ -174,27 +217,37 @@
           </property>
          </widget>
         </item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="le_buscarContrato"/>
+        </item>
+        <item row="2" column="0" colspan="2">
+         <widget class="QPushButton" name="bactualizarcontrato">
+          <property name="text">
+           <string>Actualizar</string>
+          </property>
+         </widget>
+        </item>
        </layout>
       </widget>
       <widget class="QWidget" name="facturas">
        <attribute name="title">
         <string>Facturas</string>
        </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout_15">
-        <item>
-         <widget class="QLabel" name="label_12">
-          <property name="styleSheet">
-           <string notr="true">font: 16pt &quot;MS Shell Dlg 2&quot;;</string>
-          </property>
+       <layout class="QGridLayout" name="gridLayout_6">
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="le_BuscarFactura"/>
+        </item>
+        <item row="1" column="0">
+         <widget class="QPushButton" name="b_buscarFactura">
           <property name="text">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Base de datos de Facturas&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           <string>Buscar factura</string>
           </property>
          </widget>
         </item>
-        <item>
+        <item row="3" column="0" colspan="2">
          <widget class="QTableWidget" name="tb_facturas"/>
         </item>
-        <item>
+        <item row="4" column="0" colspan="2">
          <widget class="QPushButton" name="ba_facturas">
           <property name="enabled">
            <bool>true</bool>
@@ -204,15 +257,39 @@
           </property>
          </widget>
         </item>
-        <item>
+        <item row="5" column="0" colspan="2">
          <widget class="QPushButton" name="pushButton">
           <property name="text">
            <string>borrar base de datos</string>
           </property>
          </widget>
         </item>
+        <item row="0" column="0" colspan="2">
+         <widget class="QLabel" name="label_12">
+          <property name="styleSheet">
+           <string notr="true">font: 16pt &quot;MS Shell Dlg 2&quot;;</string>
+          </property>
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Base de datos de Facturas&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0" colspan="2">
+         <widget class="QPushButton" name="bactualizarFacturas">
+          <property name="text">
+           <string>Actualizar</string>
+          </property>
+         </widget>
+        </item>
        </layout>
       </widget>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QPushButton" name="bSalir">
+      <property name="text">
+       <string>Salir</string>
+      </property>
      </widget>
     </item>
    </layout>

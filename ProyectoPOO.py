@@ -391,6 +391,17 @@ class facturasclass(clienteclass):
         
         return factura,factura1
 
+    def buscarfactura(self, noFactura):
+            ex=False
+            with open("bFacturas.txt", "r") as baseFacturas:
+                for linea in baseFacturas:
+                    factura = json.loads(linea)
+                    if factura["consec"] ==noFactura:
+                        return (factura["infoFac"])
+                        ex = True
+                if not ex:
+                    return ("No info")
+
 #Limpia la consola
 
 def borrarPantalla():

@@ -10,7 +10,6 @@ from ventana2 import Ui_ventana2
 from Ui_Agregarvehiculo import Ui_dialogo_vehiculo
 from Ui_dialogoservicio import Ui_dialogo_servicio
 from Ui_dialogo_contrato import Ui_dialogo_contrato 
-from test.test_importlib.namespace_pkgs.project1 import parent
 from reportlab.pdfgen import canvas
 import os
 
@@ -25,7 +24,23 @@ class myapp(QtWidgets.QMainWindow,Ui_MainWindow,Ui_ventana2):
         self.path2=""
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self) 
-        self.abrir_bdatos()
+        self.abrir_bdatos("2","","")
+
+        self.ui.b_buscarCliente.clicked.connect(lambda: self.abrir_bdatos("1",self.ui.le_busacarCliente.text(),self.ui.b_buscarCliente))
+        self.ui.b_buscarVehiculo.clicked.connect(lambda: self.abrir_bdatos("1",self.ui.le_buscarVehiculo.text(),self.ui.b_buscarVehiculo))
+        self.ui.b_buscarServicio.clicked.connect(lambda: self.abrir_bdatos("1",self.ui.le_buscarServicio.text(),self.ui.b_buscarServicio))
+        self.ui.b_buscarContrato.clicked.connect(lambda: self.abrir_bdatos("1",self.ui.le_buscarContrato.text(),self.ui.b_buscarContrato))
+        self.ui.b_buscarFactura.clicked.connect(lambda: self.abrir_bdatos("1",self.ui.le_BuscarFactura.text(),self.ui.b_buscarFactura))
+
+        self.ui.bactualizarCliente.clicked.connect(lambda: self.abrir_bdatos("2",self.ui.le_busacarCliente.text(),""))
+        self.ui.bactualizarVehiculo.clicked.connect(lambda: self.abrir_bdatos("2",self.ui.le_buscarVehiculo.text(),""))
+        self.ui.bactualizarcontrato.clicked.connect(lambda: self.abrir_bdatos("2",self.ui.le_buscarVehiculo.text(),""))
+        self.ui.bactualizarFacturas.clicked.connect(lambda: self.abrir_bdatos("2",self.ui.le_buscarVehiculo.text(),""))
+        self.ui.bactualizarServicio.clicked.connect(lambda: self.abrir_bdatos("2",self.ui.le_buscarVehiculo.text(),""))
+
+
+
+
         self.ui.bactualizar.clicked.connect(lambda: self.iniciar_dialogo(Ui_ventana2(),clienteclass(),"cliente", False)) # importante usar lambda
         self.ui.ba_servicios.clicked.connect(lambda: self.iniciar_dialogo(Ui_dialogo_servicio(),servicioclass(),"servicios", False))
         self.ui.ba_contratos.clicked.connect(lambda: self.iniciar_dialogo(Ui_dialogo_contrato(),contratoclass(),"contrato", True))
@@ -91,17 +106,17 @@ class myapp(QtWidgets.QMainWindow,Ui_MainWindow,Ui_ventana2):
         if origen=="cliente":
             diccionario = clase.creardiccionario(qlines[5],qlines[1],qlines[4],qlines[0],qlines[2],qlines[3])
             clase.guardarInfo(diccionario, "bClientes.txt" )
-            self.abrir_bdatos()
+            self.abrir_bdatos("2","","")
 
         if origen=="vehiculo":
             diccionario = clase.creardiccionario(qlines[8],qlines[11],qlines[1],qlines[2],qlines[3],qlines[7],qlines[4],qlines[5],qlines[6],qlines[10],qlines[9],qlines[0])
             clase.guardarInfo(diccionario, "bVehiculos.txt" )
-            self.abrir_bdatos()
+            self.abrir_bdatos("2","","")
 
         if origen== "servicios":
             diccionario = clase.creardiccionario(qlines[1],qlines[3],qlines[2],qlines[0])
             clase.guardarInfo(diccionario, "bServicios.txt" )
-            self.abrir_bdatos()
+            self.abrir_bdatos("2","","")
 
         if origen== "contrato":
             diccionario = clase.creardiccionario(qlines[3],qlines[2],qlines[0],qlines[1],3)
@@ -114,7 +129,7 @@ class myapp(QtWidgets.QMainWindow,Ui_MainWindow,Ui_ventana2):
                 self.guardarimagen(self.path1,contrato[2],"foto1")
                 self.guardarimagen(self.path2,contrato[2],"foto2")
                 self.generar_pdf(pdf,contrato[2])
-            self.abrir_bdatos()
+            self.abrir_bdatos("2","","")
 
     def generar_pdf(self,pdf,numero):
         c = canvas.Canvas(directorio+"\Facturas"+"\Factura"+str(numero)+".pdf")
@@ -146,23 +161,52 @@ class myapp(QtWidgets.QMainWindow,Ui_MainWindow,Ui_ventana2):
         os.system("start "+directorio+"\Facturas"+"\Factura"+str(numero)+".pdf &")
 
         
-    def abrir_bdatos(self):
+    def abrir_bdatos(self, op, noid, boton):
         cliente=clienteclass()
         vehiculo=vehiculoclass()
         servicio=servicioclass()
         contrato=contratoclass()
+        factura=facturasclass()
 
-        cabecera_c, listac= cliente.datos, clienteclass.leerBase("bClientes.txt","2","",False,0)
-        cabecera_v, listav= vehiculo.datos, clienteclass.leerBase("bVehiculos.txt","2","",False,0)
-        cabecera_s, listas= servicio.datos, clienteclass.leerBase("bServicios.txt","2","",False,0)
-        cabecera_co, listaco= contrato.datos, clienteclass.leerBase("bContratos.txt","2","",False,0)
-        listaf=clienteclass.leerBase("bFacturas.txt","2","",False,0)
+        if op=="2":
+            cabecera_c, listac= cliente.datos, clienteclass.leerBase("bClientes.txt",op,noid,False,0)
+            cabecera_v, listav= vehiculo.datos, clienteclass.leerBase("bVehiculos.txt",op,noid,False,0)
+            cabecera_s, listas= servicio.datos, clienteclass.leerBase("bServicios.txt",op,noid,False,0)
+            cabecera_co, listaco= contrato.datos, clienteclass.leerBase("bContratos.txt",op,noid,False,0)
+            listaf=clienteclass.leerBase("bFacturas.txt","2","",False,0)
 
-        self.actualizar_tabla(listac,cabecera_c, self.ui.tabladatos)
-        self.actualizar_tabla(listaco,cabecera_co, self.ui.tb_contratos)
-        self.actualizar_tabla(listas,cabecera_s, self.ui.tb_servicios)
-        self.actualizar_tabla(listav,cabecera_v, self.ui.td_vehiculos)
-        self.actualizar_tabla(listaf,["facturas"], self.ui.tb_facturas)
+            self.actualizar_tabla(listac,cabecera_c, self.ui.tabladatos)
+            self.actualizar_tabla(listaco,cabecera_co, self.ui.tb_contratos)
+            self.actualizar_tabla(listas,cabecera_s, self.ui.tb_servicios)
+            self.actualizar_tabla(listav,cabecera_v, self.ui.td_vehiculos)
+            self.actualizar_tabla(listaf,["facturas"], self.ui.tb_facturas)
+        else:
+            if boton==self.ui.b_buscarCliente:
+                cabecera_c, listac= cliente.datos, [(clienteclass.leerBase("bClientes.txt","1",noid,False,0)).split(" ")]
+                print(listac)
+                self.actualizar_tabla(listac,cabecera_c, self.ui.tabladatos)
+            if boton==self.ui.b_buscarVehiculo:
+                cabecera_v, listav= vehiculo.datos, [(clienteclass.leerBase("bVehiculos.txt","1",noid,False,0)).split(" ")]
+                print(listav)
+                self.actualizar_tabla(listav,cabecera_v, self.ui.td_vehiculos)
+            if boton== self.ui.b_buscarServicio:
+                cabecera_s, listas= servicio.datos, [(clienteclass.leerBase("bServicios.txt","1",noid,False,0)).split(" ")]
+                print(listas)
+                self.actualizar_tabla(listas,cabecera_s, self.ui.tb_servicios)
+            if boton== self.ui.b_buscarContrato:
+                cabecera_co, listaco= contrato.datos, [(clienteclass.leerBase("bContratos.txt","1",noid,False,0)).split(" ")]
+                self.actualizar_tabla(listaco,cabecera_co, self.ui.tb_contratos)
+                
+            if boton== self.ui.b_buscarFactura:
+                listaf=[[factura.buscarfactura(int(noid))]]
+                print(noid)
+                print(listaf)
+                self.actualizar_tabla(listaf,["facturas"], self.ui.tb_facturas)
+            
+
+
+
+
         
 
 
@@ -170,6 +214,14 @@ class myapp(QtWidgets.QMainWindow,Ui_MainWindow,Ui_ventana2):
 
         if info=="Base de datos vacía": # para imprimir una lista vacía en casao de que haya nada en la base de datos
             info=[]
+        try:
+            if (info[0][0])=="No":
+                info=[]
+            if (info[0][0])=="No info":
+                info=[]
+        except:
+            pass
+
 
         
         tabladatos.setColumnCount(len(cabecera)) #pone el numero de columnas de la tabal

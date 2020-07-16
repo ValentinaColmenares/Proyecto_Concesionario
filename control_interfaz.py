@@ -65,16 +65,19 @@ class myapp(QtWidgets.QMainWindow,Ui_MainWindow,Ui_ventana2):
                                                   
         self.imagePath = self.fname[0]
 
-
-        if label == 1:
-            ventana.lbantes.setPixmap(QPixmap(self.pixmap))
+        if self.imagePath == "":
+            _translate = QtCore.QCoreApplication.translate
+            if label == 1:
+                ventana.lbantes.setText(_translate("dialogo_contrato", "FOTO ANTES"))
+            else:
+                ventana.lbdespues.setText(_translate("dialogo_contrato", "FOTO DESPUÉS"))
         else:
-            ventana.lbdespues.setPixmap(QPixmap(self.pixmap))
-
-        if label ==1:
-            self.path1=self.imagePath
-        else:
-            self.path2=self.imagePath
+            if label == 1:
+                ventana.lbantes.setPixmap(QPixmap(self.pixmap))
+                self.path1=self.imagePath
+            else:
+                ventana.lbdespues.setPixmap(QPixmap(self.pixmap))
+                self.path2=self.imagePath
 
 
 

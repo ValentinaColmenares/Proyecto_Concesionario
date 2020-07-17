@@ -18,7 +18,7 @@
     <item row="0" column="0">
      <widget class="QTabWidget" name="Modulos">
       <property name="currentIndex">
-       <number>0</number>
+       <number>4</number>
       </property>
       <widget class="QWidget" name="usuarios">
        <attribute name="title">
@@ -98,7 +98,7 @@
         <item row="2" column="0" colspan="2">
          <widget class="QPushButton" name="bactualizarVehiculo">
           <property name="text">
-           <string>Actualizar</string>
+           <string>Mostrar base de datos completa</string>
           </property>
          </widget>
         </item>
@@ -155,7 +155,7 @@
         <item row="2" column="0" colspan="2">
          <widget class="QPushButton" name="bactualizarServicio">
           <property name="text">
-           <string>Actualizar</string>
+           <string>Mostrar base de datos completa</string>
           </property>
          </widget>
         </item>
@@ -202,7 +202,7 @@
         <item row="2" column="0" colspan="2">
          <widget class="QPushButton" name="bactualizarcontrato">
           <property name="text">
-           <string>Actualizar</string>
+           <string>Mostrar base de datos completa</string>
           </property>
          </widget>
         </item>
@@ -246,7 +246,7 @@
         <item row="2" column="0" colspan="2">
          <widget class="QPushButton" name="bactualizarFacturas">
           <property name="text">
-           <string>Actualizar</string>
+           <string>Mostrar base de datos completa</string>
           </property>
          </widget>
         </item>

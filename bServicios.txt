@@ -1,1 +1,2 @@
 {"Codigo del servicio": "123", "Nombre del servicio": "lavado", "Precio/hora": "2133", "Horas del servicio": "21"}
+{"Codigo del servicio": "456", "Nombre del servicio": "pintura", "Precio/hora": "5200", "Horas del servicio": "6"}

@@ -177,7 +177,7 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
-        self.Modulos.setCurrentIndex(4)
+        self.Modulos.setCurrentIndex(0)
         self.bSalir.clicked.connect(MainWindow.close)
         self.pushButton.clicked.connect(self.tb_facturas.clear)
         self.pushButton_3.clicked.connect(self.tabladatos.clear)
@@ -187,7 +187,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "consecionario"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Concesionario"))
         self.bactualizar.setText(_translate("MainWindow", "Agregar cliente"))
         self.pushButton_3.setText(_translate("MainWindow", "borrar base de datos"))
         self.label.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\">Base de datos de clientes</p></body></html>"))

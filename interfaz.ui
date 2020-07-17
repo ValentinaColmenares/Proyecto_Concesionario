@@ -35,10 +35,23 @@
           </property>
          </widget>
         </item>
-        <item row="5" column="0" colspan="2">
-         <widget class="QPushButton" name="pushButton_3">
+        <item row="3" column="0" colspan="2">
+         <widget class="QTableWidget" name="tabladatos"/>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="le_busacarCliente"/>
+        </item>
+        <item row="1" column="0">
+         <widget class="QPushButton" name="b_buscarCliente">
           <property name="text">
-           <string>borrar base de datos</string>
+           <string>Buscar cliente</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0" colspan="2">
+         <widget class="QPushButton" name="bactualizarCliente">
+          <property name="text">
+           <string>Mostrar base de datos completa</string>
           </property>
          </widget>
         </item>
@@ -52,26 +65,6 @@
           </property>
          </widget>
         </item>
-        <item row="1" column="0">
-         <widget class="QPushButton" name="b_buscarCliente">
-          <property name="text">
-           <string>Buscar cliente</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0" colspan="2">
-         <widget class="QTableWidget" name="tabladatos"/>
-        </item>
-        <item row="1" column="1">
-         <widget class="QLineEdit" name="le_busacarCliente"/>
-        </item>
-        <item row="2" column="0" colspan="2">
-         <widget class="QPushButton" name="bactualizarCliente">
-          <property name="text">
-           <string>Actualizar</string>
-          </property>
-         </widget>
-        </item>
        </layout>
       </widget>
       <widget class="QWidget" name="vehiculos">
@@ -79,6 +72,19 @@
         <string>Vehículos</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_3">
+        <item row="4" column="0" colspan="2">
+         <widget class="QPushButton" name="ba_vehiculos">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="text">
+           <string>Agregar vehículo</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="le_buscarVehiculo"/>
+        </item>
         <item row="0" column="0" colspan="2">
          <widget class="QLabel" name="label_9">
           <property name="styleSheet">
@@ -89,6 +95,13 @@
           </property>
          </widget>
         </item>
+        <item row="2" column="0" colspan="2">
+         <widget class="QPushButton" name="bactualizarVehiculo">
+          <property name="text">
+           <string>Actualizar</string>
+          </property>
+         </widget>
+        </item>
         <item row="1" column="0">
          <widget class="QPushButton" name="b_buscarVehiculo">
           <property name="text">
@@ -96,35 +109,8 @@
           </property>
          </widget>
         </item>
-        <item row="1" column="1">
-         <widget class="QLineEdit" name="le_buscarVehiculo"/>
-        </item>
-        <item row="5" column="0" colspan="2">
-         <widget class="QPushButton" name="pushButton_2">
-          <property name="text">
-           <string>borrar base de datos</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="0" colspan="2">
-         <widget class="QPushButton" name="ba_vehiculos">
-          <property name="enabled">
-           <bool>true</bool>
-          </property>
-          <property name="text">
-           <string>Agregar  vehículo</string>
-          </property>
-         </widget>
-        </item>
         <item row="3" column="0" colspan="2">
          <widget class="QTableWidget" name="td_vehiculos"/>
-        </item>
-        <item row="2" column="0" colspan="2">
-         <widget class="QPushButton" name="bactualizarVehiculo">
-          <property name="text">
-           <string>Actualizar</string>
-          </property>
-         </widget>
         </item>
        </layout>
       </widget>
@@ -133,10 +119,23 @@
         <string>Servicios</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_4">
+        <item row="3" column="0" colspan="2">
+         <widget class="QTableWidget" name="tb_servicios"/>
+        </item>
         <item row="1" column="0">
          <widget class="QPushButton" name="b_buscarServicio">
           <property name="text">
            <string>Buscar servicio</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0" colspan="2">
+         <widget class="QPushButton" name="ba_servicios">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="text">
+           <string>Agregar servicio</string>
           </property>
          </widget>
         </item>
@@ -150,26 +149,6 @@
           </property>
           <property name="text">
            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Base de datos de Servicios&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0" colspan="2">
-         <widget class="QTableWidget" name="tb_servicios"/>
-        </item>
-        <item row="5" column="0" colspan="2">
-         <widget class="QPushButton" name="pushButton_4">
-          <property name="text">
-           <string>borrar base de datos</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="0" colspan="2">
-         <widget class="QPushButton" name="ba_servicios">
-          <property name="enabled">
-           <bool>true</bool>
-          </property>
-          <property name="text">
-           <string>Agregar servicio</string>
           </property>
          </widget>
         </item>
@@ -234,9 +213,6 @@
         <string>Facturas</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_6">
-        <item row="1" column="1">
-         <widget class="QLineEdit" name="le_BuscarFactura"/>
-        </item>
         <item row="1" column="0">
          <widget class="QPushButton" name="b_buscarFactura">
           <property name="text">
@@ -244,25 +220,8 @@
           </property>
          </widget>
         </item>
-        <item row="3" column="0" colspan="2">
-         <widget class="QTableWidget" name="tb_facturas"/>
-        </item>
-        <item row="4" column="0" colspan="2">
-         <widget class="QPushButton" name="ba_facturas">
-          <property name="enabled">
-           <bool>true</bool>
-          </property>
-          <property name="text">
-           <string>Ver facturas</string>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="0" colspan="2">
-         <widget class="QPushButton" name="pushButton">
-          <property name="text">
-           <string>borrar base de datos</string>
-          </property>
-         </widget>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="le_BuscarFactura"/>
         </item>
         <item row="0" column="0" colspan="2">
          <widget class="QLabel" name="label_12">
@@ -274,12 +233,25 @@
           </property>
          </widget>
         </item>
+        <item row="4" column="0" colspan="2">
+         <widget class="QPushButton" name="ba_facturas">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="text">
+           <string>Ver facturas</string>
+          </property>
+         </widget>
+        </item>
         <item row="2" column="0" colspan="2">
          <widget class="QPushButton" name="bactualizarFacturas">
           <property name="text">
            <string>Actualizar</string>
           </property>
          </widget>
+        </item>
+        <item row="3" column="0" colspan="2">
+         <widget class="QTableWidget" name="tb_facturas"/>
         </item>
        </layout>
       </widget>
@@ -296,6 +268,35 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <tabstops>
+  <tabstop>Modulos</tabstop>
+  <tabstop>b_buscarCliente</tabstop>
+  <tabstop>le_busacarCliente</tabstop>
+  <tabstop>bactualizarCliente</tabstop>
+  <tabstop>tabladatos</tabstop>
+  <tabstop>bactualizar</tabstop>
+  <tabstop>bSalir</tabstop>
+  <tabstop>le_buscarVehiculo</tabstop>
+  <tabstop>ba_vehiculos</tabstop>
+  <tabstop>td_vehiculos</tabstop>
+  <tabstop>bactualizarVehiculo</tabstop>
+  <tabstop>b_buscarServicio</tabstop>
+  <tabstop>le_buscarServicio</tabstop>
+  <tabstop>tb_servicios</tabstop>
+  <tabstop>ba_servicios</tabstop>
+  <tabstop>bactualizarServicio</tabstop>
+  <tabstop>tb_contratos</tabstop>
+  <tabstop>b_buscarContrato</tabstop>
+  <tabstop>ba_contratos</tabstop>
+  <tabstop>le_buscarContrato</tabstop>
+  <tabstop>bactualizarcontrato</tabstop>
+  <tabstop>le_BuscarFactura</tabstop>
+  <tabstop>b_buscarFactura</tabstop>
+  <tabstop>tb_facturas</tabstop>
+  <tabstop>ba_facturas</tabstop>
+  <tabstop>bactualizarFacturas</tabstop>
+  <tabstop>b_buscarVehiculo</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>
@@ -311,70 +312,6 @@
     <hint type="destinationlabel">
      <x>296</x>
      <y>606</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>pushButton</sender>
-   <signal>clicked()</signal>
-   <receiver>tb_facturas</receiver>
-   <slot>clear()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>279</x>
-     <y>316</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>279</x>
-     <y>267</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>pushButton_3</sender>
-   <signal>clicked()</signal>
-   <receiver>tabladatos</receiver>
-   <slot>clear()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>277</x>
-     <y>309</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>277</x>
-     <y>265</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>pushButton_2</sender>
-   <signal>clicked()</signal>
-   <receiver>td_vehiculos</receiver>
-   <slot>clear()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>279</x>
-     <y>314</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>279</x>
-     <y>267</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>pushButton_4</sender>
-   <signal>clicked()</signal>
-   <receiver>tb_servicios</receiver>
-   <slot>clear()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>209</x>
-     <y>318</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>218</x>
-     <y>267</y>
     </hint>
    </hints>
   </connection>

@@ -1,1 +1,1 @@
-
+{"consec": 0, "infoFac": "FACTURA NUMERO 0\n\nINFORMACI\u00d3N DE USUARIO\nID-Cliente: 98765\t\tNombre: Sof\u00eda\t\tApellido: Duarte\t\tDirecci\u00f3n: Calle 65\t\tTelefono: 65478\t\tCiudad: Fusa\t\t\n\nINFORMACI\u00d3N DE VEHICULO\nNumero de placa: 56789\t\tMarca: Chevrolet\t\tNumero de Modelo: \t\t1998\t\tColor: Azul\n\nINFORMACI\u00d3N DE SERVICIO\nCodigo del servicio: 456\t\tNombre del servicio: pintura\t\tPrecio/hora: 5200\t\tHoras del servicio: 6\t\t\nUnidades contratadas:2\n\nTOTAL A PAGAR: $62400\n\n\n"}

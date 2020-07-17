@@ -15,7 +15,7 @@ import os
 
 directorio= os.getcwd()# para obtener la ruta de la carpeta que contiene el programa
 
-    
+
 
 class myapp(QtWidgets.QMainWindow,Ui_MainWindow,Ui_ventana2):
     def __init__(self):
@@ -25,6 +25,7 @@ class myapp(QtWidgets.QMainWindow,Ui_MainWindow,Ui_ventana2):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self) 
         self.abrir_bdatos("2","","")
+        self.setWindowIcon(QtGui.QIcon("icon.png"))
 
         self.ui.b_buscarCliente.clicked.connect(lambda: self.abrir_bdatos("1",self.ui.le_busacarCliente.text(),self.ui.b_buscarCliente))
         self.ui.b_buscarVehiculo.clicked.connect(lambda: self.abrir_bdatos("1",self.ui.le_buscarVehiculo.text(),self.ui.b_buscarVehiculo))
@@ -128,7 +129,7 @@ class myapp(QtWidgets.QMainWindow,Ui_MainWindow,Ui_ventana2):
             self.abrir_bdatos("2","","")
 
         if origen== "servicios":
-            diccionario = clase.creardiccionario(qlines[1],qlines[3],qlines[2],qlines[0])
+            diccionario = clase.creardiccionario(qlines[0],qlines[1],qlines[2],qlines[3])
             clase.guardarInfo(diccionario, "bServicios.txt" )
             self.abrir_bdatos("2","","")
 

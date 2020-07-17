@@ -1,1 +1,0 @@
-{"Numero de placa": "54321", "ID-Cliente": "12345", "Marca": "ferrari", "Numero de modelo": "1312312", "Cilindraje": "13123", "Color": "negro", "Tipo de servicio": "312", "Tipo de combustible": "gasolina", "Capacidad de pasajeros": "131", "Capacidad de carga": "3123", "Numero de chasis": "321", "Numero de Motor": "1312"}

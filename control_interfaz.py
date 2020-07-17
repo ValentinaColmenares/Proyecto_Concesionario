@@ -280,9 +280,10 @@ class myapp(QtWidgets.QMainWindow,Ui_MainWindow,Ui_ventana2):
                     qlabel= QtWidgets.QLabel()#SE CREA EL QLABEL
                     qlabel2= QtWidgets.QLabel()
 
-                    self.insertImageTable("C:/Users/aldo/Documents/GitHub/Proyecto_Concesionario/imagenes/ foto_antes"+str(fila)+".jpg",qlabel)# se llama la funcíon que inserta la imágen en el qlabel
+                    
+                    self.insertImageTable(directorio+"\imagenes"+"\ foto_antes"+str(fila),qlabel)# se llama la funcíon que inserta la imágen en el qlabel
                 
-                    self.insertImageTable("C:/Users/aldo/Documents/GitHub/Proyecto_Concesionario/imagenes/ foto_despues"+str(fila)+".jpg",qlabel2)
+                    self.insertImageTable(directorio+"\imagenes"+"\ foto_despues"+str(fila)+".jpg",qlabel2)
 
                     tabladatos.setCellWidget(fila,1,qlabel)
                     tabladatos.setCellWidget(fila,2,qlabel2)# se inserta el qlabel en la tabla

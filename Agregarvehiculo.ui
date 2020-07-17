@@ -33,31 +33,6 @@
         </property>
        </widget>
       </item>
-      <item row="12" column="1" colspan="2">
-       <widget class="QPushButton" name="bguardar">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>Guardar</string>
-        </property>
-        <property name="autoDefault">
-         <bool>false</bool>
-        </property>
-        <property name="default">
-         <bool>false</bool>
-        </property>
-        <property name="flat">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
       <item row="1" column="0">
        <widget class="QLabel" name="lbplaca">
         <property name="sizePolicy">
@@ -294,7 +269,7 @@
          </sizepolicy>
         </property>
         <property name="text">
-         <string>Númenro de motor</string>
+         <string>Número de motor</string>
         </property>
        </widget>
       </item>
@@ -363,6 +338,31 @@
         </property>
        </widget>
       </item>
+      <item row="12" column="1">
+       <widget class="QPushButton" name="bguardar">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Guardar</string>
+        </property>
+        <property name="autoDefault">
+         <bool>false</bool>
+        </property>
+        <property name="default">
+         <bool>false</bool>
+        </property>
+        <property name="flat">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
      </layout>
     </item>
    </layout>
@@ -379,6 +379,21 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <tabstops>
+  <tabstop>le_cliente</tabstop>
+  <tabstop>lenombre</tabstop>
+  <tabstop>lemarca</tabstop>
+  <tabstop>ledireccion</tabstop>
+  <tabstop>lecilindraje</tabstop>
+  <tabstop>lecolor</tabstop>
+  <tabstop>leservicio</tabstop>
+  <tabstop>lecombustible</tabstop>
+  <tabstop>lepasajeros</tabstop>
+  <tabstop>lechasis</tabstop>
+  <tabstop>lecarga</tabstop>
+  <tabstop>lemotor</tabstop>
+  <tabstop>bguardar</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

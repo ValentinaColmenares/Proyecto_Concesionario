@@ -1,0 +1,1 @@
+{"Numero de placa": "54321", "ID-Cliente": "12345", "Marca": "Renault", "Numero de modelo": "2009", "Cilindraje": "1600", "Color": "Gris", "Tipo de servicio": "Particular", "Tipo de combustible": "Gasolina", "Capacidad de pasajeros": "5", "Capacidad de carga": "200", "Numero de chasis": "b56fg4gdf", "Numero de Motor": "dsv654vd5"}

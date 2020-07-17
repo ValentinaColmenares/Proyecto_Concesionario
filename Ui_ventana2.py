@@ -101,6 +101,6 @@ class Ui_ventana2(object):
         self.lbapellido.setText(_translate("ventana2", "Apellido"))
         self.lbdireccion.setText(_translate("ventana2", "Dirección"))
         self.lbIdcliente.setText(_translate("ventana2", "Id-Cliente"))
-        self.Lbcelular.setText(_translate("ventana2", "Celular"))
+        self.Lbcelular.setText(_translate("ventana2", "Teléfono"))
         self.lbciudad.setText(_translate("ventana2", "Ciudad"))
         self.bguardar.setText(_translate("ventana2", "Guardar"))

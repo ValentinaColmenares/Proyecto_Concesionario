@@ -6,7 +6,7 @@ from ProyectoPOO import clienteclass,servicioclass,vehiculoclass,facturasclass,c
 from PIL import Image, ImageOps
 from PyQt5.QtCore import Qt, pyqtSignal, QByteArray, QIODevice, QBuffer
 from PyQt5.QtWidgets import QApplication, QTableWidgetItem, QLineEdit, QFileDialog, QHeaderView
-from ventana2 import Ui_ventana2
+from Ui_ventana2 import Ui_ventana2
 from Ui_Agregarvehiculo import Ui_dialogo_vehiculo
 from Ui_dialogoservicio import Ui_dialogo_servicio
 from Ui_dialogo_contrato import Ui_dialogo_contrato 

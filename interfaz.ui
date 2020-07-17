@@ -20,9 +20,9 @@
       <property name="currentIndex">
        <number>4</number>
       </property>
-      <widget class="QWidget" name="usuarios">
+      <widget class="QWidget" name="clientes">
        <attribute name="title">
-        <string>Usuario</string>
+        <string>Clientes</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_2">
         <item row="4" column="0" colspan="2">

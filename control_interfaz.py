@@ -15,7 +15,7 @@ import os
 
 directorio= os.getcwd()# para obtener la ruta de la carpeta que contiene el programa
 
-    
+
 
 class myapp(QtWidgets.QMainWindow,Ui_MainWindow,Ui_ventana2):
     def __init__(self):

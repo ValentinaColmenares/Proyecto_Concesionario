@@ -1,0 +1,2 @@
+{"ID-Cliente": "12345", "Nombre": "Val", "Apellido": "Colme", "Direcci\u00f3n": "calle 56", "Telefono": "25698", "Ciudad": "Fusa"}
+{"ID-Cliente": "67890", "Nombre": "Sofia", "Apellido": "Duarte", "Direcci\u00f3n": "Calle 22", "Telefono": "65432", "Ciudad": "Bogot\u00e1"}

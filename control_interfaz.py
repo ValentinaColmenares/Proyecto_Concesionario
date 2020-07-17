@@ -128,7 +128,7 @@ class myapp(QtWidgets.QMainWindow,Ui_MainWindow,Ui_ventana2):
             self.abrir_bdatos("2","","")
 
         if origen== "servicios":
-            diccionario = clase.creardiccionario(qlines[1],qlines[3],qlines[2],qlines[0])
+            diccionario = clase.creardiccionario(qlines[0],qlines[1],qlines[2],qlines[3])
             clase.guardarInfo(diccionario, "bServicios.txt" )
             self.abrir_bdatos("2","","")
 

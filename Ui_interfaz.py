@@ -198,7 +198,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "consecionario"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Concesionario"))
         self.bactualizar.setText(_translate("MainWindow", "Agregar cliente"))
         self.b_buscarCliente.setText(_translate("MainWindow", "Buscar cliente"))
         self.bactualizarCliente.setText(_translate("MainWindow", "Mostrar base de datos completa"))

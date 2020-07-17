@@ -370,7 +370,7 @@ class facturasclass(clienteclass):
 
         cadena_vehiculo += "Numero de placa: " + infoVehiculo["Numero de placa"].rstrip() + "\t\t" + \
             "Marca: " + infoVehiculo["Marca"].rstrip() + "\t\t" + \
-            "Numero de Modelo: " + infoVehiculo["Numero de modelo"].rstrip() + "\t\t" + \
+            "Numero de Modelo: "+"\t\t" + infoVehiculo["Numero de modelo"].rstrip() + "\t\t" + \
             "Color: " + infoVehiculo["Color"].rstrip()
 
         for i in infoServicio:

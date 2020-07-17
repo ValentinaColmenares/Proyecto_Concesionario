@@ -5,8 +5,8 @@ from PyQt5.QtGui import QPixmap
 from ProyectoPOO import clienteclass,servicioclass,vehiculoclass,facturasclass,contratoclass
 from PIL import Image, ImageOps
 from PyQt5.QtCore import Qt, pyqtSignal, QByteArray, QIODevice, QBuffer
-from PyQt5.QtWidgets import QApplication, QTableWidgetItem, QLineEdit, QFileDialog, QHeaderView
-from Ui_ventana2 import Ui_ventana2
+from PyQt5.QtWidgets import QApplication, QTableWidgetItem, QLineEdit, QFileDialog, QHeaderView, QLabel
+from ventana2 import Ui_ventana2
 from Ui_Agregarvehiculo import Ui_dialogo_vehiculo
 from Ui_dialogoservicio import Ui_dialogo_servicio
 from Ui_dialogo_contrato import Ui_dialogo_contrato 
@@ -56,6 +56,15 @@ class myapp(QtWidgets.QMainWindow,Ui_MainWindow,Ui_ventana2):
                 ventana.badjuntar.clicked.connect(lambda: self.getImage(ventana, 1))
                 ventana.badjuntar_2.clicked.connect(lambda: self.getImage(ventana, 2))
             ventana.bguardar.clicked.connect (lambda: self.crear_datos(clase,origen,ventana))#importante usar lambda
+    
+    def insertImageTable(self, path ,label):
+
+        self.pixmap = QPixmap(path).scaled(266, 278, Qt.KeepAspectRatio,
+                                                  Qt.SmoothTransformation)
+        
+        label.setPixmap((self.pixmap))
+
+
 
     def getImage(self, ventana, label):
         self.fname = QFileDialog.getOpenFileName(parent=None, caption='Open file',directory='c:\'',filter="Image files (*.jpg *.png)")
@@ -64,6 +73,7 @@ class myapp(QtWidgets.QMainWindow,Ui_MainWindow,Ui_ventana2):
                                                   Qt.SmoothTransformation)
                                                   
         self.imagePath = self.fname[0]
+        print(self.imagePath)
 
         if self.imagePath == "":
             _translate = QtCore.QCoreApplication.translate
@@ -104,6 +114,7 @@ class myapp(QtWidgets.QMainWindow,Ui_MainWindow,Ui_ventana2):
 
         qlines=[child for child in ventana.centralwidget.findChildren(QtWidgets.QLineEdit)]
         qlines=[texto.text() for texto in qlines]
+        self.ventana.close() # cierra la venta de diálogo
         
 
         if origen=="cliente":
@@ -182,7 +193,7 @@ class myapp(QtWidgets.QMainWindow,Ui_MainWindow,Ui_ventana2):
             self.actualizar_tabla(listaco,cabecera_co, self.ui.tb_contratos)
             self.actualizar_tabla(listas,cabecera_s, self.ui.tb_servicios)
             self.actualizar_tabla(listav,cabecera_v, self.ui.td_vehiculos)
-            self.actualizar_tabla(listaf,["facturas"], self.ui.tb_facturas)
+            self.actualizar_tabla(listaf,["factura","foto antes","foto después"], self.ui.tb_facturas)
         else:
             if boton==self.ui.b_buscarCliente:
                 cabecera_c, listac= cliente.datos, [(clienteclass.leerBase("bClientes.txt","1",noid,False,0)).split(" ")]
@@ -204,7 +215,7 @@ class myapp(QtWidgets.QMainWindow,Ui_MainWindow,Ui_ventana2):
                 listaf=[[factura.buscarfactura(int(noid))]]
                 print(noid)
                 print(listaf)
-                self.actualizar_tabla(listaf,["facturas"], self.ui.tb_facturas)
+                self.actualizar_tabla(listaf,["facturas","foto antes","foto después"], self.ui.tb_facturas)
             
 
 
@@ -234,14 +245,23 @@ class myapp(QtWidgets.QMainWindow,Ui_MainWindow,Ui_ventana2):
         tabladatos.horizontalHeader().setStretchLastSection ( True )
         tabladatos.setSortingEnabled(True)#ordena por columnas cuando elusuario presiona una columna
         tabladatos.setAlternatingRowColors ( True )
-        if len(cabecera)==1:
+        if len(cabecera)==3:
+            tabladatos.horizontalHeader().setStretchLastSection ( False )
             tabladatos.verticalHeader().setDefaultSectionSize(300)
+            header_view = tabladatos.horizontalHeader()
+            header_view.setSectionResizeMode(0, QtWidgets.QHeaderView.ResizeToContents)# ajusta el espacio de la celda para que se alcance a ver toda la información
+            header_view.setSectionResizeMode(1, QtWidgets.QHeaderView.ResizeToContents)
+            header_view.setSectionResizeMode(2, QtWidgets.QHeaderView.ResizeToContents)
 
 
 
+        if tabladatos== self.ui.tb_facturas:
+            file = open("bImagenes.txt", "r")
+            listimage=file.readlines()
 
 
-        fila=0
+
+        fila=0  
         for registro in info:
             columna=0
             for dato in registro:
@@ -251,7 +271,24 @@ class myapp(QtWidgets.QMainWindow,Ui_MainWindow,Ui_ventana2):
                     cellinfo=QTableWidgetItem(dato)
                 
                 cellinfo.setFlags(QtCore.Qt.ItemIsSelectable| QtCore.Qt.ItemIsEditable)#hace que las celdas no sean editables
-                tabladatos.setItem(fila,columna,cellinfo)
+
+                
+                if tabladatos== self.ui.tb_facturas:
+                    if columna==0:
+                        tabladatos.setItem(fila,columna,cellinfo)
+
+                    qlabel= QtWidgets.QLabel()#SE CREA EL QLABEL
+                    qlabel2= QtWidgets.QLabel()
+
+                    self.insertImageTable("C:/Users/aldo/Documents/GitHub/Proyecto_Concesionario/imagenes/ foto_antes"+str(fila)+".jpg",qlabel)# se llama la funcíon que inserta la imágen en el qlabel
+                
+                    self.insertImageTable("C:/Users/aldo/Documents/GitHub/Proyecto_Concesionario/imagenes/ foto_despues"+str(fila)+".jpg",qlabel2)
+
+                    tabladatos.setCellWidget(fila,1,qlabel)
+                    tabladatos.setCellWidget(fila,2,qlabel2)# se inserta el qlabel en la tabla
+                    
+                else:
+                    tabladatos.setItem(fila,columna,cellinfo)
                 columna+=1
             fila+=1
 

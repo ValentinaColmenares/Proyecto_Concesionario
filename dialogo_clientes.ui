@@ -44,7 +44,7 @@
        <item row="2" column="0">
         <widget class="QLabel" name="lbapellido">
          <property name="text">
-          <string>Apellido</string>
+          <string>apellido</string>
          </property>
         </widget>
        </item>
@@ -54,21 +54,21 @@
        <item row="4" column="0">
         <widget class="QLabel" name="Lbcelular">
          <property name="text">
-          <string>Celular</string>
+          <string>celular</string>
          </property>
         </widget>
        </item>
        <item row="3" column="0">
         <widget class="QLabel" name="lbdireccion">
          <property name="text">
-          <string>Dirección</string>
+          <string>dirección</string>
          </property>
         </widget>
        </item>
        <item row="6" column="0">
         <widget class="QLabel" name="lbciudad">
          <property name="text">
-          <string>Ciudad</string>
+          <string>ciudad</string>
          </property>
         </widget>
        </item>
